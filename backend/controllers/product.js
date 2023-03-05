@@ -8,7 +8,7 @@
   
     product
       .save()
-      .then((article) => {
+      .then((product) => {
         res.status(201).json({
           success: true,
           message: `product added`,

@@ -15,6 +15,7 @@ const register = (req, res) => {
   newUser
     .save()
     .then((result) => {
+        console.log(result)
       res.status(201).json({
         success: true,
         message: `Account created successfully`,
@@ -43,7 +44,8 @@ const login = (req, res) => {
 
   userModel
     .findOne({ email })
-    .populate("role")
+    .populate("role","-_id")
+    .exec()
     .then(async (result) => {
       if (!result) {
         res.status(403).json({
@@ -61,17 +63,18 @@ const login = (req, res) => {
           }
 
           const payload = {
-            id: result._id,
-            permissions: result.role,
-            type: result.role.role,
+            userId: result._id,
+            userName: result.firstName,
+            // role: result.role,
           };
 
           const options = {
             expiresIn: "90m",
           };
           const token = jwt.sign(payload, process.env.SECRET, options);
+           
           res.status(200).json({
-            success: false,
+            success: true,
             message: `login successfully`,
             token: token,
           });

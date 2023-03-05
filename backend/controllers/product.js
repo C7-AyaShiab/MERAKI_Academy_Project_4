@@ -83,4 +83,32 @@ const deleteProductById = (req, res) => {
     });
 };
 
-module.exports = { createProduct, getAllProduct, deleteProductById};
+const updateProductById = (req, res) => {
+  const id=req.params.id;
+  const updated=req.body;
+  productModel
+    .findByIdAndUpdate({_id:id}, updated,{new:true})
+    .then((product) => {
+      if (!product) {
+        res.status(404).json({
+          success: false,
+          message: `product with id:${id} is not found`,
+        });
+      } else {
+        res.status(200).json({
+          success: true,
+          message: `product updated`,
+          product:product,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+      });
+    });
+};
+
+
+module.exports = { createProduct, getAllProduct, deleteProductById, updateProductById};

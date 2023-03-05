@@ -1,7 +1,7 @@
 const express = require("express");
  
 //import product from controllers
-const { createProduct, getAllProduct } = require("../controllers/product");
+const { createProduct, getAllProduct, deleteProductById } = require("../controllers/product");
 
 const authentication = require("../middleware/authentication");
 const authorization = require("../middleware/authorization");
@@ -13,6 +13,9 @@ const productsRouter = express.Router();
 productsRouter.post("/", authentication,
 authorization("CREATE_PRODUCT"), createProduct);
 productsRouter.get("/", getAllProduct);
+productsRouter.delete("/:id",authentication,
+authorization("DELETE_PRODUCT"), deleteProductById);
+
 
 
 module.exports = productsRouter;

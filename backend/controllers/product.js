@@ -40,7 +40,9 @@ const createProduct = (req, res) => {
 
 const getAllProduct = (req, res) => {
   productModel
-    .find({})
+    .find()
+    .populate("review")
+    .exec()
     .then((product) => {
       if (product.length) {
         res.status(200).json({

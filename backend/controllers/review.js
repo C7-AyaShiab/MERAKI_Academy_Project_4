@@ -12,7 +12,6 @@ const createReview = (req, res) => {
   newReview
     .save()
     .then((result) => {
-        console.log(result)
       productModel
         .findByIdAndUpdate(
           { _id: id },
@@ -43,6 +42,46 @@ const createReview = (req, res) => {
     });
 };
 
+const updatereviewById = (req, res) => {
+  const id = req.params.id;
+  const reviewId = req.params.reviewId;
+  const userId = req.token.userId;
+  const updatedReview = req.body;
+  reviewModel
+    .findByIdAndUpdate({ _id: reviewId }, updatedReview, { new: true })
+    .then((result) => {
+      console.log(result);
+      productModel
+        .findByIdAndUpdate(
+          { _id: id },
+          { $set: { review: result._id } },
+          { new: true }
+        )
+        .then(() => {
+          res.status(201).json({
+            success: true,
+            message: `review updated`,
+            review: result,
+          });
+        })
+        .catch((err) => {
+          res.status(500).json({
+            success: false,
+            message: `Server Error`,
+            err: err.message,
+          });
+        });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        err: err.message,
+      });
+    });
+};
+
 module.exports = {
   createReview,
+  updatereviewById,
 };

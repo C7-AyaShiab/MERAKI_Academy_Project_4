@@ -2,7 +2,7 @@ const express = require("express");
  
 //import product from controllers
 const { createProduct, getAllProduct, deleteProductById, updateProductById, getProductById } = require("../controllers/product");
-const { createReview } = require("../controllers/review");
+const { createReview, updatereviewById } = require("../controllers/review");
 
 const authentication = require("../middleware/authentication");
 const authorization = require("../middleware/authorization");
@@ -17,6 +17,7 @@ productsRouter.delete("/:id",authentication, authorization("DELETE_PRODUCT"), de
 productsRouter.put("/:id",authentication, authorization("UPDATE_PRODUCT"), updateProductById);
 productsRouter.get("/search/:id", getProductById);
 productsRouter.post("/:id/review", authentication, authorization("CREATE_REVIEW"), createReview);
+productsRouter.put("/:id/review/:reviewId",authentication, authorization("UPDATE_REVIEW"), updatereviewById);
 
 
 

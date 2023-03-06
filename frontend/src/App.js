@@ -1,6 +1,7 @@
 import "./App.css";
 import { Routes, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
+import Nav from "./components/Navbar";
 
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <header className="App-header">
         <h1>Project 4 </h1>
       </header>
+      <Nav/>
       <Routes>
       <Route path="/" element={<Home />} /> 
       </Routes>

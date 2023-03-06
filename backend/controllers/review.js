@@ -22,7 +22,7 @@ const createReview = (req, res) => {
         .then(() => {
           res.status(201).json({
             success: true,
-            message: `Comment added`,
+            message: `review added`,
             review: result,
           });
         })

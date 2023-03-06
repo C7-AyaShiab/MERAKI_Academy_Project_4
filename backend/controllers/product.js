@@ -79,6 +79,8 @@ const deleteProductById = (req, res) => {
       res.status(500).json({
         success: false,
         message: `Server Error`,
+        err: err.message,
+
       });
     });
 };
@@ -106,9 +108,35 @@ const updateProductById = (req, res) => {
       res.status(500).json({
         success: false,
         message: `Server Error`,
+        err: err.message,
+
       });
     });
 };
 
-
-module.exports = { createProduct, getAllProduct, deleteProductById, updateProductById};
+const getProductById = (req, res) => {
+  const id = req.params.id;
+  productModel
+    .findById(id)
+    .then((product) => {
+      if (!product) {
+        return res.status(404).json({
+          success: false,
+          message: `The product with id: ${id} is not found`,
+        });
+      }
+      res.status(200).json({
+        success: true,
+        message: `The product is found `,
+        product: product,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        err: err.message,
+      });
+    });
+};
+module.exports = { createProduct, getAllProduct, deleteProductById, updateProductById,getProductById};

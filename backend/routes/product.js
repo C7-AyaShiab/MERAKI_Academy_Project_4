@@ -1,7 +1,7 @@
 const express = require("express");
  
 //import product from controllers
-const { createProduct, getAllProduct, deleteProductById, updateProductById } = require("../controllers/product");
+const { createProduct, getAllProduct, deleteProductById, updateProductById, getProductById } = require("../controllers/product");
 
 const authentication = require("../middleware/authentication");
 const authorization = require("../middleware/authorization");
@@ -17,6 +17,7 @@ productsRouter.delete("/:id",authentication,
 authorization("DELETE_PRODUCT"), deleteProductById);
 productsRouter.put("/:id",authentication,
 authorization("UPDATE_PRODUCT"), updateProductById);
+productsRouter.get("/search/:id", getProductById);
 
 
 

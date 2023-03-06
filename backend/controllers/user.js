@@ -50,7 +50,7 @@ const login = (req, res) => {
       if (!result) {
         res.status(403).json({
           success: false,
-          message: `Email or password is not correct`,
+          message: `Email is not exist or password is not correct`,
         });
       } else {
         try {
@@ -58,7 +58,7 @@ const login = (req, res) => {
           if (!valid) {
             res.status(403).json({
               success: false,
-              message: `Email or password is not correct`,
+              message: `Email is not exist or password is not correct`,
             });
           }
 

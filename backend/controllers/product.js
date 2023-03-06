@@ -120,6 +120,8 @@ const getProductById = (req, res) => {
   const id = req.params.id;
   productModel
     .findById(id)
+    .populate("review")
+    .exec()
     .then((product) => {
       if (!product) {
         return res.status(404).json({

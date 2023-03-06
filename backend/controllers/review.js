@@ -48,29 +48,15 @@ const updatereviewById = (req, res) => {
   const userId = req.token.userId;
   const updatedReview = req.body;
   reviewModel
-    .findByIdAndUpdate({ _id: reviewId }, updatedReview, { new: true })
+    .findByIdAndUpdate({ _id: reviewId, user: userId }, updatedReview)
+    .populate("review")
+    .exec()
     .then((result) => {
-      console.log(result);
-      productModel
-        .findByIdAndUpdate(
-          { _id: id },
-          { $set: { review: result._id } },
-          { new: true }
-        )
-        .then(() => {
-          res.status(201).json({
-            success: true,
-            message: `review updated`,
-            review: result,
-          });
-        })
-        .catch((err) => {
-          res.status(500).json({
-            success: false,
-            message: `Server Error`,
-            err: err.message,
-          });
-        });
+      res.status(201).json({
+        success: true,
+        message: `review updated`,
+        review: result,
+      });
     })
     .catch((err) => {
       res.status(500).json({
@@ -81,7 +67,36 @@ const updatereviewById = (req, res) => {
     });
 };
 
+
+const deletereviewById = (req, res) => {
+    const id = req.params.reviewId;
+    const userId = req.token.userId;
+    reviewModel
+    .findByIdAndDelete(id)
+      .then((result) => {
+        if (!result) {
+            res.status(404).json({
+              success: false,
+              message: `review with id:${id} is not found`,
+            });
+          } else {
+            res.status(200).json({
+              success: true,
+              message: `review deleted`,
+            });
+          }
+      })
+      .catch((err) => {
+        res.status(500).json({
+          success: false,
+          message: `Server Error`,
+          err: err.message,
+        });
+      });
+  };
+
 module.exports = {
   createReview,
   updatereviewById,
+  deletereviewById,
 };

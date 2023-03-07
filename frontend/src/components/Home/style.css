@@ -5,6 +5,10 @@ img{
 .Home {
     margin-top: 3%;
     display: grid;
+  grid-template-columns: auto auto;
+  padding: 5% 5%;
+ 
+  grid-gap: 1%;
     color: rgb(9, 9, 9);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     justify-content: center;

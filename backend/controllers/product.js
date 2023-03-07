@@ -18,6 +18,7 @@ const createProduct = (req, res) => {
     availability,
     price,
     rate,
+    review,
   });
 
   product
@@ -143,4 +144,25 @@ const getProductById = (req, res) => {
       });
     });
 };
-module.exports = { createProduct, getAllProduct, deleteProductById, updateProductById,getProductById};
+const getProductByCategory = (req, res) => {
+  const category = req.params.category;
+  productModel
+    .find({category})
+    .populate("review")
+    .exec()
+    .then((product) => {
+      if (product.length) {
+        res.status(200).json({
+          success: true,
+          message: `All products`,
+          product: product,
+        });
+      } else {
+        res.status(200).json("No products are available");
+      }
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+};
+module.exports = { createProduct, getAllProduct, deleteProductById, updateProductById,getProductById,getProductByCategory};

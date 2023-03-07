@@ -7,6 +7,7 @@ const {
   deleteProductById,
   updateProductById,
   getProductById,
+  getProductByCategory,
 } = require("../controllers/product");
 const {
   createReview,
@@ -28,6 +29,8 @@ productsRouter.post(
   createProduct
 );
 productsRouter.get("/", getAllProduct);
+productsRouter.get("/search/:category", getProductByCategory);
+
 productsRouter.delete(
   "/:id",
   authentication,

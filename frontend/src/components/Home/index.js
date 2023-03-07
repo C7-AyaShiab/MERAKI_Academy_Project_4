@@ -4,6 +4,7 @@ import "./style.css";
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [number, setNumber] = useState(0);
+  const [showBtn, setShowBtn] = useState(true);
 
   const mystyle1 = {
     width: "230px",
@@ -94,16 +95,18 @@ const Home = () => {
           );
         })}
 
-      <div>
+      {showBtn ? (
         <button
           style={mystyle1}
-          className="blue"
           onClick={() => {
             axios
               .get("http://localhost:5000/products")
               .then((result) => {
                 console.log(result.data);
                 setNumber(number + 6);
+                if (number === 24) {
+                  setShowBtn(!showBtn);
+                }
                 setProducts(result.data.product.slice(0, number));
               })
               .catch((err) => {
@@ -113,7 +116,9 @@ const Home = () => {
         >
           Show More Products
         </button>
-      </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

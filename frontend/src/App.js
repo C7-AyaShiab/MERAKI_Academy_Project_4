@@ -5,7 +5,11 @@ import Home from "./components/Home";
 import Nav from "./components/Navbar";
 import Slider from "./components/Slider";
 import Category from "./components/Category";
+import List from "./components/List";
+
+
 export const ProductContext = createContext();
+
 function App() {
   const [products, setProducts] = useState([]);
   return (
@@ -15,11 +19,9 @@ function App() {
         <h1>Project 4 </h1>
       </header>
       <Nav/>
-      <Slider/>
-      <Category/>
       <Routes>
-      <Route path="/" element={<Home />} /> 
-      <Route path="/category" element={<Category />}/>
+      <Route path="/" element={<><Slider/> <Category/> <Home /> </>} /> 
+      <Route path="/categorylist/:categoryName" element={<List />}/>
       </Routes>
       </ProductContext.Provider>
     </div>

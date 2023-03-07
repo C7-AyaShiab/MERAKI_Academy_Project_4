@@ -1,63 +1,32 @@
-import React, { useState, useEffect, useContext  } from "react";
-import axios from "axios";
+import React, { useState, useEffect, useContext } from "react";
 import { ProductContext } from "../../App";
+import { useNavigate,useParams } from "react-router-dom";
+import axios from "axios";
 import "./style.css";
- 
 
-const Home = () => {
-   const {products,setProducts}=useContext(ProductContext)
-  const [number, setNumber] = useState(0);
-  const [showBtn, setShowBtn] = useState(true);
-  const [isShown, setIsShown] = useState(false);
-  const [imgId, setImgId] = useState(0);
-
-  const mystyle1 = {
-    width: "230px",
-    height: "50px",
-    color: "white",
-    background: "rgba(0, 0, 0, 0.7)",
-    position: "relative",
-    left: "150px",
-    border: "none",
-    cursor: "pointer",
-  };
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/products")
-      .then((result) => {
-        setProducts(result.data.product.slice(0, 6));
-        setNumber(6);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-  const handleMouseEnter = (e) => {
-    setImgId(e.target.id);
-    setIsShown(true);
-  };
-
-  const handleMouseLeave = (e) => {
-    setIsShown(false);
-  };
+const List = () => {
+  const { products, setProducts } = useContext(ProductContext);
+console.log(products)
+const {categoryName}=useParams();
+useEffect(()=>{
+  axios
+  .get(`http://localhost:5000/products/search/${categoryName}`)
+  .then((result) => {
+    console.log(result.data.product);
+    setProducts(result.data.product);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+},[])
   return (
-   <>
- 
-    <div className="Home">
-      
-      {products &&
+    <div className="List">
+     {products &&
         products.map((product) => {
           return (
-            <div className="product" key={product._id} id={product._id}>
-              <img
-                src={product.image}
-                id={product._id}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              />
-              {isShown && product._id == imgId ? (
-                <div className="product1" id={product._id}>
+            <div className="item" key={product._id} id={product._id}>
+              <img src={product.image} id={product._id}/>
+                 <div id={product._id}>
                   <h6 id={product._id}>{product.productName} </h6>
                   <p id={product._id}>
                     {product.rate}
@@ -113,40 +82,12 @@ const Home = () => {
                     </span>
                   </p>
                 </div>
-              ) : (
-                ""
-              )}
+              
             </div>
           );
         })}
-
-      {showBtn ? (
-        <button
-          style={mystyle1}
-          onClick={() => {
-            axios
-              .get("http://localhost:5000/products")
-              .then((result) => {
-                console.log(result.data);
-                setNumber(number + 6);
-                if (number === 24) {
-                  setShowBtn(!showBtn);
-                }
-                setProducts(result.data.product.slice(0, number));
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          }}
-        >
-          Show More Products
-        </button>
-      ) : (
-        ""
-      )}
     </div>
-    </>
-  );
-};
+  )
+}
 
-export default Home;
+export default List

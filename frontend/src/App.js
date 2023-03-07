@@ -6,6 +6,7 @@ import Nav from "./components/Navbar";
 import Slider from "./components/Slider";
 import Category from "./components/Category";
 import List from "./components/List";
+import Details from "./components/Details";
 
 
 export const ProductContext = createContext();
@@ -22,6 +23,8 @@ function App() {
       <Routes>
       <Route path="/" element={<><Slider/> <Category/> <Home /> </>} /> 
       <Route path="/categorylist/:categoryName" element={<List />}/>
+      <Route path="/:id" element={<Details />}/>
+
       </Routes>
       </ProductContext.Provider>
     </div>

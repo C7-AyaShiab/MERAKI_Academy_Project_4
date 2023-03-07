@@ -1,0 +1,25 @@
+.some-detail{
+    margin-top: 4%;
+    margin-left: 6%;
+    width:80vw;
+    border-bottom: 1px solid black;   
+}
+.detail2 > p{
+    text-align: left;
+    margin-left: 4%;
+
+
+}
+.detail2 >p > span{
+     font-weight: bold;
+}
+
+.review{
+    padding-top: 2%;
+    
+    border: 1px solid black;
+}
+
+.review> button{
+    margin: 2%;
+}

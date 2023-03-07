@@ -43,7 +43,7 @@ productsRouter.put(
   authorization("UPDATE_PRODUCT"),
   updateProductById
 );
-productsRouter.get("/search/:id", getProductById);
+productsRouter.get("/search1/:id", getProductById);
 productsRouter.post(
   "/:id/review",
   authentication,

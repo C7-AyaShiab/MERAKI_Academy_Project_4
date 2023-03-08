@@ -7,7 +7,7 @@ import "./style.css";
 const List = () => {
   const navigate = useNavigate();
   const { products, setProducts } = useContext(ProductContext);
-  console.log(products);
+
   const { categoryName } = useParams();
   useEffect(() => {
     axios

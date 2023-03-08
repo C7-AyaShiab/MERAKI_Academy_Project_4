@@ -6,9 +6,8 @@ import "./style.css";
 
 const Details = () => {
   const [product, setProduct] = useState();
-
   const { id } = useParams();
-  console.log(id);
+
   useEffect(() => {
     axios
       .get(`http://localhost:5000/products/search1/${id}`)
@@ -20,7 +19,6 @@ const Details = () => {
         console.log(err);
       });
   }, []);
-  console.log(product);
 
   return (
     <div className="Details">

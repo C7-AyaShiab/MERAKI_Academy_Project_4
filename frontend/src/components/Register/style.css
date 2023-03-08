@@ -1,0 +1,86 @@
+.back-img {
+  position: relative;
+ 
+ 
+  margin-right: 0;
+  align-items: center;
+  background-image: url("https://www.nakshtechnologies.com/wp-content/uploads/2021/10/732-7329685_e-commerce-website-background-image-e-commerce-website-removebg-preview.png");
+  height:300px ;
+ width: 500px;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+}
+.design{
+   display: grid;
+   grid-template-columns: auto auto;
+   grid-gap: 0px;
+  color: rgb(9, 9, 9);
+  justify-content: center;
+}
+h3 {
+  text-align: left;
+  font-weight: bolder;
+}
+
+.Register {
+  position: relative;
+ 
+  
+margin-left: 0px;
+  left: 18%;
+  width: 60vw;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+input {
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0 12px 0;
+  display: inline-block;
+  background: white;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.Register-btn {
+  background-color: #400ed6;
+  color: white;
+  border-radius: 5px;
+  padding: 16px 20px;
+  font-size: 15px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 97%;
+  opacity: 0.9;
+}
+
+.Register-btn:hover {
+  opacity: 1;
+}
+
+.success {
+  width: 90%;
+  margin: 0px 17px;
+  color: #333333;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 5px;
+  padding: 14px 0px;
+  border: 1px solid #3a9ea5;
+  background: #f0f9fa;
+}
+
+.warning {
+  width: 90%;
+  margin: 0px 17px;
+  color: #333333;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 5px;
+  padding: 14px 0px;
+  border: 1px solid #d96060;
+  background: #ec8f8f;
+}

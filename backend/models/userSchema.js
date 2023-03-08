@@ -4,8 +4,8 @@ const bcrypt=require("bcrypt")
 const re= /^[a-z0-9]+@([a-z])+\.[a-z]{2,3}$/
 //Initializing user schema
 const userSchema = new mongoose.Schema({
-  firstName: { type: String },
-  lastName: { type: String },
+  firstName: { type: String, required: true},
+  lastName: { type: String, required: true},
   email: {
     type: String,
     required: true,

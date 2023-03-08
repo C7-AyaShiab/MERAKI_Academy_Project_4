@@ -1,10 +1,12 @@
 const reviewModel = require("../models/reviewSchema");
 const productModel = require("../models/productSchema");
+  
 
 const createReview = (req, res) => {
   const id = req.params.id;
   const { review } = req.body;
   const userId = req.token.userId;
+const userName = req.token.userName;
   const newReview = new reviewModel({
     review,
     user: userId,
@@ -12,6 +14,7 @@ const createReview = (req, res) => {
   newReview
     .save()
     .then((result) => {
+        console.log(result)
       productModel
         .findByIdAndUpdate(
           { _id: id },
@@ -23,6 +26,7 @@ const createReview = (req, res) => {
             success: true,
             message: `review added`,
             review: result,
+      
           });
         })
         .catch((err) => {

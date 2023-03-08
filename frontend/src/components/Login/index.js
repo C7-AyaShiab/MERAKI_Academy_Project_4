@@ -1,8 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import "./style.css";
 import { ProductContext } from "../../App";
 import axios from "axios";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ const Login = () => {
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("");
   const [showMessage, setShowMessage] = useState(false);
-  const { token, setToken, isLoggedIn, setisLoggedIn, userName, setUserName } =
+  const { token, setToken, isLoggedIn, setisLoggedIn, loggedUser, setloggedUser } =
     useContext(ProductContext);
 
   const login = () => {
@@ -24,8 +24,8 @@ const Login = () => {
       .then((res) => {
         setToken(res.data.token);
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("userName", res.data.userName);
-        setUserName(res.data.userName);
+        localStorage.setItem("loggedUser", res.data.userName);
+        setloggedUser(res.data.userName);
         setMessage(res.data.message);
         setisLoggedIn(true);
         navigate("/");
@@ -38,6 +38,7 @@ const Login = () => {
   };
 
   return (
+    <div className="design"> 
     <div className="Login">
       <h3>Login</h3>
       <input
@@ -62,6 +63,7 @@ const Login = () => {
         Login
       </button>
       {showMessage ? <p className={messageType}>{message}</p> : ""}
+    </div>
     </div>
   );
 };

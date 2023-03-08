@@ -2,10 +2,13 @@ import React, { useState, useEffect, useContext } from "react";
 
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+ 
 import "./style.css";
 
 const Details = () => {
   const [product, setProduct] = useState();
+  const [review, setReview] = useState([]);
+ 
   const { id } = useParams();
 
   useEffect(() => {
@@ -19,6 +22,37 @@ const Details = () => {
         console.log(err);
       });
   }, []);
+
+const handleClick=(e)=>{
+
+    console.log(id)
+    axios
+      .post(
+        `http://localhost:5000/products/${id}/review/`,
+        {
+          review,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res)
+        setReview([...review, res.data.review]);
+
+        product.review.push(res.data.review);
+         
+        
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+ 
+
 
   return (
     <div className="Details">
@@ -62,10 +96,15 @@ const Details = () => {
             </p>
           </div>
           <div className="review">
-            {product.review}
-            <input placeholder="Add a review" />
+          {product.review.map((review,i)=>{
+              return <div key={i}><p>{review.review}</p></div>
+            })}
+            <input placeholder="Add a review" onChange={(e) => {
+                  setReview(e.target.value);
+                  
+                }}/>
             <br></br>
-            <button>Enter</button>
+            <button  onClick={handleClick}>Enter</button>
           </div>
         </>
       )}

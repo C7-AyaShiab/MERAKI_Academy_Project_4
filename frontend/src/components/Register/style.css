@@ -1,36 +1,22 @@
-.back-img {
-  position: relative;
- 
- 
-  margin-right: 0;
-  align-items: center;
-  background-image: url("https://www.nakshtechnologies.com/wp-content/uploads/2021/10/732-7329685_e-commerce-website-background-image-e-commerce-website-removebg-preview.png");
-  height:300px ;
- width: 500px;
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-size: cover;
-}
-.design{
-   display: grid;
-   grid-template-columns: auto auto;
-   grid-gap: 0px;
-  color: rgb(9, 9, 9);
-  justify-content: center;
-}
 h3 {
   text-align: left;
   font-weight: bolder;
+  color: white;
 }
-
+.design {
+  background-image: url("https://www.pixelstalk.net/wp-content/uploads/images1/Blur-colors-wide-photos.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 1400px;
+  height: 800px;
+}
 .Register {
   position: relative;
- 
-  
-margin-left: 0px;
-  left: 18%;
+  margin: 2%;
+
+  left: 5%;
   width: 60vw;
-  padding: 8px;
+  padding-top: 6%;
   border-radius: 5px;
 }
 
@@ -41,11 +27,11 @@ input {
   display: inline-block;
   background: white;
   border: none;
-  border-bottom: 1px solid black;
+  border-style: inset;
 }
 
 .Register-btn {
-  background-color: #400ed6;
+  background-color: #141314a8;
   color: white;
   border-radius: 5px;
   padding: 16px 20px;

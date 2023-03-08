@@ -77,6 +77,8 @@ const login = (req, res) => {
             success: true,
             message: `login successfully`,
             token: token,
+            userName: result.firstName,
+
           });
         } catch (error) {
           throw Error(error.message);

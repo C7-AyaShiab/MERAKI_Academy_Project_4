@@ -45,7 +45,6 @@ const Register = () => {
 
   return (
     <div className="design">
-        <div className="back-img"></div>
       <div className="Register">
         <h3>Register</h3>
         <input

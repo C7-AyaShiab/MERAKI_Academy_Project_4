@@ -50,6 +50,7 @@ productsRouter.post(
   authorization("CREATE_REVIEW"),
   createReview
 );
+
 productsRouter.put(
   "/:id/review/:reviewId",
   authentication,

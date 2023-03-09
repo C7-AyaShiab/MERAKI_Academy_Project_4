@@ -1,12 +1,11 @@
 const reviewModel = require("../models/reviewSchema");
 const productModel = require("../models/productSchema");
-  
 
 const createReview = (req, res) => {
   const id = req.params.id;
   const { review } = req.body;
   const userId = req.token.userId;
-const userName = req.token.userName;
+  const userName = req.token.userName;
   const newReview = new reviewModel({
     review,
     user: userId,
@@ -14,7 +13,7 @@ const userName = req.token.userName;
   newReview
     .save()
     .then((result) => {
-        console.log(result)
+      console.log(result);
       productModel
         .findByIdAndUpdate(
           { _id: id },
@@ -26,7 +25,6 @@ const userName = req.token.userName;
             success: true,
             message: `review added`,
             review: result,
-      
           });
         })
         .catch((err) => {
@@ -71,33 +69,32 @@ const updatereviewById = (req, res) => {
     });
 };
 
-
 const deletereviewById = (req, res) => {
-    const id = req.params.reviewId;
-    const userId = req.token.userId;
-    reviewModel
+  const id = req.params.reviewId;
+  const userId = req.token.userId;
+  reviewModel
     .findByIdAndDelete(id)
-      .then((result) => {
-        if (!result) {
-            res.status(404).json({
-              success: false,
-              message: `review with id:${id} is not found`,
-            });
-          } else {
-            res.status(200).json({
-              success: true,
-              message: `review deleted`,
-            });
-          }
-      })
-      .catch((err) => {
-        res.status(500).json({
+    .then((result) => {
+      if (!result) {
+        res.status(404).json({
           success: false,
-          message: `Server Error`,
-          err: err.message,
+          message: `review with id:${id} is not found`,
         });
+      } else {
+        res.status(200).json({
+          success: true,
+          message: `review deleted`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        err: err.message,
       });
-  };
+    });
+};
 
 module.exports = {
   createReview,

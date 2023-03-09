@@ -11,15 +11,13 @@ const productsRouter = require("./routes/product");
 const rolesRouter = require("./routes/role");
 const usersRouter = require("./routes/user");
 
-
 app.use(cors());
 app.use(express.json());
 
 //endpoint for each router
 app.use("/products", productsRouter);
 app.use("/roles", rolesRouter);
-app.use("/users", usersRouter );
-
+app.use("/users", usersRouter);
 
 // Handles any other endpoints [unassigned - endpoints]
 app.use("*", (req, res) => res.status(404).json("NO content at this path"));

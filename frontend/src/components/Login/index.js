@@ -5,7 +5,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 
-
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -45,12 +44,11 @@ const Login = () => {
       });
   };
 
-  const customStyle={
+  const customStyle1 = {
     marginLeft: "100px",
-  
-  width: "97%", 
-    
-  }
+
+    width: "97%",
+  };
   return (
     <div className="design">
       <div className="Login">
@@ -76,8 +74,12 @@ const Login = () => {
         <button className="Login-btn" type="submit" onClick={login}>
           Login
         </button>
-        <GoogleLogin style={customStyle} onClick={login}
+        <GoogleLogin
+          width={"2000px"}
+          theme={"filled_blue"}
+          size={"large"}
           onSuccess={(credentialResponse) => {
+         
             console.log(credentialResponse);
           }}
           onError={() => {

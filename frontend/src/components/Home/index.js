@@ -48,7 +48,6 @@ const Home = () => {
   let fav = JSON.parse(localStorage.getItem("fav")) || [];
   const addToFav = (e) => {
     console.log(e.target);
-    // setClicked(...clicked,e.target.id)
     products.forEach((product, i) => {
       if (product._id === e.target.id) {
         console.log(product);

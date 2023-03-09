@@ -12,7 +12,7 @@ const Home = () => {
   const [showBtn, setShowBtn] = useState(true);
   const [isShown, setIsShown] = useState(false);
   const [imgId, setImgId] = useState(0);
-
+  const [count, setCount] = useState(0);
   const mystyle1 = {
     width: "230px",
     height: "50px",
@@ -60,23 +60,23 @@ const Home = () => {
     localStorage.setItem("fav", JSON.stringify(fav));
   };
 
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
   const addToCart = (e) => {
-    console.log(e.target);
-    products.forEach((product, i) => {
-      if (product._id === e.target.id) {
-        console.log(product);
-        if (cart.includes(product)) {
-          return;
-        } else {
-          fav.splice(i, 1, cart);
-        }
-      }
-    });
+   const productId=e.target.id;
+   const userId=localStorage.getItem("userId")
+    console.log(e.target); 
+    axios
+      .post(`http://localhost:5000/users/${userId}/cart`,productId)
+      .then((result) => {
+        console.log(result);
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    
   };
-
+console.log(count)
   return (
     <>
       <div className="Home">
@@ -196,3 +196,26 @@ const Home = () => {
 };
 
 export default Home;
+
+
+/* 
+  // let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const addToCart = (e) => {
+    console.log(e.target);
+    products.forEach((product, i) => {
+      if (product._id === e.target.id) {
+        console.log(product);
+        setCount(count + 1);
+        cart.push(product)
+        if((localStorage.getItem("cart")).includes(product)){
+          console.log(true)
+
+        }
+        else{
+          console.log(false)
+
+        }
+        // localStorage.setItem("cart", JSON.stringify(cart));
+      }
+    });
+  }; */

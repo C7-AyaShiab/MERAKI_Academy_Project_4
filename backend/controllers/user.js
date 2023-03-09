@@ -72,13 +72,13 @@ const login = (req, res) => {
             expiresIn: "90m",
           };
           const token = jwt.sign(payload, process.env.SECRET, options);
-
+console.log(result)
           res.status(200).json({
             success: true,
             message: `login successfully`,
             token: token,
             userName: result.firstName,
-
+            userId: result._id.toString(),
           });
         } catch (error) {
           throw Error(error.message);

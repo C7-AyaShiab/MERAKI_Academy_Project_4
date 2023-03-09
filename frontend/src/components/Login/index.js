@@ -8,6 +8,7 @@ import { GoogleLogin } from "@react-oauth/google";
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [userId, setuserId] = useState("");
 
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -30,7 +31,9 @@ const Login = () => {
       })
       .then((res) => {
         setToken(res.data.token);
+        setuserId(res.data.userId)
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem("userId", res.data.userId);
         localStorage.setItem("loggedUser", res.data.userName);
         setloggedUser(res.data.userName);
         setMessage(res.data.message);

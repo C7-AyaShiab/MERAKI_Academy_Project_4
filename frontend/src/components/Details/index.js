@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { ProductContext } from "../../App";
 
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
@@ -8,7 +9,8 @@ import "./style.css";
 const Details = () => {
   const [product, setProduct] = useState();
   const [review, setReview] = useState([]);
- 
+  const {loggedUserId, setloggedUserId } =
+  useContext(ProductContext);
   const { id } = useParams();
 
   useEffect(() => {
@@ -113,3 +115,5 @@ const handleClick=(e)=>{
 };
 
 export default Details;
+ {/*  {localStorage.getItem("loggedUserId")==commenterId ?  <><button  onClick={deleteReview}><TiDelete/></button><button  onClick={deleteReview}><RxUpdate/></button></>
+         :""} */}

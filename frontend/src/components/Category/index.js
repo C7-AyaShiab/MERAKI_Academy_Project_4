@@ -1,10 +1,9 @@
 import React, {  useContext } from "react";
-import { ProductContext } from "../../App";
+
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 
 const Category = () => {
-  const { products, setProducts } = useContext(ProductContext);
   const navigate = useNavigate();
   const handleClick = (e) => {
     let categoryName = e.target.innerHTML;

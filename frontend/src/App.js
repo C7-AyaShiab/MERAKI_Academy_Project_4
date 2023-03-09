@@ -9,6 +9,8 @@ import List from "./components/List";
 import Details from "./components/Details";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import Cart from "./components/Cart";
+import WishList from "./components/WishList";
 
 export const ProductContext = createContext();
 
@@ -46,6 +48,9 @@ function App() {
           <Route path="/:id" element={<Details />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/wishlist" element={<WishList />} />
+
         </Routes>
       </ProductContext.Provider>
     </div>

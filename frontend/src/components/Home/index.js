@@ -13,7 +13,6 @@ const Home = () => {
   const [isShown, setIsShown] = useState(false);
   const [imgId, setImgId] = useState(0);
 
-
   const mystyle1 = {
     width: "230px",
     height: "50px",
@@ -50,20 +49,18 @@ const Home = () => {
   const addToFav = (e) => {
     console.log(e.target);
     // setClicked(...clicked,e.target.id)
-   products.forEach((product,i) => {
-      if (product._id === e.target.id){
+    products.forEach((product, i) => {
+      if (product._id === e.target.id) {
         console.log(product);
         if (fav.includes(product)) {
           return;
         } else {
-          fav.splice(i,1,product);
+          fav.splice(i, 1, product);
         }
-        
       }
     });
-    
+
     localStorage.setItem("fav", JSON.stringify(fav));
-    
   };
   console.log(localStorage.getItem("fav"));
   return (

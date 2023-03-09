@@ -11,9 +11,12 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Cart from "./components/Cart";
 import WishList from "./components/WishList";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 export const ProductContext = createContext();
 
+const clientId =
+  "780019151998-ei1sl1vhch8egbkuff1ibrshuo1h68nd.apps.googleusercontent.com";
 function App() {
   const [products, setProducts] = useState([]);
   const [token, setToken] = useState("");
@@ -29,6 +32,7 @@ function App() {
     }
   },[token])
   return (
+      <GoogleOAuthProvider clientId={clientId}>
     <div className="App">
       <ProductContext.Provider value={{ products, setProducts,token, setToken, isLoggedIn, setisLoggedIn, loggedUser, setloggedUser}}>
         <header className="App-header">
@@ -54,6 +58,7 @@ function App() {
         </Routes>
       </ProductContext.Provider>
     </div>
+    </GoogleOAuthProvider>
   );
 }
 

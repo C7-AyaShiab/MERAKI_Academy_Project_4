@@ -47,3 +47,14 @@ img {
   height: 250px;
 }
 
+.success {
+  width: 90%;
+  margin: 0px 17px;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 5px;
+  padding: 14px 0px;
+  border: 1px solid #3a9ea5;
+  background: #333333;;
+}

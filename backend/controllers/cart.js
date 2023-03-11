@@ -4,7 +4,7 @@ const createCart = (req, res) => {
   const id = req.params.id;
   const { items } = req.body;
   const newCart = new cartModel({
-    userId:id,
+    userId: id,
     items,
   });
 
@@ -18,6 +18,40 @@ const createCart = (req, res) => {
       });
     })
     .catch((err) => {
+      if (err.keyPattern) {
+        res.status(201).json({
+          success: false,
+          message: `The product is already added to the cart`,
+        });
+      } else {
+        res.status(500).json({
+          success: false,
+          message: `Server error`,
+          err: err.message,
+        });
+      }
+    });
+};
+const getCartById = (req, res) => {
+  const userId = req.params.id;
+  cartModel
+    .find({ userId })
+    .populate("items")
+    .exec()
+    .then((cart) => {
+      if (!cart) {
+        return res.status(404).json({
+          success: false,
+          message: `The cart is empty`,
+        });
+      }
+      res.status(200).json({
+        success: true,
+        message: `The cart is found `,
+        cart: cart,
+      });
+    })
+    .catch((err) => {
       res.status(500).json({
         success: false,
         message: `Server Error`,
@@ -25,31 +59,5 @@ const createCart = (req, res) => {
       });
     });
 };
-const getCartById = (req, res) => {
-    const userId = req.params.id;
-    cartModel
-      .find({userId})
-      .populate("items")
-      .exec()
-      .then((cart) => {
-        if (!cart) {
-          return res.status(404).json({
-            success: false,
-            message: `The cart is empty`,
-          });
-        }
-        res.status(200).json({
-          success: true,
-          message: `The cart is found `,
-          cart: cart,
-        });
-      })
-      .catch((err) => {
-        res.status(500).json({
-          success: false,
-          message: `Server Error`,
-          err: err.message,
-        });
-      });
-  };
-module.exports = { createCart,getCartById };
+
+module.exports = { createCart, getCartById };

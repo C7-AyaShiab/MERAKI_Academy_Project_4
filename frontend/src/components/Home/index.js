@@ -13,6 +13,9 @@ const Home = () => {
   const [isShown, setIsShown] = useState(false);
   const [imgId, setImgId] = useState(0);
   const [count, setCount] = useState(0);
+  const [showMessage, setShowMessage] = useState(false);
+
+  const [message, setMessage] = useState("");
   const mystyle1 = {
     width: "230px",
     height: "50px",
@@ -62,16 +65,19 @@ const Home = () => {
 
 
   const addToCart = (e) => {
+    setShowMessage(true);
    const productId=e.target.id;
    const userId=localStorage.getItem("userId")
     console.log(e.target); 
     axios
-      .post(`http://localhost:5000/users/${userId}/cart`,productId)
+      .post(`http://localhost:5000/users/${userId}/cart`,{items:productId})
       .then((result) => {
+        setMessage(result.data.message);
         console.log(result);
 
       })
       .catch((err) => {
+        setMessage(err.data.message);
         console.log(err);
       });
     
@@ -191,6 +197,7 @@ console.log(count)
           ""
         )}
       </div>
+      {showMessage ? <p className="message">{message}</p> : ""}
     </>
   );
 };

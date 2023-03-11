@@ -87,5 +87,30 @@ const updateCart = (req, res) => {
       });
     });
 };
-
-module.exports = { createCart, getCartById, updateCart };
+const deleteCartById = (req, res) => {
+    const cartId = req.params.cartId;
+    cartModel
+      .findByIdAndDelete(cartId)
+      .then((cart) => {
+        if (!cart) {
+          res.status(404).json({
+            success: false,
+            message: `cart with id:${id} is not found`,
+          });
+        } else {
+          res.status(200).json({
+            success: true,
+            message: `cart deleted`,
+          });
+        }
+      })
+      .catch((err) => {
+        res.status(500).json({
+          success: false,
+          message: `Server Error`,
+          err: err.message,
+  
+        });
+      });
+  };
+module.exports = { createCart, getCartById, updateCart, deleteCartById };

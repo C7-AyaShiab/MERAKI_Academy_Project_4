@@ -13,6 +13,8 @@ import {
   MDBTypography,
 } from "mdb-react-ui-kit";
 import { FaTrash } from "react-icons/fa";
+import { CgDollar } from "react-icons/cg";
+
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const userId = localStorage.getItem("userId");
@@ -53,9 +55,28 @@ const Cart = () => {
       });
   };
 
+const deleteCart=(e)=>{
+  console.log(e.target.id)
+  const cartId = e.target.id;
+  axios
+    .delete(`http://localhost:5000/users/${userId}/cart/${cartId}`)
+    .then(() => {
+      const newCartList = cartItems.filter((cart, i) => {
+        return cart._id  != cartId;
+      });
+      setCartItems(newCartList);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+
+
+}
+
   return (
     <section className="h-100" style={{ backgroundColor: "#eee" }}>
-      <MDBContainer className="py-5 h-100">
+      <MDBContainer className="py-4 h-100">
         <MDBRow className="justify-content-center align-items-center h-100">
           <MDBCol md="10">
             <div className="d-flex justify-content-between align-items-center mb-4">
@@ -75,7 +96,7 @@ const Cart = () => {
                       <MDBRow className="justify-content-between align-items-center">
                         <MDBCol md="2" lg="2" xl="2">
                           <MDBCardImage
-                            className="rounded-3"
+                            className="rounded-2"
                             fluid
                             src={cart.items.image}
                           />
@@ -110,11 +131,11 @@ const Cart = () => {
                         </MDBCol>
                         <MDBCol md="3" lg="2" xl="2" className="offset-lg-1">
                           <MDBTypography tag="h5" className="mb-0">
-                            {cart.items.price}
+                            <CgDollar/>{cart.items.price}
                           </MDBTypography>
                         </MDBCol>
                         <MDBCol md="1" lg="1" xl="1" className="text-end">
-                          <FaTrash className="text-danger" />
+                          <FaTrash id={cart._id} onClick={deleteCart}className="text-danger" />
                         </MDBCol>
                       </MDBRow>
                     </MDBCardBody>
@@ -123,7 +144,7 @@ const Cart = () => {
               })}
             <MDBCard className="mb-2">
               <div
-                className="d-flex justify-content-between mb-2"
+                className="d-flex justify-content-between mb-1"
                 style={{ fontWeight: "700" }}
               >
                 <p className="mb-1" style={{ paddingLeft: "1.8rem" }}>

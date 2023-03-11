@@ -12,6 +12,7 @@ import Login from "./components/Login";
 import Cart from "./components/Cart";
 import WishList from "./components/WishList";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import Order from "./components/Order";
 
 export const ProductContext = createContext();
 
@@ -53,6 +54,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/order" element={<Order />} />
+
           <Route path="/wishlist" element={<WishList />} />
 
         </Routes>

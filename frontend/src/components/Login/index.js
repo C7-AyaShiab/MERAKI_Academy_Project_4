@@ -15,11 +15,8 @@ const Login = () => {
   const [messageType, setMessageType] = useState("");
   const [showMessage, setShowMessage] = useState(false);
   const {
-    token,
     setToken,
-    isLoggedIn,
     setisLoggedIn,
-    loggedUser,
     setloggedUser,
   } = useContext(ProductContext);
 
@@ -47,11 +44,7 @@ const Login = () => {
       });
   };
 
-  const customStyle1 = {
-    marginLeft: "100px",
-
-    width: "97%",
-  };
+  
   return (
     <div className="design">
       <div className="Login">

@@ -15,9 +15,12 @@ import {
 } from "mdb-react-ui-kit";
 import { FaTrash } from "react-icons/fa";
 import { CgDollar } from "react-icons/cg";
+import { ProductContext } from "../../App";
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([]);
+  const {
+    cartItems,setCartItems
+  } = useContext(ProductContext);
   const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
 

@@ -25,7 +25,7 @@ function App() {
   const [isLoggedIn, setisLoggedIn] = useState(false);
   console.log(token)
   console.log(localStorage.getItem('token'))
-
+  const [cartItems, setCartItems] = useState([]);
   useEffect(()=>{
     setToken(localStorage.getItem('token'))
     if(token){
@@ -35,7 +35,7 @@ function App() {
   return (
       <GoogleOAuthProvider clientId={clientId}>
     <div className="App">
-      <ProductContext.Provider value={{ products, setProducts,token, setToken, isLoggedIn, setisLoggedIn, loggedUser, setloggedUser}}>
+      <ProductContext.Provider value={{ cartItems, setCartItems,products, setProducts,token, setToken, isLoggedIn, setisLoggedIn, loggedUser, setloggedUser}}>
         <header className="App-header">
           <h1>Project 4 </h1>
         </header>

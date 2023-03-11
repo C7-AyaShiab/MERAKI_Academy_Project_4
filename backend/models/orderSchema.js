@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 //Initializing order schema
 const orderSchema = new mongoose.Schema({
-  FullName: { type: String, required: true },
+  fullName: { type: String,required: true },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   phoneNumber: { type: Number, required: true },
   country: { type: String, required: true },

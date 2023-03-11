@@ -1,4 +1,7 @@
-import React, {useState}from "react";
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import { ProductContext } from "../../App";
+
 import {
   MDBBtn,
   MDBCol,
@@ -11,18 +14,44 @@ import { BsCash } from "react-icons/bs";
 import { FaCcPaypal } from "react-icons/fa";
 import { TfiCreditCard } from "react-icons/tfi";
 const Order = () => {
+  const { cartItems, setCartItems } = useContext(ProductContext);
   const [fullName, setFullName] = useState("");
-  const [PhoneNumber, setPhoneNumber] = useState(0);
-  const [country, setCountry] = useState("")
-  const [city, setcity] = useState("")
-  const [address, setAddress] = useState("")
-const [payMethod, setpayMethod] = useState("")
+  const [phoneNumber, setPhoneNumber] = useState(0);
+  const [country, setCountry] = useState("");
+  const [city, setcity] = useState("");
+  const [address, setAddress] = useState("");
+  const [payMethod, setpayMethod] = useState("");
+  const [showMessage, setShowMessage] = useState(false);
+  const [message, setMessage] = useState("");
 
-
-const subTotal = Number(localStorage.getItem("subTotal"));
-const shipping=parseFloat(subTotal*0.05).toFixed(2)
-const total=parseFloat(subTotal+Number(shipping)).toFixed(2);
-const [Total, setTotal] = useState(total)
+  const subTotal = Number(localStorage.getItem("subTotal"));
+  const shipping = parseFloat(subTotal * 0.05).toFixed(2);
+  const total = parseFloat(subTotal + Number(shipping)).toFixed(2);
+  const [Total, setTotal] = useState(total);
+  const userId = localStorage.getItem("userId");
+  const orderConfirmation = () => {
+    setShowMessage(true);
+    axios
+      .post(`http://localhost:5000/users/${userId}/order/`, {
+        fullName,
+        phoneNumber,
+        country,
+        city,
+        address,
+        details: cartItems,
+        payMethod,
+        Total,
+      })
+      .then((res) => {
+        setMessage(res.data.message);
+        console.log(res);
+      })
+      .catch((err) => {
+        setMessage("Please fill all field");
+        console.log(err);
+      });
+  };
+  console.log(cartItems);
   return (
     <section
       className="h-100  w-50"
@@ -61,10 +90,14 @@ const [Total, setTotal] = useState(total)
                   setCountry(e.target.value);
                 }}
               />
-              <MDBInput className="mb-2 border-0" placeholder="City" size="M" 
-              onChange={(e) => {
-                setcity(e.target.value);
-              }}/>
+              <MDBInput
+                className="mb-2 border-0"
+                placeholder="City"
+                size="M"
+                onChange={(e) => {
+                  setcity(e.target.value);
+                }}
+              />
               <MDBInput
                 className="mb-2 border-0"
                 placeholder="Address"
@@ -150,15 +183,15 @@ const [Total, setTotal] = useState(total)
                 className="mb-2 border-0"
                 placeholder="Card Number"
                 size="M"
-                minlength="19"
-                maxlength="19"
+                minLength="19"
+                maxLength="19"
               />
               <MDBInput
                 className="mb-2 border-0"
                 placeholder="Cvv"
                 size="M"
-                minlength="3"
-                maxlength="3"
+                minLength="3"
+                maxLength="3"
                 type="password"
               />
             </MDBCol>
@@ -197,12 +230,13 @@ const [Total, setTotal] = useState(total)
             color="dark"
             block
             size="M"
-            // onClick={checkout}
+            onClick={orderConfirmation}
           >
             PLACE ORDER
           </MDBBtn>
         </MDBCol>
       </MDBContainer>
+      {showMessage ? <p>{message}</p> : ""}
     </section>
   );
 };

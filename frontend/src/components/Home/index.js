@@ -12,7 +12,9 @@ const Home = () => {
   const [showBtn, setShowBtn] = useState(true);
   const [isShown, setIsShown] = useState(false);
   const [imgId, setImgId] = useState(0);
-  const [count, setCount] = useState(0);
+  const [cartId, setcartId] = useState(0);
+
+  
   const [showMessage, setShowMessage] = useState(false);
 
   const [message, setMessage] = useState("");
@@ -65,8 +67,10 @@ const Home = () => {
 
 
   const addToCart = (e) => {
-    setShowMessage(true);
-   const productId=e.target.id;
+    const productId=e.target.id;
+    setcartId(e.target.id)
+    setShowMessage(true)
+   
    const userId=localStorage.getItem("userId")
     console.log(e.target); 
     axios
@@ -81,8 +85,10 @@ const Home = () => {
         console.log(err);
       });
     
+    
   };
-console.log(count)
+ 
+console.log(showMessage)
   return (
     <>
       <div className="Home">
@@ -127,7 +133,7 @@ console.log(count)
                         {product.price}
                       </span>{" "}
                       <span>
-                        <svg
+                        <svg 
                           xmlns="http://www.w3.org/2000/svg"
                           width="30"
                           height="22"
@@ -164,6 +170,7 @@ console.log(count)
                         </svg>
                       </span>
                     </p>
+                    {showMessage && product._id=== cartId? <p id={product._id}className="message">{message}</p> : ""}
                   </div>
                 ) : (
                   ""
@@ -197,7 +204,7 @@ console.log(count)
           ""
         )}
       </div>
-      {showMessage ? <p className="message">{message}</p> : ""}
+     
     </>
   );
 };

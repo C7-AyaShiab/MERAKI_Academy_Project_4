@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
   MDBBtn,
@@ -18,6 +19,7 @@ import { CgDollar } from "react-icons/cg";
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const userId = localStorage.getItem("userId");
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -55,25 +57,25 @@ const Cart = () => {
       });
   };
 
-const deleteCart=(e)=>{
-  console.log(e.target.id)
-  const cartId = e.target.id;
-  axios
-    .delete(`http://localhost:5000/users/${userId}/cart/${cartId}`)
-    .then(() => {
-      const newCartList = cartItems.filter((cart, i) => {
-        return cart._id  != cartId;
+  const deleteCart = (e) => {
+    console.log(e.target.id);
+    const cartId = e.target.id;
+    axios
+      .delete(`http://localhost:5000/users/${userId}/cart/${cartId}`)
+      .then(() => {
+        const newCartList = cartItems.filter((cart, i) => {
+          return cart._id != cartId;
+        });
+        setCartItems(newCartList);
+      })
+      .catch((err) => {
+        console.log(err);
       });
-      setCartItems(newCartList);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  };
 
-
-
-}
-
+  const checkout = () => {
+    navigate("/order");
+  };
   return (
     <section className="h-100" style={{ backgroundColor: "#eee" }}>
       <MDBContainer className="py-4 h-100">
@@ -131,11 +133,16 @@ const deleteCart=(e)=>{
                         </MDBCol>
                         <MDBCol md="3" lg="2" xl="2" className="offset-lg-1">
                           <MDBTypography tag="h5" className="mb-0">
-                            <CgDollar/>{cart.items.price}
+                            <CgDollar />
+                            {cart.items.price}
                           </MDBTypography>
                         </MDBCol>
                         <MDBCol md="1" lg="1" xl="1" className="text-end">
-                          <FaTrash id={cart._id} onClick={deleteCart}className="text-danger" />
+                          <FaTrash
+                            id={cart._id}
+                            onClick={deleteCart}
+                            className="text-danger"
+                          />
                         </MDBCol>
                       </MDBRow>
                     </MDBCardBody>
@@ -149,20 +156,26 @@ const deleteCart=(e)=>{
               >
                 <p className="mb-1" style={{ paddingLeft: "1.8rem" }}>
                   {" "}
-                  Total{" "}
+                  Subtotal{" "}
                 </p>
                 <p className="mb-1" style={{ paddingRight: "1.8rem" }}>
                   {cartItems &&
                     cartItems.reduce(
                       (acc, cart) => acc + cart.amount * cart.items.price,
                       0
-                    )}
+                    ).toFixed(2)}
                 </p>
               </div>
             </MDBCard>
 
             <MDBCardBody>
-              <MDBBtn className="ms-3" color="dark" block size="lg">
+              <MDBBtn
+                className="ms-3"
+                color="dark"
+                block
+                size="lg"
+                onClick={checkout}
+              >
                 CHECKOUT
               </MDBBtn>
             </MDBCardBody>

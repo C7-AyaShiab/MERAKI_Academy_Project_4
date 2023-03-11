@@ -60,31 +60,32 @@ const getCartById = (req, res) => {
     });
 };
 const updateCart = (req, res) => {
-    const cartId = req.params.cartId;
-    const updated = req.body;
-    cartModel
-      .findByIdAndUpdate({ _id: cartId }, updated, { new: true })
-      .then((cart) => {
-        if (!cart) {
-          res.status(404).json({
-            success: false,
-            message: `cart with id:${id} is not found`,
-          });
-        } else {
-          res.status(200).json({
-            success: true,
-            message: `cart updated`,
-            cart: cart,
-          });
-        }
-      })
-      .catch((err) => {
-        res.status(500).json({
+  const cartId = req.params.cartId;
+  const updated = req.body;
+  cartModel
+    .findByIdAndUpdate({ _id: cartId }, updated, { new: true })
+    .populate("items")
+    .then((cart) => {
+      if (!cart) {
+        res.status(404).json({
           success: false,
-          message: `Server Error`,
-          err: err.message,
+          message: `cart with id:${id} is not found`,
         });
+      } else {
+        res.status(200).json({
+          success: true,
+          message: `cart updated`,
+          cart: cart,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        err: err.message,
       });
-  };
+    });
+};
 
 module.exports = { createCart, getCartById, updateCart };

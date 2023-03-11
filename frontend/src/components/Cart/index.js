@@ -16,7 +16,7 @@ import { FaTrash } from "react-icons/fa";
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const userId = localStorage.getItem("userId");
-  const [amount, setAmount] = useState(1);
+
   useEffect(() => {
     axios
       .get(`http://localhost:5000/users/${userId}/cart`)
@@ -39,12 +39,20 @@ const Cart = () => {
         amount: updated,
       })
       .then((result) => {
-        console.log(result.data);
+        const updatedCart = cartItems.map((cart, i) => {
+          if (cart._id === cartId) {
+            return result.data.cart;
+          } else {
+            return cart;
+          }
+        });
+        setCartItems(updatedCart);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
   return (
     <section className="h-100" style={{ backgroundColor: "#eee" }}>
       <MDBContainer className="py-5 h-100">
@@ -89,7 +97,7 @@ const Cart = () => {
 
                           <MDBInput
                             min={1}
-                            defaultValue={1}
+                            defaultValue={cart.amount}
                             type="number"
                             size="sm"
                             id={cart._id}
@@ -123,7 +131,11 @@ const Cart = () => {
                   Total{" "}
                 </p>
                 <p className="mb-1" style={{ paddingRight: "1.8rem" }}>
-                  {/*   {cartItems && cartItems.reduce((acc, item) => acc + item.amount * item.price, 0).toFixed(2)} */}
+                  {cartItems &&
+                    cartItems.reduce(
+                      (acc, cart) => acc + cart.amount * cart.items.price,
+                      0
+                    )}
                 </p>
               </div>
             </MDBCard>

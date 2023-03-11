@@ -171,7 +171,7 @@ const [Total, setTotal] = useState(total)
             style={{ fontWeight: "600" }}
           >
             <p className="mb-2">Subtotal</p>
-            <p className="mb-2">{subTotal}</p>
+            <p className="mb-2">${subTotal}</p>
           </div>
 
           <div
@@ -179,7 +179,7 @@ const [Total, setTotal] = useState(total)
             style={{ fontWeight: "600" }}
           >
             <p className="mb-0">Shipping</p>
-            <p className="mb-0">{shipping}</p>
+            <p className="mb-0">${shipping}</p>
           </div>
 
           <hr className="my-4" />
@@ -189,7 +189,7 @@ const [Total, setTotal] = useState(total)
             style={{ fontWeight: "700" }}
           >
             <p className="mb-2">Total</p>
-            <p className="mb-2">{total}</p>
+            <p className="mb-2">${total}</p>
           </div>
 
           <MDBBtn

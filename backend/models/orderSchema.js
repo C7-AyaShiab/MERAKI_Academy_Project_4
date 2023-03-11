@@ -8,6 +8,8 @@ const orderSchema = new mongoose.Schema({
   city: { type: String, required: true },
   address: { type: String, required: true },
   details: { type: mongoose.Schema.Types.ObjectId, ref: "Cart" },
+  payMethod:{type:string},
+  total:{type: Number},
 });
 
 module.exports = mongoose.model("Order", orderSchema);

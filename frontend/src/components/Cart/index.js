@@ -76,6 +76,13 @@ const Cart = () => {
   const checkout = () => {
     navigate("/order");
   };
+
+  const subTotal = cartItems
+    .reduce((acc, cart) => acc + cart.amount * cart.items.price, 0)
+    .toFixed(2);
+
+    localStorage.setItem("subTotal",subTotal);
+
   return (
     <section className="h-100" style={{ backgroundColor: "#eee" }}>
       <MDBContainer className="py-4 h-100">
@@ -160,10 +167,8 @@ const Cart = () => {
                 </p>
                 <p className="mb-1" style={{ paddingRight: "1.8rem" }}>
                   {cartItems &&
-                    cartItems.reduce(
-                      (acc, cart) => acc + cart.amount * cart.items.price,
-                      0
-                    ).toFixed(2)}
+                    subTotal
+                     }
                 </p>
               </div>
             </MDBCard>

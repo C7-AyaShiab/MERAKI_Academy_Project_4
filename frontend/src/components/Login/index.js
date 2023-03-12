@@ -54,20 +54,32 @@ const Login = () => {
       .then((res) => {
         console.log(res)
         setToken(credential);
-        setuserId(res.data.userId)
         localStorage.setItem("token", credential);
-        localStorage.setItem("userId", res.data.userId);
-        localStorage.setItem("loggedUser", res.data.payload.name);
-        setloggedUser( res.data.payload.name);
+        localStorage.setItem("loggedUser", res.data.name);
+        setloggedUser( res.data.name);
         setisLoggedIn(true);
-        navigate("/"); 
-      })
-      .catch((err) => {
-        setShowMessage(true);
-        setMessage(err.response.data.message);
-        setMessageType("warning");
+        const{family_name,given_name,email}= res.data;
+        const fakePass= family_name+res.data.nbf;
+ 
+       
+        axios
+        .post("http://localhost:5000/users/register", {
+          firstName:given_name,
+          lastName:family_name,
+          email,
+          password:fakePass,
+          role:"6404e2d6b01344b7ac9b9e09",
+        })
+        .then((res) => {
+          console.log(res.data.user._id)
+          localStorage.setItem("userId", res.data.user._id);
+          setuserId(res.data.user._id)
+          navigate("/"); 
+        })
+        .catch((err) => {
+       console.log(err)
       });
-      
+    })
   };
   return (
     <div className="design">

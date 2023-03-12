@@ -2,6 +2,7 @@ const userModel = require("../models/userSchema");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { OAuth2Client } = require("google-auth-library");
+
 const register = (req, res) => {
   const { firstName, lastName, email, password, role } = req.body;
   const newUser = new userModel({
@@ -96,6 +97,7 @@ const googleLogin = (req, res) => {
   const token = req.body.credential;
   const CLIENT_ID = req.body.clientId;
   const client = new OAuth2Client(CLIENT_ID);
+  console.log(client);
   async function verify() {
     const ticket = await client.verifyIdToken({
       idToken: token,
@@ -103,12 +105,10 @@ const googleLogin = (req, res) => {
     });
     console.log(ticket);
     const payload = ticket.getPayload();
-    const userId = payload["sub"];
-    res.json({ payload, userId });
+    res.json(payload);
   }
   verify().catch(console.error);
 };
-
 
 module.exports = { register, login, googleLogin };
 

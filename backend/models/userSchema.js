@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt=require("bcrypt")
 
-const re= /^[a-z0-9]+@([a-z])+\.[a-z]{2,3}$/
+const re= /^[a-z\.0-9]+@([a-z])+\.[a-z]{2,3}$/
 //Initializing user schema
 const userSchema = new mongoose.Schema({
   firstName: { type: String, required: true},

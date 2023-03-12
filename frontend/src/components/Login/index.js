@@ -44,7 +44,31 @@ const Login = () => {
       });
   };
 
-  
+  const loginGoogle= (result) => {
+    const {credential,clientId}=result
+   axios
+      .post("http://localhost:5000/users/googlelogin", {
+        credential,
+        clientId,
+      })
+      .then((res) => {
+        console.log(res)
+        setToken(credential);
+        setuserId(res.data.userId)
+        localStorage.setItem("token", credential);
+        localStorage.setItem("userId", res.data.userId);
+        localStorage.setItem("loggedUser", res.data.payload.name);
+        setloggedUser( res.data.payload.name);
+        setisLoggedIn(true);
+        navigate("/"); 
+      })
+      .catch((err) => {
+        setShowMessage(true);
+        setMessage(err.response.data.message);
+        setMessageType("warning");
+      });
+      
+  };
   return (
     <div className="design">
       <div className="Login">
@@ -74,10 +98,7 @@ const Login = () => {
           width={"2000px"}
           theme={"filled_blue"}
           size={"large"}
-          onSuccess={(credentialResponse) => {
-         
-            console.log(credentialResponse);
-          }}
+          onSuccess={loginGoogle}
           onError={() => {
             console.log("Login Failed");
           }}

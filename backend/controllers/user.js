@@ -1,7 +1,7 @@
 const userModel = require("../models/userSchema");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-
+const { OAuth2Client } = require('google-auth-library');
 const register = (req, res) => {
   const { firstName, lastName, email, password, role } = req.body;
   const newUser = new userModel({
@@ -72,7 +72,7 @@ const login = (req, res) => {
             expiresIn: "90m",
           };
           const token = jwt.sign(payload, process.env.SECRET, options);
-console.log(result)
+          console.log(result);
           res.status(200).json({
             success: true,
             message: `login successfully`,
@@ -92,8 +92,25 @@ console.log(result)
       });
     });
 };
+const googleLogin=(req, res)=>{
+    const token=req.body.credential;
+      const CLIENT_ID=req.body.clientId;
+    const client = new OAuth2Client(CLIENT_ID);
+    async function verify() {
+      const ticket = await client.verifyIdToken({
+          idToken: token, 
+          audience: CLIENT_ID,  
+      });
+      const payload = ticket.getPayload();
+      const userId = payload['sub'];
+      res.json({payload,userId})
+    }
+    
+    verify().catch(console.error);
+    }
 
-module.exports = { register, login };
+
+module.exports = { register, login,googleLogin };
 
 /* 
  {  "firstName":"aya",

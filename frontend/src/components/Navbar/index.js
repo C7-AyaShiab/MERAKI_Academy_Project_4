@@ -19,6 +19,7 @@ const Nav = () => {
     localStorage.removeItem("token");
     setToken(null);
     localStorage.removeItem("loggedUser");
+    localStorage.removeItem("userId");
     setloggedUser("");
     setisLoggedIn(false);
   };

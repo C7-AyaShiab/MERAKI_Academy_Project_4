@@ -1,7 +1,7 @@
 const userModel = require("../models/userSchema");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { OAuth2Client } = require('google-auth-library');
+const { OAuth2Client } = require("google-auth-library");
 const register = (req, res) => {
   const { firstName, lastName, email, password, role } = req.body;
   const newUser = new userModel({
@@ -92,25 +92,49 @@ const login = (req, res) => {
       });
     });
 };
-const googleLogin=(req, res)=>{
-    const token=req.body.credential;
-      const CLIENT_ID=req.body.clientId;
-    const client = new OAuth2Client(CLIENT_ID);
-    async function verify() {
-      const ticket = await client.verifyIdToken({
-          idToken: token, 
-          audience: CLIENT_ID,  
+const googleLogin = (req, res) => {
+  const token = req.body.credential;
+  const CLIENT_ID = req.body.clientId;
+  const client = new OAuth2Client(CLIENT_ID);
+  async function verify() {
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: CLIENT_ID,
+    });
+    console.log(ticket);
+    const payload = ticket.getPayload();
+    const userId = payload["sub"];
+    res.json({ payload, userId });
+  }
+  verify().catch(console.error);
+};
+
+const getUserById = (req, res) => {
+  const id = req.params.id;
+  userModel
+    .findById(id)
+    .then((user) => {
+      if (!product) {
+        return res.status(404).json({
+          success: false,
+          message: `The user with id: ${id} is not found`,
+        });
+      }
+      res.status(200).json({
+        success: true,
+        message: `The user is found `,
+        user: user,
       });
-      const payload = ticket.getPayload();
-      const userId = payload['sub'];
-      res.json({payload,userId})
-    }
-    
-    verify().catch(console.error);
-    }
-
-
-module.exports = { register, login,googleLogin };
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        err: err.message,
+      });
+    });
+};
+module.exports = { register, login, googleLogin, getUserById };
 
 /* 
  {  "firstName":"aya",

@@ -1,25 +1,53 @@
-.some-detail{
-    margin-top: 4%;
-    margin-left: 6%;
-    width:80vw;
-    border-bottom: 1px solid black;   
+.some-detail {
+  margin-top: 4%;
+  margin-left: 6%;
+  width: 80vw;
+  border-bottom: 1px solid black;
 }
-.detail2 > p{
-    text-align: left;
-    margin-left: 4%;
-
-
+.detail2 > p {
+  text-align: left;
+  margin-left: 4%;
 }
-.detail2 >p > span{
-     font-weight: bold;
+.detail2 > p > span {
+  font-weight: bold;
 }
 
-.review{
-    padding-top: 2%;
-    
-    border: 1px solid black;
+.comment > button {
+  margin: 2%;
+  align-self: flex-end;
 }
 
-.review> button{
-    margin: 2%;
+.comment {
+  display: block;
+  overflow: hidden;
+  padding: 0;
+  color: #90949c;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.comment-section {
+  margin: 20px;
+  font-family: Helvetica, Arial, sans-serif;
+  padding: 0 8px;
+  font-size: 14px;
+  display: block;
+  line-height: 25px;
+  word-break: break-word;
+}
+.comment > h4 {
+  font-weight: 600;
+  white-space: nowrap;
+  color: #365899;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.358;
+  margin: 0 8rem;
+  text-align: left;
+}
+
+.comment p {
+  margin: 0 8rem;
+  text-align: justify;
 }

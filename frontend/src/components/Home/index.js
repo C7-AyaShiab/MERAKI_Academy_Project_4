@@ -75,6 +75,7 @@ const Home = () => {
     setShowMessage(true);
 
     const userId = localStorage.getItem("userId");
+    
     if (!userId) {
       setMessage(`Please login first`);
     } else {

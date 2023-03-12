@@ -97,9 +97,9 @@ const handleClick=(e)=>{
               <span>Description:</span> {product.description}
             </p>
           </div>
-          <div className="review">
+          <div className="comment-section">
           {product.review.map((review,i)=>{
-              return <div key={i}><p>{review.review}</p></div>
+              return <div className="comment" key={i}><h4>{review.user}</h4><p>{review.review}</p></div>
             })}
             <input placeholder="Add a review" onChange={(e) => {
                   setReview(e.target.value);

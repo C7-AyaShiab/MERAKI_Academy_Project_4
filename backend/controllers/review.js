@@ -8,7 +8,8 @@ const createReview = (req, res) => {
   const userName = req.token.userName;
   const newReview = new reviewModel({
     review,
-    user: userId,
+    user: userName,
+    userId,
   });
   newReview
     .save()
@@ -95,6 +96,8 @@ const deletereviewById = (req, res) => {
       });
     });
 };
+
+
 
 module.exports = {
   createReview,

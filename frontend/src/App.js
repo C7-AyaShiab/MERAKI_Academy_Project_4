@@ -13,6 +13,7 @@ import Cart from "./components/Cart";
 import WishList from "./components/WishList";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Order from "./components/Order";
+import Footer from "./components/Footer";
 
 export const ProductContext = createContext();
 
@@ -60,6 +61,7 @@ function App() {
 
         </Routes>
       </ProductContext.Provider>
+      <Footer/>
     </div>
     </GoogleOAuthProvider>
   );

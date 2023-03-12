@@ -23,19 +23,7 @@ const userSchema = new mongoose.Schema({
   role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" },
 });
 
-const userGoogleSchema = new mongoose.Schema({
-  firstName: { type: String, required: true},
-  lastName: { type: String, required: true},
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-    lowercase: true,
-  },
-  role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" },
-});
-
+ 
 userSchema.pre("save", async function () {
   console.log()
 this.password=await bcrypt.hash(this.password, 5) 

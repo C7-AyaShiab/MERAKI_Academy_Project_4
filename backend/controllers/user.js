@@ -109,32 +109,8 @@ const googleLogin = (req, res) => {
   verify().catch(console.error);
 };
 
-const getUserById = (req, res) => {
-  const id = req.params.id;
-  userModel
-    .findById(id)
-    .then((user) => {
-      if (!product) {
-        return res.status(404).json({
-          success: false,
-          message: `The user with id: ${id} is not found`,
-        });
-      }
-      res.status(200).json({
-        success: true,
-        message: `The user is found `,
-        user: user,
-      });
-    })
-    .catch((err) => {
-      res.status(500).json({
-        success: false,
-        message: `Server Error`,
-        err: err.message,
-      });
-    });
-};
-module.exports = { register, login, googleLogin, getUserById };
+
+module.exports = { register, login, googleLogin };
 
 /* 
  {  "firstName":"aya",

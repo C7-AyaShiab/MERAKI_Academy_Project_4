@@ -101,12 +101,12 @@ const handleClick=(e)=>{
           {product.review.map((review,i)=>{
               return <div className="comment" key={i}><h4>{review.user}</h4><p>{review.review}</p></div>
             })}
-            <input placeholder="Add a review" onChange={(e) => {
+            <input className="input-review" placeholder="Add a review" onChange={(e) => {
                   setReview(e.target.value);
                   
                 }}/>
             <br></br>
-            <button  onClick={handleClick}>Enter</button>
+            <button className="enter" onClick={handleClick}>Enter</button>
           </div>
         </>
       )}

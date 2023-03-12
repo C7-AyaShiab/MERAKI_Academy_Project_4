@@ -14,7 +14,6 @@ const { register, login, googleLogin, getUserById } = require("../controllers/us
 const usersRouter = express.Router();
 
 // http://localhost:5000/users/
-usersRouter.post("/:id", getUserById);
 usersRouter.post("/register", register);
 usersRouter.post("/login", login);
 usersRouter.post("/googlelogin", googleLogin);

@@ -4,6 +4,7 @@ import { ProductContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 
 import "./style.css";
+import Category from "../Category";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -97,7 +98,9 @@ const Home = () => {
   console.log(showMessage);
   return (
     <>
+     <Category/>
       <div className="Home">
+       
         {products &&
           products.map((product) => {
             return (

@@ -11,9 +11,9 @@ const Category = () => {
   
   };
   return (
-    <div >
+    <aside>
+    <div className="Category" >
       <h5>Explore Categories</h5>
-      <div className="Category">
         <p onClick={handleClick}>Home</p>
         <p onClick={handleClick}>Mens clothing</p>
         <p onClick={handleClick}>Womens clothing</p>
@@ -24,7 +24,8 @@ const Category = () => {
         <p onClick={handleClick}>Kitchen</p>
         <p onClick={handleClick}>Bathroom</p>
       </div>
-    </div>
+      </aside>
+   
   );
 };
 

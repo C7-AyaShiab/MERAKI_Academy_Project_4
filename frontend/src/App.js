@@ -45,8 +45,11 @@ function App() {
           <Route
             path="/"
             element={
-              <>
-                <Slider /> <Category /> <Home />{" "}
+              <> 
+              <Slider />
+              <Category/>
+                <Home />
+              {/* </Category> */}
               </>
             }
           />

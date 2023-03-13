@@ -3,10 +3,10 @@ img {
   height: 350px;
 }
 .Home {
-  margin-top: 3%;
+  /* margin-top: 3%; */
   display: grid;
   /* grid-template-columns: auto auto; */
-  padding: 5% 5%;
+  /* padding: 5% 5%; */
   color: rgb(9, 9, 9);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   justify-content: center;
@@ -17,7 +17,7 @@ img {
   height: 16px;
   margin: 1px;
 }
-.price {
+/* .price {
   padding: 0px;
 }
 .product {
@@ -27,11 +27,11 @@ img {
   margin: 3rem;
   justify-content: center;
   align-content: center;
-  width: 450px;
+  width: 380px;
   height: 350px;
 }
-
-.product1 {
+ 
+ .product1 {
   border-radius: 15%;
   background-color: rgba(7, 7, 7, 0.626);
   background-size: cover;
@@ -45,7 +45,7 @@ img {
   align-content: center;
   width: 300px;
   height: 250px;
-}
+} */
 
 .success {
   width: 90%;

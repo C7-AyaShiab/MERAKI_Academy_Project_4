@@ -1,7 +1,14 @@
 .spanStyle {
   padding: "40px";
   position: relative;
-  left: 160px;
+  left: 16rem;
+  top: -15rem;
   color: black;
   font-weight: bolder;
+font-size:20px ;
+}
+
+.img0{
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
 }

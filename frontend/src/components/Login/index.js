@@ -53,11 +53,9 @@ const Login = () => {
       })
       .then((res) => {
         console.log(res)
-        setToken(credential);
-        localStorage.setItem("token", credential);
         localStorage.setItem("loggedUser", res.data.name);
         setloggedUser( res.data.name);
-        setisLoggedIn(true);
+        
         const{family_name,given_name,email}= res.data;
         const fakePass= family_name+123456;
  console.log(email,fakePass)
@@ -69,8 +67,12 @@ const Login = () => {
         })
         .then((res) => {
           console.log(res.data)
-          localStorage.setItem("userId", res.userId);
-          setuserId(res.userId)
+          setToken(res.data.token);
+        localStorage.setItem("token", res.data.token);
+          localStorage.setItem("userId", res.data.userId);
+          setuserId(res.data.userId)
+          localStorage.setItem("userId", res.data.userId);
+          setisLoggedIn(true)
           navigate("/");  
         })
         .catch((err) => {

@@ -15,8 +15,8 @@ import {
   MDBCardText,
   MDBRow,
   MDBCol,
-  MDBBtn
-} from 'mdb-react-ui-kit';
+  MDBBtn,
+} from "mdb-react-ui-kit";
 const Home = () => {
   const navigate = useNavigate();
   const { products, setProducts } = useContext(ProductContext);
@@ -27,7 +27,7 @@ const Home = () => {
   const [cartId, setcartId] = useState(0);
 
   const [showMessage, setShowMessage] = useState(false);
-
+  const userId = localStorage.getItem("userId");
   const [message, setMessage, isLoggedIn] = useState("");
   const mystyle1 = {
     width: "230px",
@@ -35,12 +35,12 @@ const Home = () => {
     color: "white",
     background: "rgba(0, 0, 0, 0.7)",
     position: "relative",
-    margin:"1rem",
+    margin: "1rem",
     left: "20rem",
     border: "none",
     cursor: "pointer",
   };
-  console.log(isLoggedIn);
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/products")
@@ -64,9 +64,11 @@ const Home = () => {
 
   let fav = JSON.parse(localStorage.getItem("fav")) || [];
   const addToFav = (e) => {
-    console.log(e.target)
+    console.log(e.target);
+    console.log(e.target.id);
+
     setShowMessage(true);
-    if (!isLoggedIn) {
+    if (!userId) {
       setMessage(`Please login first`);
     } else {
       products.forEach((product, i) => {
@@ -87,9 +89,8 @@ const Home = () => {
     const productId = e.target.id;
     setcartId(e);
     setShowMessage(true);
-console.log(e.target.id)
-    const userId = localStorage.getItem("userId");
-    
+    console.log(e.target.id);
+
     if (!userId) {
       setMessage(`Please login first`);
     } else {
@@ -111,73 +112,86 @@ console.log(e.target.id)
   console.log(showMessage);
   return (
     <div className="wrapper">
-    <Category/>
-    <MDBRow className='row-cols-1 row-cols-md-2 g-4'>
-      
+      <Category />
+      <MDBRow className="row-cols-1 row-cols-md-2 g-4">
         {products &&
-          products.map((product,i) => {
+          products.map((product, i) => {
             return (
               <MDBCol key={product._id}>
-              <MDBCard    id={product._id}>
-                <MDBCardImage
-            src={product.image}
-            id={product._id}
-            onMouseOver={handleMouseOver}
-            onClick={handleClick}
-            
-          />
-          <MDBCardBody id={product._id}>
-            <MDBCardTitle id={product._id} style={{fontSize:"18px"}}>{product.productName}</MDBCardTitle>
-            
-            <MDBCardText id={product._id}>
-                      {product.rate}<BsStarFill style={{ color: "orange" }}/>
+                <MDBCard id={product._id}>
+                  <MDBCardImage
+                    src={product.image}
+                    id={product._id}
+                    onMouseOver={handleMouseOver}
+                    onClick={handleClick}
+                  />
+                  <MDBCardBody id={product._id}>
+                    <MDBCardTitle id={product._id} style={{ fontSize: "18px",textAlign:"center" }}>
+                      {product.productName}
+                    </MDBCardTitle>
+
+                    <MDBCardText id={product._id}>
+                      {product.rate}
+                      <BsStarFill style={{ color: "orange" }} />
                     </MDBCardText>
-                    <MDBCardText  key={`text${i}`}id={product._id}>${product.price}
-                    <MDBBtn color="tertiary" rippleColor='light' id={product._id}
-                            onClick={addToCart}><TiShoppingCart id={product._id}/></MDBBtn>
-                    <MDBBtn color="tertiary" id={product._id} rippleColor='light'
-                            onClick={addToFav}><BsFillSuitHeartFill id={product._id}/></MDBBtn>
+                    <MDBCardText key={`text${i}`} id={product._id}>
+                      ${product.price}
+                      <MDBBtn
+                        color="tertiary"
+                        rippleColor="light"
+                        id={product._id}
+                        onClick={addToCart}
+                      >
+                        <TiShoppingCart id={product._id} />
+                      </MDBBtn>
+                      <MDBBtn
+                        color="tertiary"
+                        id={product._id}
+                        rippleColor="light"
+                        onClick={addToFav}
+                      >
+                        <BsFillSuitHeartFill id={product._id} />
+                      </MDBBtn>
                     </MDBCardText>
-                   {showMessage && product._id === cartId ? 
+                    {showMessage && product._id === cartId ? (
                       <p id={product._id} className="message">
                         {message}
-                      </p>:"" } 
-                      
-          </MDBCardBody>
-              </MDBCard>
+                      </p>
+                    ) : (
+                      ""
+                    )}
+                  </MDBCardBody>
+                </MDBCard>
               </MDBCol>
-              )})}
-        
-              </MDBRow>
-                    
-                  
+            );
+          })}
+      </MDBRow>
 
-        {showBtn ? (
-          <button
-            style={mystyle1}
-            onClick={() => {
-              axios
-                .get("http://localhost:5000/products")
-                .then((result) => {
-                  console.log(result.data);
-                  setNumber(number + 6);
-                  if (number === 24) {
-                    setShowBtn(!showBtn);
-                  }
-                  setProducts(result.data.product.slice(0, number));
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
-            }}
-          >
-            Show More Products
-          </button>
-        ) : (
-          ""
-        )}
-      </div>
-   
+      {showBtn ? (
+        <button
+          style={mystyle1}
+          onClick={() => {
+            axios
+              .get("http://localhost:5000/products")
+              .then((result) => {
+                console.log(result.data);
+                setNumber(number + 6);
+                if (number === 24) {
+                  setShowBtn(!showBtn);
+                }
+                setProducts(result.data.product.slice(0, number));
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }}
+        >
+          Show More Products
+        </button>
+      ) : (
+        ""
+      )}
+    </div>
   );
 };
 

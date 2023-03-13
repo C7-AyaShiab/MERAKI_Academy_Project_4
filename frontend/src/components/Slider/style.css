@@ -5,10 +5,15 @@
   top: -15rem;
   color: black;
   font-weight: bolder;
-font-size:1.5rem ;
+  font-size: 1.5rem;
 }
 
-.img0{
+.img0 {
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
+}
+
+.nav.default-nav {
+  left: 1490px;
+  right: 1400px;
 }

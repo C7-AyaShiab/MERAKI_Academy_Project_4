@@ -18,35 +18,31 @@ const images = [
   },
 ];
 
-
-
 const divStyle = {
-  margin:"1rem 0.5rem",
-  marginBottom:"0",
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundSize: '100% 100%',
-  height: '400px',
-}
+  marginTop: "1rem",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  backgroundSize: "1500px 400px",
+  height: "400px",
+};
 
 const Slider = () => {
   return (
-    <div className="Slider">
-      <Slide>
-        {images.map((slideImage, index) => (
-          <div key={index}>
-            <div style={{marginBottom:"0", paddingBottom:"0",height: '380px',}}>
-            <div className={`img${index}`}
-              style={{ ...divStyle, backgroundImage: `url(${slideImage.url})` }}
-            ></div>
-              <span className="spanStyle">{slideImage.caption}</span>
-            
-            </div>
-          </div>
-        ))}
-      </Slide>
-    </div>
+    <Slide className="slider" style={{ width: "1400px" }}>
+      {images.map((slideImage, index) => (
+        <div
+          key={index}
+          style={{ marginBottom: "0", paddingBottom: "0", width: "1500px" }}
+        >
+          <div
+            className={`img${index}`}
+            style={{ ...divStyle, backgroundImage: `url(${slideImage.url})` }}
+          ></div>
+          <span className="spanStyle">{slideImage.caption}</span>
+        </div>
+      ))}
+    </Slide>
   );
 };
 

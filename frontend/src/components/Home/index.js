@@ -97,8 +97,8 @@ const Home = () => {
 
   console.log(showMessage);
   return (
-    <>
-     <Category/>
+    <div className="wrapper">
+    <Category/>
       <div className="Home">
        
         {products &&
@@ -207,7 +207,7 @@ const Home = () => {
           ""
         )}
       </div>
-    </>
+    </div>
   );
 };
 

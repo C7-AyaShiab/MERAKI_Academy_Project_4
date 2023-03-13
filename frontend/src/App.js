@@ -47,7 +47,7 @@ function App() {
             element={
               <> 
               <Slider />
-              <Category/>
+              {/* <Category/> */}
                 <Home />
               {/* </Category> */}
               </>

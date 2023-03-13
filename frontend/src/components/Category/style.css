@@ -1,17 +1,16 @@
 .Category {
   margin-top: 0;
   margin-left: 0.5rem;
-  padding:2rem 0;
+  padding:1rem 0;
   width: 160px;
-  background-color: #f1f1f1;
+  /* background-color: #f1f1f1; */
   position: relative;
   height: 100%;
   overflow: auto;
-  color:white;
   font-size: small;
 }
 h5 {
-  text-align: center;
+  text-align: left;
   font-size: small;
 
   color: rgb(6, 6, 6);
@@ -22,6 +21,7 @@ h5 {
   color: rgb(6, 6, 6);
   padding: 12px;
   margin: 0;
+  text-align: left;
   text-decoration: none;
 }
 
@@ -33,6 +33,4 @@ h5 {
 aside {
   grid-area: sidebar;
   width: 160px;
-
-  background-color: #45aaf2;
 }

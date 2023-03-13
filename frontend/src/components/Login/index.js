@@ -44,7 +44,7 @@ const Login = () => {
       });
   };
 
-  const loginGoogle= (result) => {
+ const loginGoogle= (result) => {
     const {credential,clientId}=result
    axios
       .post("http://localhost:5000/users/googlelogin", {
@@ -59,28 +59,27 @@ const Login = () => {
         setloggedUser( res.data.name);
         setisLoggedIn(true);
         const{family_name,given_name,email}= res.data;
-        const fakePass= family_name+res.data.nbf;
- 
+        const fakePass= family_name+123456;
+ console.log(email,fakePass)
        
         axios
-        .post("http://localhost:5000/users/register", {
-          firstName:given_name,
-          lastName:family_name,
+        .post("http://localhost:5000/users/login", {
           email,
           password:fakePass,
-          role:"6404e2d6b01344b7ac9b9e09",
         })
         .then((res) => {
-          console.log(res.data.user._id)
-          localStorage.setItem("userId", res.data.user._id);
-          setuserId(res.data.user._id)
-          navigate("/"); 
+          console.log(res.data)
+          localStorage.setItem("userId", res.userId);
+          setuserId(res.userId)
+          navigate("/");  
         })
         .catch((err) => {
        console.log(err)
       });
-    })
-  };
+    }).catch((err) => {
+      console.log(err)
+     });
+  }; 
   return (
     <div className="design">
       <div className="Login">

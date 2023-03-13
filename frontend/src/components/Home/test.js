@@ -2,21 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { ProductContext } from "../../App";
 import { useNavigate } from "react-router-dom";
-import { BsFillSuitHeartFill, BsStarFill } from "react-icons/bs";
-import { TiShoppingCart } from "react-icons/ti";
 
 import "./style.css";
 import Category from "../Category";
-import {
-  MDBCard,
-  MDBCardImage,
-  MDBCardBody,
-  MDBCardTitle,
-  MDBCardText,
-  MDBRow,
-  MDBCol,
-  MDBBtn
-} from 'mdb-react-ui-kit';
+
 const Home = () => {
   const navigate = useNavigate();
   const { products, setProducts } = useContext(ProductContext);
@@ -35,8 +24,7 @@ const Home = () => {
     color: "white",
     background: "rgba(0, 0, 0, 0.7)",
     position: "relative",
-    margin:"1rem",
-    left: "20rem",
+    left: "150px",
     border: "none",
     cursor: "pointer",
   };
@@ -64,7 +52,6 @@ const Home = () => {
 
   let fav = JSON.parse(localStorage.getItem("fav")) || [];
   const addToFav = (e) => {
-    console.log(e.target)
     setShowMessage(true);
     if (!isLoggedIn) {
       setMessage(`Please login first`);
@@ -85,9 +72,9 @@ const Home = () => {
 
   const addToCart = (e) => {
     const productId = e.target.id;
-    setcartId(e);
+    setcartId(e.target.id);
     setShowMessage(true);
-console.log(e.target.id)
+
     const userId = localStorage.getItem("userId");
     
     if (!userId) {
@@ -112,45 +99,88 @@ console.log(e.target.id)
   return (
     <div className="wrapper">
     <Category/>
-    <MDBRow className='row-cols-1 row-cols-md-2 g-4'>
-      
+      <div className="Home">
+       
         {products &&
-          products.map((product,i) => {
+          products.map((product) => {
             return (
-              <MDBCol key={product._id}>
-              <MDBCard    id={product._id}>
-                <MDBCardImage
-            src={product.image}
-            id={product._id}
-            onMouseOver={handleMouseOver}
-            onClick={handleClick}
-            
-          />
-          <MDBCardBody id={product._id}>
-            <MDBCardTitle id={product._id} style={{fontSize:"18px"}}>{product.productName}</MDBCardTitle>
-            
-            <MDBCardText id={product._id}>
-                      {product.rate}<BsStarFill style={{ color: "orange" }}/>
-                    </MDBCardText>
-                    <MDBCardText  key={`text${i}`}id={product._id}>${product.price}
-                    <MDBBtn color="tertiary" rippleColor='light' id={product._id}
-                            onClick={addToCart}><TiShoppingCart id={product._id}/></MDBBtn>
-                    <MDBBtn color="tertiary" id={product._id} rippleColor='light'
-                            onClick={addToFav}><BsFillSuitHeartFill id={product._id}/></MDBBtn>
-                    </MDBCardText>
-                   {showMessage && product._id === cartId ? 
+              <div className="product" key={product._id} id={product._id}>
+                <img
+                  src={product.image}
+                  id={product._id}
+                  onMouseOver={handleMouseOver}
+                  onClick={handleClick}
+                />
+                {isShown && product._id == imgId ? (
+                  <div className="product1" id={product._id}>
+                    <h6 id={product._id}>{product.productName} </h6>
+                    <p id={product._id}>
+                      {product.rate}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        className="bi bi-star-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                      </svg>
+                    </p>
+                    <p>
+                      <span>${product.price}</span>{" "}
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="30"
+                          height="22"
+                          fill="currentColor"
+                          className="bi bi-cart-plus"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            id={product._id}
+                            onClick={addToCart}
+                            d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"
+                          />
+                          <path
+                            id={product._id}
+                            onClick={addToCart}
+                            d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+                          />
+                        </svg>
+                      </span>{" "}
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="30"
+                          height="22"
+                          fill="currentColor"
+                          className="bi bi-suit-heart-fill"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            id={product._id}
+                            onClick={addToFav}
+                            d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"
+                          />
+                        </svg>
+                      </span>
+                    </p>
+                    {showMessage && product._id === cartId ? (
                       <p id={product._id} className="message">
                         {message}
-                      </p>:"" } 
-                      
-          </MDBCardBody>
-              </MDBCard>
-              </MDBCol>
-              )})}
-        
-              </MDBRow>
-                    
-                  
+                      </p>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
+            );
+          })}
 
         {showBtn ? (
           <button
@@ -177,7 +207,7 @@ console.log(e.target.id)
           ""
         )}
       </div>
-   
+    </div>
   );
 };
 

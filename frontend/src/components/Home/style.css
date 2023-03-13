@@ -3,12 +3,14 @@ img {
   height: 350px;
 }
 .wrapper {
+  margin-top: 1rem;
+  margin-right: 10rem;
+ 
   display: grid;
-  grid-gap: 20px;
   grid-template-columns: 2fr 4fr;
   grid-template-areas: "sidebar content";
 }
-.Home {
+/* .Home {
   margin-top: 3%;
   margin-left: 10rem;
   display: grid;
@@ -19,17 +21,9 @@ img {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   justify-content: center;
   background-color: #45aaf2;
-}
-.bi-star-fill {
-  color: orange;
-  width: 18px;
-  height: 16px;
-  margin: 1px;
-}
-.price {
-  padding: 0px;
-}
-.product {
+} */
+
+/* .product {
   cursor: pointer;
   overflow: hidden;
   position: relative;
@@ -55,15 +49,5 @@ img {
   width: 300px;
   height: 250px;
 }
-
-.success {
-  width: 90%;
-  margin: 0px 17px;
-  color: white;
-  font-size: 15px;
-  font-weight: 700;
-  border-radius: 5px;
-  padding: 14px 0px;
-  border: 1px solid #3a9ea5;
-  background: #333333;
-}
+*/
+ 

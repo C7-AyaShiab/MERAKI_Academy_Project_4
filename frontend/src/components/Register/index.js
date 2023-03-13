@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import "./style.css";
 import axios from "axios";
+import { GoogleLogin } from "@react-oauth/google";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -42,7 +43,36 @@ const Register = () => {
       setMessageType("warning");
     }
   };
-
+  const loginGoogle= (result) => {
+    const {credential,clientId}=result
+   axios
+      .post("http://localhost:5000/users/googlelogin", {
+        credential,
+        clientId,
+      })
+      .then((res) => {
+        console.log(res)
+        const{family_name,given_name,email}= res.data;
+        const fakePass= family_name+123456;
+        localStorage.setItem("fakePass", fakePass);
+ 
+       
+        axios
+        .post("http://localhost:5000/users/register", {
+          firstName:given_name,
+          lastName:family_name,
+          email,
+          password:fakePass,
+          role:"6404e2d6b01344b7ac9b9e09",
+        })
+        .then((res) => {
+          console.log(res.data.user._id)
+        })
+        .catch((err) => {
+       console.log(err)
+      });
+    })
+  }
   return (
     <div className="design">
       <div className="Register">
@@ -86,6 +116,15 @@ const Register = () => {
         <button className="Register-btn" type="submit" onClick={register}>
           Register
         </button>
+        <GoogleLogin
+          width={"2000px"}
+          theme={"filled_blue"}
+          size={"large"}
+          onSuccess={loginGoogle}
+          onError={() => {
+            console.log("Login Failed");
+          }}
+        />
         {showMessage ? <p className={messageType}>{message}</p> : ""}
       </div>
     </div>

@@ -66,22 +66,19 @@ const Home = () => {
   const addToFav = (e) => {
     console.log(e.target);
     console.log(e.target.id);
-
-    setShowMessage(true);
     if (!userId) {
-      setMessage(`Please login first`);
+      setMessage(`Please login first`); // add navigate to login page
     } else {
       products.forEach((product, i) => {
         if (product._id === e.target.id) {
           console.log(product);
-          if (fav.includes(product)) {
-            return;
-          } else {
-            fav.splice(i, 1, product);
-          }
+          const fav1 = fav.filter((product) => {
+            return product._id !== e.target.id;
+          });
+          fav1.push(product);
+          localStorage.setItem("fav", JSON.stringify(fav1));
         }
       });
-      localStorage.setItem("fav", JSON.stringify(fav));
     }
   };
 
@@ -113,21 +110,24 @@ const Home = () => {
   return (
     <div className="wrapper">
       <Category />
-      <MDBRow className='row-cols-1 row-cols-md-3 g-4'>
+      <MDBRow className="row-cols-1 row-cols-md-3 g-4">
         {products &&
           products.map((product, i) => {
             return (
               <MDBCol key={product._id}>
-                <MDBCard  className='h-100'id={product._id}>
+                <MDBCard className="h-100" id={product._id}>
                   <MDBCardImage
                     src={product.image}
                     id={product._id}
                     onMouseOver={handleMouseOver}
                     onClick={handleClick}
-                     position='top'
+                    position="top"
                   />
                   <MDBCardBody id={product._id}>
-                    <MDBCardTitle id={product._id} style={{ fontSize: "18px",textAlign:"center" }}>
+                    <MDBCardTitle
+                      id={product._id}
+                      style={{ fontSize: "18px", textAlign: "center" }}
+                    >
                       {product.productName}
                     </MDBCardTitle>
 

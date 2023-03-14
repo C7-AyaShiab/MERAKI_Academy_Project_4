@@ -27,6 +27,7 @@ const Nav = () => {
     <div className="Nav">
       {isLoggedIn ? (
         <div className="logged">
+          <strong> 
           <Link className="nav-choices" to="/">
             {" "}
             Home{" "}
@@ -44,9 +45,12 @@ const Nav = () => {
           <Link className="nav-choices" onClick={logout} to="/">
             Logout
           </Link>
+          </strong>
         </div>
       ) : (
+       
         <div className="notlogged">
+            <strong>
           <Link className="nav-choices" to="/">
             {" "}
             Home{" "}
@@ -59,7 +63,7 @@ const Nav = () => {
             {" "}
             Register{" "}
           </Link>
-          
+          </strong>
         </div>
       )}
     </div>

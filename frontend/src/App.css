@@ -3,4 +3,26 @@ body{
    
 }
 
- 
+.App-header{
+    background-color: #212529;
+   
+} 
+
+.search{
+    height: 2rem;
+    width:20rem;
+    float: right;
+    border: none;
+    margin-top: 1.6rem;
+    margin-right: 16px;
+    
+}
+
+.search-btn{
+    float: right;
+    width: 2rem; 
+    height: 2rem;
+    margin-top: 1.6rem;
+    border: none;
+      background-color: "white"
+}

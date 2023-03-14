@@ -19,11 +19,11 @@ const images = [
 ];
 
 const divStyle = {
-  marginTop: "1rem",
+ 
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  backgroundSize: "1500px 400px",
+  backgroundSize: "1520px 400px",
   height: "400px",
 };
 
@@ -33,7 +33,7 @@ const Slider = () => {
       {images.map((slideImage, index) => (
         <div
           key={index}
-          style={{ marginBottom: "0", paddingBottom: "0", width: "1500px" }}
+          style={{ marginBottom: "0", paddingBottom: "0", width: "1520px" }}
         >
           <div
             className={`img${index}`}

@@ -1,4 +1,4 @@
-import React, { useState, createContext,useEffect} from "react";
+import React, { useState, createContext, useEffect } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
@@ -14,7 +14,7 @@ import WishList from "./components/WishList";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Order from "./components/Order";
 import Footer from "./components/Footer";
-
+import { FcSearch } from "react-icons/fc";
 export const ProductContext = createContext();
 
 const clientId =
@@ -24,50 +24,69 @@ function App() {
   const [token, setToken] = useState("");
   const [loggedUser, setloggedUser] = useState("");
   const [isLoggedIn, setisLoggedIn] = useState(false);
-  console.log(token)
-  console.log(localStorage.getItem('token'))
+  console.log(token);
+  console.log(localStorage.getItem("token"));
   const [cartItems, setCartItems] = useState([]);
-  useEffect(()=>{
-    setToken(localStorage.getItem('token'))
-    if(token){
-      setisLoggedIn(true)
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+    if (token) {
+      setisLoggedIn(true);
     }
-  },[token])
+  }, [token]);
   return (
-      <GoogleOAuthProvider clientId={clientId}>
-    <div className="App">
-      <ProductContext.Provider value={{ cartItems, setCartItems,products, setProducts,token, setToken, isLoggedIn, setisLoggedIn, loggedUser, setloggedUser}}>
-        <header className="App-header">
-          <h1>Project 4 </h1>
-        </header>
-        <Nav />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <> 
-              <Slider />
-              {/* <Category/> */}
-                <Home />
-              {/* </Category> */}
-              </>
-            }
-          />
-          <Route path="/categorylist/:categoryName" element={<List />} />
-          <Route path="/categorylist/price" element={<List />} />
+    <GoogleOAuthProvider clientId={clientId}>
+      <div className="App">
+        <ProductContext.Provider
+          value={{
+            cartItems,
+            setCartItems,
+            products,
+            setProducts,
+            token,
+            setToken,
+            isLoggedIn,
+            setisLoggedIn,
+            loggedUser,
+            setloggedUser,
+          }}
+        >
+          <header className="App-header">
+          <img
+                src="./logo.jpg"
+                 style={{ height: "85px", width: "150px", paddingLeft: "1rem",float:"left" }} 
+  
+              />
+          <input className="search" type="text" placeholder="Search.."/>
+               
+               <button className="search-btn">
+                <FcSearch />
+              </button>
+            
+          </header>
+          <Nav />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Slider />
+                  <Home />
+                </>
+              }
+            />
+            <Route path="/categorylist/:categoryName" element={<List />} />
+            <Route path="/categorylist/price" element={<List />} />
+            <Route path="/:id" element={<Details />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/order" element={<Order />} />
 
-          <Route path="/:id" element={<Details />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/order" element={<Order />} />
-
-          <Route path="/wishlist" element={<WishList />} />
-
-        </Routes>
-      </ProductContext.Provider>
-      <Footer/>
-    </div>
+            <Route path="/wishlist" element={<WishList />} />
+          </Routes>
+        </ProductContext.Provider>
+        <Footer />
+      </div>
     </GoogleOAuthProvider>
   );
 }

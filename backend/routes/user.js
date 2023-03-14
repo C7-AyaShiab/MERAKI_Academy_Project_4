@@ -20,7 +20,7 @@ usersRouter.post("/register", register);
 usersRouter.post("/login", login);
 usersRouter.post("/googlelogin", googleLogin);
 usersRouter.post(
-  "/cart",
+  "/:id/cart",
   authentication,
   authorization("ADD_TO_CART"),
   createCart

@@ -67,6 +67,11 @@ const Details = () => {
       axios
         .post(`http://localhost:5000/users/${userId}/cart`, {
           items: productId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         })
         .then((result) => {
           console.log(result);

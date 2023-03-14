@@ -87,19 +87,26 @@ const Home = () => {
     setcartId(e);
     setShowMessage(true);
     console.log(e.target.id);
-      axios
-        .post(`http://localhost:5000/users/${userId}/cart`, {
+    axios
+      .post(
+        `http://localhost:5000/users/${userId}/cart`,
+        {
           items: productId,
-        })
-        .then((result) => {
-          setMessage(result.data.message);
-          console.log(result);
-        })
-        .catch((err) => {
-          setMessage(err.data.message);
-          console.log(err);
-        });
-    
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
+      .then((result) => {
+        setMessage(result.data.message);
+        console.log(result);
+      })
+      .catch((err) => {
+        setMessage(err.data.message);
+        console.log(err);
+      });
   };
 
   console.log(showMessage);
@@ -128,24 +135,34 @@ const Home = () => {
                     </MDBCardTitle>
 
                     <MDBCardText id={product._id}>
-                      {product.rate}
-                      <BsStarFill style={{ color: "orange" }} />
+                      {product.rate}{" "}
+                      <span>
+                        <BsStarFill
+                          style={{ color: "orange", fontSize: "1.2rem" }}
+                        />
+                      </span>
                     </MDBCardText>
                     <MDBCardText key={`text${i}`} id={product._id}>
                       ${product.price}
                       <button
-                        style={{"border":"none", "backgroundColor":"white"}}
+                        style={{ border: "none", backgroundColor: "white" }}
                         id={product._id}
                         onClick={addToCart}
                       >
-                        <TiShoppingCart id={product._id} />
+                        <TiShoppingCart
+                          id={product._id}
+                          style={{ fontSize: "1.8rem" }}
+                        />
                       </button>
                       <button
-                        style={{"border":"none", "backgroundColor":"white"}}
+                        style={{ border: "none", backgroundColor: "white" }}
                         id={product._id}
                         onClick={addToFav}
                       >
-                        <BsFillSuitHeartFill id={product._id} />
+                        <BsFillSuitHeartFill
+                          id={product._id}
+                          style={{ fontSize: "1.4rem" }}
+                        />
                       </button>
                     </MDBCardText>
                     {showMessage && product._id === cartId ? (

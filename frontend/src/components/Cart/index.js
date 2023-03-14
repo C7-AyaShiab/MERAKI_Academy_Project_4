@@ -44,6 +44,11 @@ const Cart = () => {
     axios
       .put(`http://localhost:5000/users/${userId}/cart/${cartId}`, {
         amount: updated,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       })
       .then((result) => {
         const updatedCart = cartItems.map((cart, i) => {
@@ -64,7 +69,12 @@ const Cart = () => {
     console.log(e.target.id);
     const cartId = e.target.id;
     axios
-      .delete(`http://localhost:5000/users/${userId}/cart/${cartId}`)
+      .delete(`http://localhost:5000/users/${userId}/cart/${cartId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then(() => {
         const newCartList = cartItems.filter((cart, i) => {
           return cart._id != cartId;
@@ -148,11 +158,12 @@ const Cart = () => {
                           </MDBTypography>
                         </MDBCol>
                         <MDBCol md="1" lg="1" xl="1" className="text-end">
-                          <FaTrash
+                          <button style={{"border":"none", "backgroundColor":"white"}}
+                        id={cart._id}><FaTrash
                             id={cart._id}
                             onClick={deleteCart}
                             className="text-danger"
-                          />
+                          /></button> 
                         </MDBCol>
                       </MDBRow>
                     </MDBCardBody>

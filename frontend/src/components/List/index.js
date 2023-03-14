@@ -13,20 +13,20 @@ const List = () => {
   const { products, setProducts } = useContext(ProductContext);
   const userId = localStorage.getItem("userId");
 
-  const { categoryName} = useParams();
+  const { categoryName } = useParams();
   useEffect(() => {
-    if(categoryName){
+    if (categoryName) {
       axios
-      .get(`http://localhost:5000/products/search/${categoryName}`)
-      .then((result) => {
-        console.log(result.data.product);
-        setProducts(result.data.product);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .get(`http://localhost:5000/products/search/${categoryName}`)
+        .then((result) => {
+          console.log(result.data.product);
+          setProducts(result.data.product);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  }, []); 
+  }, []);
 
   const handleClick = (e) => {
     let id = e.target.id;
@@ -37,7 +37,7 @@ const List = () => {
     console.log(e.target);
     console.log(e.target.id);
     if (!userId) {
-    navigate("/login");
+      navigate("/login");
     } else {
       products.forEach((product, i) => {
         if (product._id === e.target.id) {
@@ -51,6 +51,29 @@ const List = () => {
       });
     }
   };
+  const addToCart = (e) => {
+    const productId = e.target.id;
+    console.log(e.target.id);
+    axios
+      .post(
+        `http://localhost:5000/users/${userId}/cart`,
+        {
+          items: productId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="wrapper1">
       <Category />
@@ -73,17 +96,29 @@ const List = () => {
                     <span>
                       <CgDollar style={{ fontSize: "1.2rem" }} />
                       {product.price}
-                    </span>{" "} 
+                    </span>{" "}
                     <span id={product._id}>
-                      <TiShoppingCart
+                      <button
+                        style={{ border: "none", backgroundColor: "white" }}
                         id={product._id}
-                        style={{ fontSize: "1.8rem" }}
-                      />{" "}
-                      <BsFillSuitHeartFill
+                        onClick={addToCart}
+                      >
+                        <TiShoppingCart
+                          id={product._id}
+                          style={{ fontSize: "1.8rem" }}
+                        />
+                      </button>
+                      <button
+                        style={{ border: "none", backgroundColor: "white" }}
                         id={product._id}
-                        style={{ fontSize: "1.4rem" }}
-                        onClick={addToFav}
-                      />
+                        onClick={addToCart}
+                      >
+                        <BsFillSuitHeartFill
+                          id={product._id}
+                          style={{ fontSize: "1.4rem" }}
+                          onClick={addToFav}
+                        />
+                      </button>
                     </span>
                   </p>
                 </div>

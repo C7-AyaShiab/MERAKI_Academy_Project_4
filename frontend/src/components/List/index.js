@@ -11,10 +11,12 @@ import Category from "../Category";
 const List = () => {
   const navigate = useNavigate();
   const { products, setProducts } = useContext(ProductContext);
+  const userId = localStorage.getItem("userId");
 
   const { categoryName} = useParams();
   useEffect(() => {
-    axios
+    if(categoryName){
+      axios
       .get(`http://localhost:5000/products/search/${categoryName}`)
       .then((result) => {
         console.log(result.data.product);
@@ -23,26 +25,31 @@ const List = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+    }
+  }, []); 
 
   const handleClick = (e) => {
     let id = e.target.id;
     navigate(`/${id}`);
   };
-  let fav = JSON.parse(localStorage.getItem("fav"));
+  let fav = JSON.parse(localStorage.getItem("fav")) || [];
   const addToFav = (e) => {
+    console.log(e.target);
     console.log(e.target.id);
-    products.forEach((product, i) => {
-      if (product._id === e.target.id) {
-        if (fav.includes(product)) {
-          return;
-        } else {
-          fav.splice(i, 1, product);
+    if (!userId) {
+    navigate("/login");
+    } else {
+      products.forEach((product, i) => {
+        if (product._id === e.target.id) {
+          console.log(product);
+          const fav1 = fav.filter((product) => {
+            return product._id !== e.target.id;
+          });
+          fav1.push(product);
+          localStorage.setItem("fav", JSON.stringify(fav1));
         }
-      }
-    });
-
-    localStorage.setItem("fav", JSON.stringify(fav));
+      });
+    }
   };
   return (
     <div className="wrapper1">
@@ -66,7 +73,7 @@ const List = () => {
                     <span>
                       <CgDollar style={{ fontSize: "1.2rem" }} />
                       {product.price}
-                    </span>{" "}
+                    </span>{" "} 
                     <span id={product._id}>
                       <TiShoppingCart
                         id={product._id}

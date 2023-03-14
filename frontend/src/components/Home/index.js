@@ -67,7 +67,7 @@ const Home = () => {
     console.log(e.target);
     console.log(e.target.id);
     if (!userId) {
-      setMessage(`Please login first`); // add navigate to login page
+      navigate("/login");
     } else {
       products.forEach((product, i) => {
         if (product._id === e.target.id) {
@@ -87,10 +87,6 @@ const Home = () => {
     setcartId(e);
     setShowMessage(true);
     console.log(e.target.id);
-
-    if (!userId) {
-      setMessage(`Please login first`);
-    } else {
       axios
         .post(`http://localhost:5000/users/${userId}/cart`, {
           items: productId,
@@ -103,7 +99,7 @@ const Home = () => {
           setMessage(err.data.message);
           console.log(err);
         });
-    }
+    
   };
 
   console.log(showMessage);
@@ -137,22 +133,20 @@ const Home = () => {
                     </MDBCardText>
                     <MDBCardText key={`text${i}`} id={product._id}>
                       ${product.price}
-                      <MDBBtn
-                        color="tertiary"
-                        rippleColor="light"
+                      <button
+                        style={{"border":"none", "backgroundColor":"white"}}
                         id={product._id}
                         onClick={addToCart}
                       >
                         <TiShoppingCart id={product._id} />
-                      </MDBBtn>
-                      <MDBBtn
-                        color="tertiary"
+                      </button>
+                      <button
+                        style={{"border":"none", "backgroundColor":"white"}}
                         id={product._id}
-                        rippleColor="light"
                         onClick={addToFav}
                       >
                         <BsFillSuitHeartFill id={product._id} />
-                      </MDBBtn>
+                      </button>
                     </MDBCardText>
                     {showMessage && product._id === cartId ? (
                       <p id={product._id} className="message">

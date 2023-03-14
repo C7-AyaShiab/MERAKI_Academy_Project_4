@@ -30,11 +30,12 @@ const Category = () => {
     .then((result) => {
       console.log(result.data.product);
       setProducts(result.data.product);
+      navigate(`/categorylist/price`)
     })
     .catch((err) => {
       console.log(err);
     });
-    navigate(`/categorylist/price`)
+   
   };
   return (
     <aside>

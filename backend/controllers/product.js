@@ -165,4 +165,27 @@ const getProductByCategory = (req, res) => {
       res.status(500).json(err);
     });
 };
-module.exports = { createProduct, getAllProduct, deleteProductById, updateProductById,getProductById,getProductByCategory};
+const getProductByPrice = (req, res) => {
+  const minPrice=req.query.minPrice;
+  const maxPrice=req.query.maxPrice;
+console.log(req.query)
+  productModel
+    .find({ $and: [{ price: { $lt: maxPrice } }, { price: { $gt: minPrice } }] })
+    .populate("review")
+    .exec()
+    .then((product) => {
+      if (product.length) {
+        res.status(200).json({
+          success: true,
+          message: `All products`,
+          product: product,
+        });
+      } else {
+        res.status(200).json("No products are available");
+      }
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+};
+module.exports = { createProduct, getAllProduct, deleteProductById, updateProductById,getProductById,getProductByCategory,getProductByPrice};

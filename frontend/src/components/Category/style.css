@@ -17,7 +17,7 @@ h5 {
 .Category > p {
   display: block;
   color: rgb(6, 6, 6);
-  padding: 8px;
+  padding: 4px;
   margin: 0;
   text-align: left;
   text-decoration: none;
@@ -30,7 +30,9 @@ h5 {
 
 aside {
   grid-area: sidebar;
-  width: 160px;
+  width: 140px;
 }
 
- 
+.price{
+  padding-top: 1rem;
+}

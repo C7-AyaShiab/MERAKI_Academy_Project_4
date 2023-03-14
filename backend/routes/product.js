@@ -8,6 +8,7 @@ const {
   updateProductById,
   getProductById,
   getProductByCategory,
+  getProductByPrice,
 } = require("../controllers/product");
 const {
   createReview,
@@ -30,6 +31,7 @@ productsRouter.post(
 );
 productsRouter.get("/", getAllProduct);
 productsRouter.get("/search/:category", getProductByCategory);
+productsRouter.get("/price", getProductByPrice);
 
 productsRouter.delete(
   "/:id",

@@ -1,18 +1,22 @@
 .some-detail {
   margin-top: 4%;
-  margin-left: 6%;
+  margin-left: 20rem;
   width: 60vw;
   border-bottom: 1px solid black;
 }
 .detail2 > p {
   text-align: left;
-  margin-left: 4%;
+  margin-left: 8rem;
+  margin-top: 2rem;
 }
 .detail2 > p > span {
   font-weight: bold;
 }
 
+.detail2{
+  width: 60vw;
 
+}
 
 .comment {
   display: block;
@@ -26,9 +30,12 @@
   border-radius: 8px;
   width: 10rem;
 }
-
+.bi-star-fill{
+  color:orange;
+}
 .comment-section {
   margin: 2rem;
+  margin-left: 8rem;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 14px;
   display: block;
@@ -36,7 +43,7 @@
   word-break: break-word;
   border:1px solid;
   padding-bottom: 1rem;
-  width:35rem;
+  width:50vw;
 }
 .comment > h4 {
   font-weight: 600;
@@ -72,4 +79,16 @@ background: #333333;
 color: white;
 border: none;
 margin-left: 25rem;
+}
+
+.btn{
+  border-radius: 8px;
+  padding: .35rem 1.5rem;
+  background: #333333;
+  color: white;
+  border: none;
+  position: relative;
+  top:-15rem;
+  margin-left: 15rem;
+  
 }

@@ -10,6 +10,15 @@ const Category = () => {
   const navigate = useNavigate();
   const handleClick = (e) => {
     let categoryName = e.target.innerHTML;
+    axios
+      .get(`http://localhost:5000/products/search/${categoryName}`)
+      .then((result) => {
+        console.log(result.data.product);
+        setProducts(result.data.product);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     navigate(`/categorylist/${categoryName}`);
   };
 
@@ -25,6 +34,7 @@ const Category = () => {
     .catch((err) => {
       console.log(err);
     });
+    navigate(`/categorylist/price`)
   };
   return (
     <aside>

@@ -5,9 +5,9 @@ img {
 .wrapper {
   margin-top: 1rem;
   margin-right: 10rem;
- 
+ margin-bottom: 1rem;
   display: grid;
-  grid-template-columns: 2fr 4fr;
+  grid-template-columns: 1fr 4fr;
   grid-template-areas: "sidebar content";
 }
 /* .Home {

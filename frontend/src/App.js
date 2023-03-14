@@ -54,6 +54,8 @@ function App() {
             }
           />
           <Route path="/categorylist/:categoryName" element={<List />} />
+          <Route path="/categorylist/price" element={<List />} />
+
           <Route path="/:id" element={<Details />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />

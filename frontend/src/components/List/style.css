@@ -1,8 +1,17 @@
+.wrapper1 {
+  margin-top: 1rem;
+  margin-right: 10rem;
+ margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  grid-template-areas: "sidebar content content";
+}
+
 .List {
   margin-top: 3%;
   margin-left: 5%;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto auto auto auto;
   padding: 3% 3%;
   color: rgb(9, 9, 9);
   font-family: Verdana, Geneva, Tahoma, sans-serif;

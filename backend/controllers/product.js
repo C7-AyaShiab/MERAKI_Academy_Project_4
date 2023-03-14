@@ -60,6 +60,7 @@ const getAllProduct = (req, res) => {
     });
 };
 
+ 
 
 const deleteProductById = (req, res) => {
   const id=req.params.id;
@@ -177,7 +178,7 @@ console.log(req.query)
       if (product.length) {
         res.status(200).json({
           success: true,
-          message: `All products`,
+          message: `All products with chosen price`,
           product: product,
         });
       } else {

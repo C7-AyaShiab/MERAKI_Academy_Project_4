@@ -36,7 +36,7 @@ const Home = () => {
     background: "rgba(0, 0, 0, 0.7)",
     position: "relative",
     margin: "1rem",
-    left: "20rem",
+    left: "42rem",
     border: "none",
     cursor: "pointer",
   };
@@ -113,17 +113,18 @@ const Home = () => {
   return (
     <div className="wrapper">
       <Category />
-      <MDBRow className="row-cols-1 row-cols-md-2 g-4">
+      <MDBRow className='row-cols-1 row-cols-md-3 g-4'>
         {products &&
           products.map((product, i) => {
             return (
               <MDBCol key={product._id}>
-                <MDBCard id={product._id}>
+                <MDBCard  className='h-100'id={product._id}>
                   <MDBCardImage
                     src={product.image}
                     id={product._id}
                     onMouseOver={handleMouseOver}
                     onClick={handleClick}
+                     position='top'
                   />
                   <MDBCardBody id={product._id}>
                     <MDBCardTitle id={product._id} style={{ fontSize: "18px",textAlign:"center" }}>

@@ -98,7 +98,7 @@ const Cart = () => {
 
   return (
     <section className="h-100" style={{ backgroundColor: "#eee" }}>
-      <MDBContainer className="py-4 h-100">
+      <MDBContainer className="py-5 h-100">
         <MDBRow className="justify-content-center align-items-center h-100">
           <MDBCol md="10">
             <div className="d-flex justify-content-between align-items-center mb-4">
@@ -118,7 +118,7 @@ const Cart = () => {
                       <MDBRow className="justify-content-between align-items-center">
                         <MDBCol md="2" lg="2" xl="2">
                           <MDBCardImage
-                            className="rounded-2"
+                            className="rounded-3"
                             fluid
                             src={cart.items.image}
                           />

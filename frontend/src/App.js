@@ -14,7 +14,8 @@ import WishList from "./components/WishList";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Order from "./components/Order";
 import Footer from "./components/Footer";
-import { FcSearch } from "react-icons/fc";
+
+import Search from "./components/Search";
 export const ProductContext = createContext();
 
 const clientId =
@@ -52,16 +53,15 @@ function App() {
         >
           <header className="App-header">
           <img
-                src="./logo.jpg"
-                 style={{ height: "85px", width: "150px", paddingLeft: "1rem",float:"left" }} 
-  
-              />
-          <input className="search" type="text" placeholder="Search.."/>
-               
-               <button className="search-btn">
-                <FcSearch />
-              </button>
-            
+        src="./logo.jpg"
+        style={{
+          height: "85px",
+          width: "150px",
+          paddingLeft: "1rem",
+          float: "left",
+        }}
+      />
+          <Search/>
           </header>
           <Nav />
           <Routes>
@@ -76,6 +76,7 @@ function App() {
             />
             <Route path="/categorylist/:categoryName" element={<List />} />
             <Route path="/categorylist/price" element={<List />} />
+    
             <Route path="/:id" element={<Details />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />

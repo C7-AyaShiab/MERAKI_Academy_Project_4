@@ -54,13 +54,13 @@ const Order = () => {
   console.log(cartItems);
   return (
     <section
-      className="h-100  w-50"
-      style={{
+      className="h-100 h-custom"
+   /*    style={{
         backgroundColor: "#eee",
         marginTop: "2rem",
         marginLeft: "12rem",
         padding: "0 2rem",
-      }}
+      }} */
     >
       <MDBContainer className="py-5 h-100">
         <MDBCol md="3" lg="4" xl="3">

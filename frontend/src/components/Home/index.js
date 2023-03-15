@@ -19,7 +19,8 @@ import {
 } from "mdb-react-ui-kit";
 const Home = () => {
   const navigate = useNavigate();
-  const { products, setProducts } = useContext(ProductContext);
+  const { products, setProducts,} =
+    useContext(ProductContext);
   const [number, setNumber] = useState(0);
   const [showBtn, setShowBtn] = useState(true);
   const [isShown, setIsShown] = useState(false);
@@ -28,7 +29,7 @@ const Home = () => {
 
   const [showMessage, setShowMessage] = useState(false);
   const userId = localStorage.getItem("userId");
-  const [message, setMessage, isLoggedIn] = useState("");
+  const [message, setMessage] = useState("");
   const mystyle1 = {
     width: "230px",
     height: "50px",
@@ -56,7 +57,6 @@ const Home = () => {
     setImgId(e.target.id);
     setIsShown(!isShown);
   };
-
   const handleClick = (e) => {
     let id = e.target.id;
     navigate(`/${id}`);

@@ -21,6 +21,7 @@ export const ProductContext = createContext();
 const clientId =
   "780019151998-ei1sl1vhch8egbkuff1ibrshuo1h68nd.apps.googleusercontent.com";
 function App() {
+  const [searchResult, setSearchResult] = useState(false);
   const [products, setProducts] = useState([]);
   const [token, setToken] = useState("");
   const [loggedUser, setloggedUser] = useState("");
@@ -49,19 +50,21 @@ function App() {
             setisLoggedIn,
             loggedUser,
             setloggedUser,
+            searchResult,
+            setSearchResult,
           }}
         >
           <header className="App-header">
-          <img
-        src="./logo.jpg"
-        style={{
-          height: "85px",
-          width: "150px",
-          paddingLeft: "1rem",
-          float: "left",
-        }}
-      />
-          <Search/>
+            <img
+              src="./logo.jpg"
+              style={{
+                height: "85px",
+                width: "150px",
+                paddingLeft: "1rem",
+                float: "left",
+              }}
+            />
+            <Search />
           </header>
           <Nav />
           <Routes>
@@ -76,7 +79,7 @@ function App() {
             />
             <Route path="/categorylist/:categoryName" element={<List />} />
             <Route path="/categorylist/price" element={<List />} />
-    
+            <Route path="/categorylist/search" element={<List />} />
             <Route path="/:id" element={<Details />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />

@@ -63,11 +63,10 @@ const Order = () => {
       }} */
     >
       <MDBContainer className="py-5 h-100">
-        <MDBCol md="3" lg="4" xl="3">
-          <MDBRow>
-            <MDBCol size="12" xl="3">
+          <MDBRow className="justify-content-center align-items-center h-100">
+            <MDBCol size="12" xl="6">
               <MDBInput
-                className="mb-2 border-0"
+                className="mb-4 mb-xl-5"
                 placeholder="Full Name"
                 size="M"
                 onChange={(e) => {
@@ -75,7 +74,7 @@ const Order = () => {
                 }}
               />
               <MDBInput
-                className="mb-2 border-0"
+                className="mb-4 mb-xl-5"
                 placeholder="Phone Number"
                 size="M"
                 onChange={(e) => {
@@ -83,7 +82,7 @@ const Order = () => {
                 }}
               />
               <MDBInput
-                className="mb-2 border-0"
+                className="mb-4 mb-xl-5"
                 placeholder="Country"
                 size="M"
                 onChange={(e) => {
@@ -91,7 +90,7 @@ const Order = () => {
                 }}
               />
               <MDBInput
-                className="mb-2 border-0"
+                className="mb-4 mb-xl-5"
                 placeholder="City"
                 size="M"
                 onChange={(e) => {
@@ -99,7 +98,7 @@ const Order = () => {
                 }}
               />
               <MDBInput
-                className="mb-2 border-0"
+                className="mb-4 mb-xl-5"
                 placeholder="Address"
                 size="M"
                 onChange={(e) => {
@@ -108,11 +107,11 @@ const Order = () => {
               />
             </MDBCol>
           </MDBRow>
-        </MDBCol>
+     
 
-        <MDBCol md="3" lg="4" xl="1">
-          <div className="d-flex flex-row pb-1">
-            <div className="d-flex align-items-center pe-1">
+        <MDBCol md="6" lg="4" xl="3" className="mb-5 mb-md-0">
+          <div className="d-flex flex-row pb-3">
+            <div className="d-flex align-items-center pe-2">
               <MDBRadio
                 type="radio"
                 name="radio2"
@@ -122,7 +121,7 @@ const Order = () => {
                 }}
               />
             </div>
-            <div className="p-2">
+            <div className="rounded border w-100 p-3">
               <p className="d-flex align-items-center mb-0">
                 <BsCash />
                 Cash on delivery
@@ -130,7 +129,7 @@ const Order = () => {
             </div>
           </div>
 
-          <div className="d-flex flex-row pb-1">
+          <div className="d-flex flex-row pb-3">
             <div className="d-flex align-items-center pe-2">
               <MDBRadio
                 type="radio"
@@ -141,14 +140,14 @@ const Order = () => {
                 }}
               />
             </div>
-            <div className=" p-2">
-              <p className="d-flex align-items-center mb-2">
+            <div className="rounded border w-100 p-3">
+              <p className="d-flex align-items-center mb-0">
                 <FaCcPaypal /> PayPal
               </p>
             </div>
           </div>
-          <div className="d-flex flex-row pb-1">
-            <div className="pe-1">
+          <div className="d-flex flex-row pb-3">
+            <div className="d-flex align-items-center pe-2">
               <MDBRadio
                 type="radio"
                 name="radio3"
@@ -158,7 +157,7 @@ const Order = () => {
                 }}
               />
             </div>
-            <div className="p-2">
+            <div className="rounded border w-100 p-3">
               <p className="d-flex align-items-center mb-0">
                 <TfiCreditCard />
                 Credit/Debit Card
@@ -166,11 +165,11 @@ const Order = () => {
             </div>
           </div>
         </MDBCol>
-        <MDBCol md="6" lg="4" xl="6">
+        {/* <MDBCol md="6" lg="4" xl="6"> */}
           <MDBRow>
             <MDBCol size="12" xl="6">
               <MDBInput
-                className="mb-2 border-0"
+                className="mb-4 mb-xl-5"
                 placeholder="Expire Date: MM/YY"
                 size="M"
                 maxLength={7}
@@ -180,14 +179,14 @@ const Order = () => {
 
             <MDBCol size="12" xl="6">
               <MDBInput
-                className="mb-2 border-0"
+                className="mb-4 mb-xl-5"
                 placeholder="Card Number"
                 size="M"
                 minLength="19"
                 maxLength="19"
               />
               <MDBInput
-                className="mb-2 border-0"
+                className="mb-4 mb-xl-5"
                 placeholder="Cvv"
                 size="M"
                 minLength="3"
@@ -196,12 +195,12 @@ const Order = () => {
               />
             </MDBCol>
           </MDBRow>
-        </MDBCol>
+        {/* </MDBCol> */}
 
         <MDBCol lg="4" xl="3">
           <div
             className="d-flex justify-content-between"
-            style={{ fontWeight: "600" }}
+            style={{ fontWeight: "500" }}
           >
             <p className="mb-2">Subtotal</p>
             <p className="mb-2">${subTotal}</p>
@@ -209,7 +208,7 @@ const Order = () => {
 
           <div
             className="d-flex justify-content-between"
-            style={{ fontWeight: "600" }}
+            style={{ fontWeight: "500" }}
           >
             <p className="mb-0">Shipping</p>
             <p className="mb-0">${shipping}</p>
@@ -219,7 +218,7 @@ const Order = () => {
 
           <div
             className="d-flex justify-content-between mb-4"
-            style={{ fontWeight: "700" }}
+            style={{ fontWeight: "500" }}
           >
             <p className="mb-2">Total</p>
             <p className="mb-2">${total}</p>
@@ -229,7 +228,7 @@ const Order = () => {
             className="ms-3"
             color="dark"
             block
-            size="M"
+            size="lg"
             onClick={orderConfirmation}
           >
             PLACE ORDER

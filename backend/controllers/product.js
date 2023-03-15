@@ -60,10 +60,8 @@ const getAllProduct = (req, res) => {
     });
 };
 
- 
-
 const deleteProductById = (req, res) => {
-  const id=req.params.id;
+  const id = req.params.id;
   productModel
     .findByIdAndDelete(id)
     .then((product) => {
@@ -84,16 +82,15 @@ const deleteProductById = (req, res) => {
         success: false,
         message: `Server Error`,
         err: err.message,
-
       });
     });
 };
 
 const updateProductById = (req, res) => {
-  const id=req.params.id;
-  const updated=req.body;
+  const id = req.params.id;
+  const updated = req.body;
   productModel
-    .findByIdAndUpdate({_id:id}, updated,{new:true})
+    .findByIdAndUpdate({ _id: id }, updated, { new: true })
     .then((product) => {
       if (!product) {
         res.status(404).json({
@@ -104,7 +101,7 @@ const updateProductById = (req, res) => {
         res.status(200).json({
           success: true,
           message: `product updated`,
-          product:product,
+          product: product,
         });
       }
     })
@@ -113,7 +110,6 @@ const updateProductById = (req, res) => {
         success: false,
         message: `Server Error`,
         err: err.message,
-
       });
     });
 };
@@ -148,7 +144,7 @@ const getProductById = (req, res) => {
 const getProductByCategory = (req, res) => {
   const category = req.params.category;
   productModel
-    .find({category})
+    .find({ category })
     .populate("review")
     .exec()
     .then((product) => {
@@ -167,11 +163,13 @@ const getProductByCategory = (req, res) => {
     });
 };
 const getProductByPrice = (req, res) => {
-  const minPrice=req.query.minPrice;
-  const maxPrice=req.query.maxPrice;
-console.log(req.query)
+  const minPrice = req.query.minPrice;
+  const maxPrice = req.query.maxPrice;
+  console.log(req.query);
   productModel
-    .find({ $and: [{ price: { $lt: maxPrice } }, { price: { $gt: minPrice } }] })
+    .find({
+      $and: [{ price: { $lt: maxPrice } }, { price: { $gt: minPrice } }],
+    })
     .populate("review")
     .exec()
     .then((product) => {
@@ -189,4 +187,13 @@ console.log(req.query)
       res.status(500).json(err);
     });
 };
-module.exports = { createProduct, getAllProduct, deleteProductById, updateProductById,getProductById,getProductByCategory,getProductByPrice};
+
+module.exports = {
+  createProduct,
+  getAllProduct,
+  deleteProductById,
+  updateProductById,
+  getProductById,
+  getProductByCategory,
+  getProductByPrice,
+};

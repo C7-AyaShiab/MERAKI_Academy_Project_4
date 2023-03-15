@@ -2,7 +2,7 @@
   padding-top: 2rem;
   padding-left: 0.5rem;
   width: 160px;
-  background-color: #f1f1f1; 
+  /* background-color: #f1f1f1;  */
   position: relative;
   height: 1000px;
   overflow: auto;
@@ -35,6 +35,6 @@ aside {
   
 }
 
-.price{
+.other{
   padding-top: 1rem;
 }

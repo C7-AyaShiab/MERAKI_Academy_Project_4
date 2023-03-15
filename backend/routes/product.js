@@ -9,6 +9,7 @@ const {
   getProductById,
   getProductByCategory,
   getProductByPrice,
+  getProductByRate,
 } = require("../controllers/product");
 const {
   createReview,
@@ -32,6 +33,7 @@ productsRouter.post(
 productsRouter.get("/", getAllProduct);
 productsRouter.get("/search/:category", getProductByCategory);
 productsRouter.get("/price", getProductByPrice);
+productsRouter.get("/rate", getProductByRate);
 
 productsRouter.delete(
   "/:id",

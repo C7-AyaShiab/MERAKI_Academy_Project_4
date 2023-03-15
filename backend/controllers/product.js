@@ -188,6 +188,30 @@ const getProductByPrice = (req, res) => {
     });
 };
 
+
+const getProductByRate = (req, res) => {
+  const rate = req.query.q;
+  productModel
+    .find({ rate :{ $gte: rate } })
+    .populate("review")
+    .exec()
+    .then((product) => {
+      if (product.length) {
+        res.status(200).json({
+          success: true,
+          message: `Products with rate greater than  or equal ${rate}`,
+          product: product,
+        });
+      } else {
+        res.status(200).json("No products are available");
+      }
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+};
+
+
 module.exports = {
   createProduct,
   getAllProduct,
@@ -196,4 +220,5 @@ module.exports = {
   getProductById,
   getProductByCategory,
   getProductByPrice,
+  getProductByRate,
 };

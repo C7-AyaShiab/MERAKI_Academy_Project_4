@@ -29,7 +29,7 @@ const confirmOrder = (req, res) => {
     .then((order) => {
       res.status(201).json({
         success: true,
-        message: `your order is confirmed with Id: ${order._id}`,
+        message: `your order is placed with ID: ${order._id}`,
         order: order,
       });
     })

@@ -1,9 +1,10 @@
 .Category {
-  margin-left: 0.5rem;
+  padding-top: 2rem;
+  padding-left: 0.5rem;
   width: 160px;
-  /* background-color: #f1f1f1;  */
+  background-color: #f1f1f1; 
   position: relative;
-  height: 100%;
+  height: 1000px;
   overflow: auto;
   font-size: medium;
 }
@@ -30,7 +31,8 @@ h5 {
 
 aside {
   grid-area: sidebar;
-  width: 140px;
+  width: 160px;
+  
 }
 
 .price{

@@ -3,51 +3,13 @@ img {
   height: 350px;
 }
 .wrapper {
+  width:90vw;
   margin-top: 1rem;
-  margin-right: 10rem;
+ 
  margin-bottom: 1rem;
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: auto auto;
+  grid-gap: 0px;
   grid-template-areas: "sidebar content";
 }
-/* .Home {
-  margin-top: 3%;
-  margin-left: 10rem;
-  display: grid;
-  width: 380px;
-  grid-template-columns: 2fr 2fr;
-  padding: 5% 5%;
-  color: rgb(9, 9, 9);
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  justify-content: center;
-  background-color: #45aaf2;
-} */
 
-/* .product {
-  cursor: pointer;
-  overflow: hidden;
-  position: relative;
-  margin: 3rem;
-  justify-content: center;
-  align-content: center;
-  width: 380px;
-  height: 350px;
-}
-
-.product1 {
-  border-radius: 15%;
-  background-color: rgba(7, 7, 7, 0.626);
-  background-size: cover;
-  position: absolute;
-  top: 1rem;
-  left: 2rem;
-  padding-top: 3rem;
-  color: white;
-  margin: 3rem;
-  justify-content: center;
-  align-content: center;
-  width: 300px;
-  height: 250px;
-}
-*/
- 

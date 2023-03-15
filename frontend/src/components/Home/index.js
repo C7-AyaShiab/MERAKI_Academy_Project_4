@@ -46,8 +46,8 @@ const Home = () => {
     axios
       .get("http://localhost:5000/products")
       .then((result) => {
-        setProducts(result.data.product.slice(0, 6));
-        setNumber(6);
+        setProducts(result.data.product.slice(0, 8));
+        setNumber(8);
       })
       .catch((err) => {
         console.log(err);
@@ -113,7 +113,7 @@ const Home = () => {
   return (
     <div className="wrapper">
       <Category />
-      <MDBRow className="row-cols-1 row-cols-md-3 g-4">
+      <MDBRow className="row-cols-1 row-cols-md-4 g-4">
         {products &&
           products.map((product, i) => {
             return (
@@ -187,7 +187,7 @@ const Home = () => {
               .get("http://localhost:5000/products")
               .then((result) => {
                 console.log(result.data);
-                setNumber(number + 6);
+                setNumber(number + 8);
                 if (number === 24) {
                   setShowBtn(!showBtn);
                 }

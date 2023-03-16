@@ -43,5 +43,25 @@ aside {
   border: 1px solid grey;
   height: 300px;
   margin-left: 0.1rem;
+  padding: 0px;
 
+}
+
+.best >p{
+ 
+  padding: 0px;
+margin: 0px;
+}
+
+.Ads{
+  width: 130px;
+  height:150px;
+}
+
+.best-btn{
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  margin-top: 5px;
+  padding: 7px;
 }

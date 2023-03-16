@@ -1,4 +1,4 @@
-import React, { useContext ,useEffect,useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../../App";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +7,7 @@ import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 
 const Category = () => {
   const { products, setProducts } = useContext(ProductContext);
-const [Ads, setAds] = useState()
+  const [Ads, setAds] = useState();
   const navigate = useNavigate();
   const handleClick = (e) => {
     let categoryName = e.target.innerHTML;
@@ -23,21 +23,21 @@ const [Ads, setAds] = useState()
     navigate(`/categorylist/${categoryName}`);
   };
 
-useEffect(() => {
-  
-  axios
-  .get(`http://localhost:5000/products/search/${categoryName}`)
-  .then((result) => {
-    console.log(result.data.product);
-    setAds(result.data.product);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
-   
-}, [])
-
+  let chosen;
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/products/search/Best seller`)
+      .then((result) => {
+        console.log(result.data.product);
+        setAds(result.data.product);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  if (Ads) {
+    chosen = Ads[Math.floor(Math.random() * Ads.length)];
+  }
   const handleClick1 = (e) => {
     const maxPrice = e.target.className;
     const minPrice = e.target.id;
@@ -124,7 +124,27 @@ useEffect(() => {
           <BsStarHalf style={{ color: "orange" }} /> <BsStar /> <BsStar />{" "}
           <BsStar />
         </p>
-      <div className="best"></div>
+        <div className="best">
+          {chosen && (
+            <>
+              {" "}
+              <img src={chosen.image} className="Ads" id={chosen._id} />
+              <p>{chosen.productName}</p>
+              <p>
+                <BsStarFill style={{ color: "orange" }} />{" "}
+                <BsStarFill style={{ color: "orange" }} />{" "}
+                <BsStarFill style={{ color: "orange" }} />{" "}
+                <BsStarFill style={{ color: "orange" }} />{" "}
+                <BsStarHalf style={{ color: "orange" }} />{" "}
+              </p>
+              <p>${chosen.price}</p>
+              <button className="best-btn" id={chosen._id} onClick={(e)=>{
+                let id = e.target.id;
+                navigate(`/${id}`);
+              }}>Shop Now</button>
+            </>
+          )}
+        </div>
       </div>
     </aside>
   );

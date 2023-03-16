@@ -6,18 +6,7 @@ import axios from "axios";
 
 import "./style.css";
 import Category from "../Category";
- 
-  import {
-    MDBCard,
-    MDBCardBody,
-    MDBCardImage,
-    MDBCol,
-    MDBContainer,
-    MDBIcon,
-    MDBRow,
-    MDBSwitch,
-    MDBTypography,
-  } from "mdb-react-ui-kit";
+
 const Details = () => {
   const [product, setProduct] = useState();
   const [review, setReview] = useState([]);
@@ -124,90 +113,6 @@ const Details = () => {
                 <span>Description:</span> {product.description}
               </p>
             </div>
-           
-            <section style={{ backgroundColor: "#f7f6f6" ,marginLeft:"3rem",width:"800px"}}>
-      <MDBContainer className="py-3 text-dark" style={{ maxWidth: "800px" }}>
-        <MDBRow >
-          <MDBCol md="12" lg="10" xl="8">
-            <div className="d-flex justify-content-between align-items-center mb-4">
-              <MDBTypography tag="h4" className="text-dark mb-0">
-                Reviews
-              </MDBTypography>
-              <MDBCard>
-              
-              </MDBCard>
-            </div>
-            {product.review.map((review, i) => {
-                return (
-            <MDBCard className="mb-3">
-              <MDBCardBody >
-                <div className="d-flex flex-start">
-                  <MDBCardImage
-                    className="rounded-circle shadow-1-strong me-3"
-                    src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png"
-                    alt="avatar"
-                    style={{width:"40px",height:"40px"}}
-                     
-                  />
-
-                  <div className="w-100">
-                    <div className="d-flex justify-content-between align-items-center mb-3">
-
-                   
-                  <MDBTypography
-                  tag="h6"
-                  className="text-primary fw-bold mb-0" key={i}>
-                   {review.user}
-                   <span className="text-dark ms-2">{review.review}</span>
-                    
-                  </MDBTypography>
-                  
-              
-                      <MDBTypography
-                        tag="h6"
-                        className="text-primary fw-bold mb-0"
-                      >
-                        lara_stewart
-                        <span className="text-dark ms-2">
-                          Hmm, This poster looks cool
-                        </span>
-                      </MDBTypography>
-                    </div>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <p className="small mb-0" style={{ color: "#aaa" }}>
-                        <a href="#!" className="link-grey">
-                          Remove
-                        </a>{" "}
-                        •
-                        <a href="#!" className="link-grey">
-                          Reply
-                        </a>{" "}
-                        
-                      </p>
-                      <div className="d-flex flex-row">
-                        <MDBIcon fas icon="star text-warning me-2" />
-                        <MDBIcon
-                          far
-                          icon="check-circle"
-                          style={{ color: "#aaa" }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </MDBCardBody>
-            </MDBCard>
-
-);
-})}  
-             
-
-            
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-    </section>
-
             <div className="comment-section">
               {product.review.map((review, i) => {
                 return (
@@ -247,4 +152,7 @@ const Details = () => {
 };
 
 export default Details;
- 
+{
+  /*  {localStorage.getItem("loggedUserId")==commenterId ?  <><button  onClick={deleteReview}><TiDelete/></button><button  onClick={deleteReview}><RxUpdate/></button></>
+         :""} */
+}

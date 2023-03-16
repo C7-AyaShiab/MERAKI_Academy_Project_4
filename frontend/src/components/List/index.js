@@ -99,7 +99,7 @@ const List = () => {
                     </span>{" "}
                     <span id={product._id}>
                       <button
-                        style={{ border: "none", backgroundColor: "white" }}
+                        style={{ border: "none", backgroundColor: "#f1f1f1" }}
                         id={product._id}
                         onClick={addToCart}
                       >
@@ -109,7 +109,7 @@ const List = () => {
                         />
                       </button>
                       <button
-                        style={{ border: "none", backgroundColor: "white" }}
+                        style={{ border: "none", backgroundColor: "#f1f1f1" }}
                         id={product._id}
                         onClick={addToCart}
                       >

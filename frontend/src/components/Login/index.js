@@ -90,8 +90,7 @@ const Login = () => {
       });
   };
   return (
-    <MDBContainer className="my-5" style={{marginLeft:"15rem"
-    }}>
+    <MDBContainer className="py-5 h-100 center"  style={{ width: "60rem" }}>
       <MDBCard
         className=" rounded-2"
         style={{ width: "60rem", marginRight: "0px" }}
@@ -132,7 +131,7 @@ const Login = () => {
 
               <MDBInput
                 wrapperClass="mb-2"
-                style={{width:"400px"}}
+                style={{ width: "400px" }}
                 id="formControlLg"
                 size="lg"
                 className="email"
@@ -143,9 +142,9 @@ const Login = () => {
                 }}
               />
 
-              <MDBInput 
-              style={{width:"400px"}}
-                wrapperClass="mb-2"
+              <MDBInput
+                style={{ width: "400px" }}
+                wrapperClass="mb-4"
                 id="formControlLg"
                 size="lg"
                 className="password"
@@ -157,8 +156,8 @@ const Login = () => {
               />
 
               <MDBBtn
-              style={{width:"400px"}}
-                className="mb-4 px-5"
+                style={{ width: "400px" }}
+                className="mb-3 px-5"
                 color="dark"
                 size="lg"
                 onClick={login}
@@ -175,7 +174,7 @@ const Login = () => {
                   console.log("Login Failed");
                 }}
               />
-<hr/>
+              <br />
               <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>
                 Don't have an account?{" "}
                 <a
@@ -188,6 +187,7 @@ const Login = () => {
 
               {showMessage ? <p className={messageType}>{message}</p> : ""}
             </MDBCardBody>
+            
           </MDBCol>
         </MDBRow>
       </MDBCard>

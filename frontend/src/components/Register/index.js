@@ -83,10 +83,10 @@ const Register = () => {
       });
   };
   return (
-    <MDBContainer className="my-5" style={{ marginLeft: "15rem" }}>
+    <MDBContainer className="py-5 h-100 center"  style={{ width: "60rem" }}>
       <MDBCard
         className=" rounded-2"
-        style={{ width: "60rem", marginRight: "0px" }}
+        style={{ width: "60rem" }}
       >
         <MDBRow className="g-0">
           <MDBCol md="6">
@@ -161,7 +161,7 @@ const Register = () => {
               />
 
               <MDBInput
-                wrapperClass="mb-2"
+                wrapperClass="mb-4"
                 id="formControlLg"
                 size="lg"
                 className="password"
@@ -174,7 +174,7 @@ const Register = () => {
               />
 
               <MDBBtn
-                className="mb-4 px-5"
+                className="mb-3 px-5"
                 color="dark"
                 size="lg"
                 style={{ width: "400px" }}

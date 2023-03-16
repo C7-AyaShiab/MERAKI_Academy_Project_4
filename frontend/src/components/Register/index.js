@@ -2,7 +2,17 @@ import React, { useState, useContext } from "react";
 import "./style.css";
 import axios from "axios";
 import { GoogleLogin } from "@react-oauth/google";
-
+import {
+  MDBBtn,
+  MDBContainer,
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBRow,
+  MDBCol,
+  MDBIcon,
+  MDBInput,
+} from "mdb-react-ui-kit";
 const Register = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -43,91 +53,151 @@ const Register = () => {
       setMessageType("warning");
     }
   };
-  const loginGoogle= (result) => {
-    const {credential,clientId}=result
-   axios
+  const loginGoogle = (result) => {
+    const { credential, clientId } = result;
+    axios
       .post("http://localhost:5000/users/googlelogin", {
         credential,
         clientId,
       })
       .then((res) => {
-        console.log(res)
-        const{family_name,given_name,email}= res.data;
-        const fakePass= family_name+123456;
+        console.log(res);
+        const { family_name, given_name, email } = res.data;
+        const fakePass = family_name + 123456;
         localStorage.setItem("fakePass", fakePass);
- 
-       
+
         axios
-        .post("http://localhost:5000/users/register", {
-          firstName:given_name,
-          lastName:family_name,
-          email,
-          password:fakePass,
-          role:"6404e2d6b01344b7ac9b9e09",
-        })
-        .then((res) => {
-          console.log(res.data.user._id)
-        })
-        .catch((err) => {
-       console.log(err)
+          .post("http://localhost:5000/users/register", {
+            firstName: given_name,
+            lastName: family_name,
+            email,
+            password: fakePass,
+            role: "6404e2d6b01344b7ac9b9e09",
+          })
+          .then((res) => {
+            console.log(res.data.user._id);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       });
-    })
-  }
+  };
   return (
-    <div className="design">
-      <div className="Register">
-        <h3>Register</h3>
-        <input
-          className="firstName"
-          type="text"
-          placeholder="First Name"
-          onChange={(e) => {
-            setFirstName(e.target.value);
-          }}
-        />
+    <MDBContainer className="my-5" style={{ marginLeft: "15rem" }}>
+      <MDBCard
+        className=" rounded-2"
+        style={{ width: "60rem", marginRight: "0px" }}
+      >
+        <MDBRow className="g-0">
+          <MDBCol md="6">
+            <MDBCardImage
+              src="https://www.sonikapay.com/skin/front/assets/img/bg/signup-1.png"
+              className="rounded-start w-100"
+              style={{ height: "35rem" }}
+            />
+          </MDBCol>
 
-        <input
-          className="lastName"
-          type="text"
-          placeholder="Last  Name"
-          onChange={(e) => {
-            setLastName(e.target.value);
-          }}
-        />
+          <MDBCol md="6">
+            <MDBCardBody className="d-flex flex-column">
+              <div className="d-flex flex-row mt-2">
+                <MDBIcon
+                  fas
+                  icon="cubes fa-3x me-3"
+                  style={{ color: "#ff6219" }}
+                />
+                <span className="h1 fw-bold mb-0">
+                <img
+                    src="./logoW.png"
+                    style={{
+                      height: "120px",
+                      width: "200px",
+                    }}
+                  />
+                </span>
+              </div>
 
-        <input
-          className="email"
-          type="email"
-          placeholder="Email"
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
+              <h5
+                className=" my-3 pb-2"
+                style={{ letterSpacing: "1px" , fontWeight:"700"}}
+              >
+                Join Us
+              </h5>
+              <MDBInput
+                wrapperClass="mb-2"
+                placeholder="First Name"
+                type="text"
+                className="firstName"
+                style={{ width: "400px" }}
+                id="formControlLg"
+                size="lg"
+                onChange={(e) => {
+                  setFirstName(e.target.value);
+                }}
+              />
+              <MDBInput
+                wrapperClass="mb-2"
+                id="formControlLg"
+                size="lg"
+                className="lastName"
+                type="text"
+                placeholder="Last Name"
+                style={{ width: "400px" }}
+                onChange={(e) => {
+                  setLastName(e.target.value);
+                }}
+              />
 
-        <input
-          className="password"
-          type="password"
-          placeholder="Password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
+              <MDBInput
+                wrapperClass="mb-2"
+                id="formControlLg"
+                size="lg"
+                className="email"
+                type="email"
+                placeholder="Email"
+                style={{ width: "400px" }}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
 
-        <button className="Register-btn" type="submit" onClick={register}>
-          Register
-        </button>
-        <GoogleLogin
-          width={"2000px"}
-          theme={"filled_blue"}
-          size={"large"}
-          onSuccess={loginGoogle}
-          onError={() => {
-            console.log("Login Failed");
-          }}
-        />
-        {showMessage ? <p className={messageType}>{message}</p> : ""}
-      </div>
-    </div>
+              <MDBInput
+                wrapperClass="mb-2"
+                id="formControlLg"
+                size="lg"
+                className="password"
+                type="password"
+                placeholder="Password"
+                style={{ width: "400px" }}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+
+              <MDBBtn
+                className="mb-4 px-5"
+                color="dark"
+                size="lg"
+                style={{ width: "400px" }}
+                onClick={register}
+              >
+                Join
+              </MDBBtn>
+
+              <GoogleLogin
+                width={"90000px"}
+                theme={"filled_black"}
+                size={"large"}
+                onSuccess={loginGoogle}
+                onError={() => {
+                  console.log("Login Failed");
+                }}
+              />
+              {showMessage ? <p className={messageType}>{message}</p> : ""}
+            </MDBCardBody>
+          </MDBCol>
+        </MDBRow>
+      </MDBCard>
+    </MDBContainer>
   );
 };
 

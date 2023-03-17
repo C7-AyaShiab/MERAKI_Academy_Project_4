@@ -3,13 +3,57 @@ img {
   height: 350px;
 }
 .wrapper {
-  width:90vw;
+  width: 90vw;
   margin-top: 1rem;
- 
- margin-bottom: 1rem;
+
+  margin-bottom: 1rem;
   display: grid;
   grid-template-columns: auto auto;
   grid-gap: 0px;
   grid-template-areas: "sidebar content";
 }
+.more {
+  width: 230px;
+  height: 50px;
+  color: white;
+  background: rgba(0, 0, 0, 0.7);
+  position: relative;
+  margin: 1rem;
+  left: 42rem;
+  border: none;
+  cursor: pointer;
+}
 
+@media (width: 500px) {
+  .wrapper {
+    width: 40px;
+    padding-top: 2rem;
+    grid-template-columns: auto;
+  }
+  div.row.row-cols-1.row-cols-md-4.g-4 {
+    margin-top: 1rem;
+  }
+h5.card-title{
+  font-size: 10px;
+}
+  img {
+    width: 150px;
+    height: 150px;
+  }
+  div.card.h-100 {
+    width: 200px;
+  }
+  .more {
+    width: 180px;
+    position: relative;
+
+    left: 13rem;
+  }
+  .List {
+    margin-left: 2rem;
+    grid-template-columns: auto;
+    margin-bottom: 1rem;
+    gap: 0px;
+    padding: 1px;
+  }
+}

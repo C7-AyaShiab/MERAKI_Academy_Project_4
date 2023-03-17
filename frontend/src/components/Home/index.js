@@ -19,8 +19,7 @@ import {
 } from "mdb-react-ui-kit";
 const Home = () => {
   const navigate = useNavigate();
-  const { products, setProducts,} =
-    useContext(ProductContext);
+  const { products, setProducts } = useContext(ProductContext);
   const [number, setNumber] = useState(0);
   const [showBtn, setShowBtn] = useState(true);
   const [isShown, setIsShown] = useState(false);
@@ -30,17 +29,6 @@ const Home = () => {
   const [showMessage, setShowMessage] = useState(false);
   const userId = localStorage.getItem("userId");
   const [message, setMessage] = useState("");
-  const mystyle1 = {
-    width: "230px",
-    height: "50px",
-    color: "white",
-    background: "rgba(0, 0, 0, 0.7)",
-    position: "relative",
-    margin: "1rem",
-    left: "42rem",
-    border: "none",
-    cursor: "pointer",
-  };
 
   useEffect(() => {
     axios
@@ -181,7 +169,7 @@ const Home = () => {
 
       {showBtn ? (
         <button
-          style={mystyle1}
+          className="more"
           onClick={() => {
             axios
               .get("http://localhost:5000/products")

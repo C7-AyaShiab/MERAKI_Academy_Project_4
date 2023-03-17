@@ -13,4 +13,11 @@
   transform: scaleX(-1);
 }
 
+@media (width: 500px) {
  
+  
+   div.react-slideshow-wrapper.slide,div.imageswrap,div.active,.slider,div.react-slideshow-container, div-img0{
+    display: none;
+
+   }
+}

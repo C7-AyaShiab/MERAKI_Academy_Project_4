@@ -90,10 +90,9 @@ const Login = () => {
       });
   };
   return (
-    <MDBContainer className="py-5 h-100 center"  style={{ width: "60rem" }}>
+    <MDBContainer className="py-5 h-100 center" >
       <MDBCard
         className=" rounded-2"
-        style={{ width: "60rem", marginRight: "0px" }}
       >
         <MDBRow className="g-0">
           <MDBCol md="6">
@@ -123,8 +122,8 @@ const Login = () => {
               </div>
 
               <h5
-                className="fw-normal my-3 pb-2"
-                style={{ letterSpacing: "1px" }}
+                className=" my-3 pb-2"
+                style={{ letterSpacing: "1px" , fontWeight: "700"}}
               >
                 Sign into your account
               </h5>

@@ -83,16 +83,13 @@ const Register = () => {
       });
   };
   return (
-    <MDBContainer className="py-5 h-100 center"  style={{ width: "60rem" }}>
-      <MDBCard
-        className=" rounded-2"
-        style={{ width: "60rem" }}
-      >
+    <MDBContainer className="my-5">
+      <MDBCard>
         <MDBRow className="g-0">
           <MDBCol md="6">
             <MDBCardImage
               src="https://www.sonikapay.com/skin/front/assets/img/bg/signup-1.png"
-              className="rounded-start w-100"
+              className="rounded-start"
               style={{ height: "35rem" }}
             />
           </MDBCol>
@@ -100,13 +97,9 @@ const Register = () => {
           <MDBCol md="6">
             <MDBCardBody className="d-flex flex-column">
               <div className="d-flex flex-row mt-2">
-                <MDBIcon
-                  fas
-                  icon="cubes fa-3x me-3"
-                  style={{ color: "#ff6219" }}
-                />
+               
                 <span className="h1 fw-bold mb-0">
-                <img
+                  <img
                     src="./logoW.png"
                     style={{
                       height: "120px",
@@ -118,7 +111,7 @@ const Register = () => {
 
               <h5
                 className=" my-3 pb-2"
-                style={{ letterSpacing: "1px" , fontWeight:"700"}}
+                style={{ letterSpacing: "1px", fontWeight: "700" }}
               >
                 Join Us
               </h5>

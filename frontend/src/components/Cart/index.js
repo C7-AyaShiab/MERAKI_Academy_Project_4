@@ -159,7 +159,8 @@ const Cart = () => {
                         </MDBCol>
                         <MDBCol md="1" lg="1" xl="1" className="text-end">
                           <button style={{"border":"none", "backgroundColor":"white"}}
-                        id={cart._id}><FaTrash
+                        id={cart._id} onClick={deleteCart}>
+                          <FaTrash
                             id={cart._id}
                             onClick={deleteCart}
                             className="text-danger"

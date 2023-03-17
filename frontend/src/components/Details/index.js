@@ -27,7 +27,8 @@ const Details = () => {
   const [text, setText] = useState("Show Reviews");
 
   const [review, setReview] = useState([]);
-  const { loggedUserId, setloggedUserId } = useContext(ProductContext);
+  const { loggedUserId, setloggedUserId, isLoggedIn, setisLoggedIn } =
+    useContext(ProductContext);
   const { id } = useParams();
   const userId = localStorage.getItem("userId");
 
@@ -119,7 +120,11 @@ const Details = () => {
           className="py-5 h-100 center"
           style={{ width: "60rem", marginLeft: "-30rem" }}
         >
-          <MDBCardImage position="top" src={product.image} id={product._id} />
+          <MDBCardImage
+            src={product.image}
+            id={product._id}
+            style={{ width: "25rem", marginLeft: "15rem" }}
+          />
           <MDBCardBody style={{ textAlign: "left" }}>
             <MDBCardTitle style={{ fontSize: "25px" }}>
               {product.productName}
@@ -127,16 +132,37 @@ const Details = () => {
             <MDBCardText>
               <strong>{product.rate}</strong>{" "}
               <BsStarFill style={{ color: "orange" }} />
+              <MDBBtn
+                className="mb-2 px-3"
+                style={{ marginLeft: "33.5rem"}}
+                color="dark"
+                size="M"
+                id={product._id}
+                onClick={addToFav}
+              >
+                Add to wishlist
+              </MDBBtn>
             </MDBCardText>
             <MDBCardText>
-              <strong>Price:</strong> ${product.price}
+              <strong>Price:</strong> ${product.price}{" "}
+    
             </MDBCardText>
             <MDBCardText>
-              {`${product.availability}` >0? (
+              {`${product.availability}` > 0 ? (
                 <strong style={{ color: "green" }}>In Stock</strong>
               ) : (
                 <strong style={{ color: "red" }}>Out of Stock</strong>
-              )}
+              )}{" "}
+              <MDBBtn
+                className="mb-2 px-3"
+                style={{ marginLeft: "32rem" }}
+                color="dark"
+                size="M"
+                id={product._id}
+                onClick={addToCart}
+              >
+                Add to my cart
+              </MDBBtn>
             </MDBCardText>
             <MDBCardText>
               <strong>Description:</strong> <br /> {product.description}
@@ -154,7 +180,11 @@ const Details = () => {
                 <MDBRow>
                   <MDBCol md="12" lg="8" xl="8">
                     <div className="d-flex justify-content-between align-items-center mb-4">
-                      <MDBTypography tag="h4" className="text-dark mb-0" style={{fontSize:"17px"}}>
+                      <MDBTypography
+                        tag="h4"
+                        className="text-dark mb-0"
+                        style={{ fontSize: "17px" }}
+                      >
                         <strong>Reviews</strong>
                       </MDBTypography>
                       <MDBCard>
@@ -177,6 +207,7 @@ const Details = () => {
                       ? product.review.map((review, i) => {
                           return (
                             <MDBCard
+                              key={i}
                               className="mb-1"
                               style={{ height: "60px" }}
                             >
@@ -204,38 +235,39 @@ const Details = () => {
                                     </div>
                                   </div>
                                 </div>
-                                
                               </MDBCardBody>
-                              
                             </MDBCard>
-                            
-                            
                           );
                         })
                       : ""}
-                      
                   </MDBCol>
-                  
                 </MDBRow>
-                <MDBInput
-              wrapperClass="mb-2"
-              className="input-review"
-              placeholder="Add a review"
-              style={{ width: "400px",  }}
-              size="lg"
-              onChange={(e) => {
-                setReview(e.target.value);
-              }}
-            />
-            <MDBBtn
-              className="mb-2 px-3"
-              style={{ marginRight: "3rem" }}
-              color="dark"
-              size="M"
-              onClick={handleClick}
-            >
-              Enter
-            </MDBBtn>
+                {isLoggedIn ? (
+                  <>
+                    {" "}
+                    <MDBInput
+                      wrapperClass="mb-2"
+                      className="input-review"
+                      placeholder="Add a review"
+                      style={{ width: "400px", marginTop: "0px" }}
+                      size="lg"
+                      onChange={(e) => {
+                        setReview(e.target.value);
+                      }}
+                    />
+                    <MDBBtn
+                      className="mb-2 px-3"
+                      style={{ marginRight: "3rem" }}
+                      color="dark"
+                      size="M"
+                      onClick={handleClick}
+                    >
+                      Enter
+                    </MDBBtn>
+                  </>
+                ) : (
+                  ""
+                )}
               </MDBContainer>
             </section>
           </MDBCardBody>

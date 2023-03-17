@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   MDBCard,
   MDBCardBody,
@@ -10,6 +11,8 @@ import {
 import { CgDollar } from "react-icons/cg";
 
 const WishList = () => {
+  const navigate = useNavigate();
+
   const [wishList, setwishList] = useState();
   useEffect(() => {
     setwishList(JSON.parse(localStorage.getItem("fav")));
@@ -25,6 +28,10 @@ const WishList = () => {
     setwishList(JSON.parse(localStorage.getItem("fav")));
   };
 
+  const handleClick = (e) => {
+    let id = e.target.id;
+    navigate(`/${id}`);
+  };
   return (
     <div>
       <h4 className="my-3">Wishlist</h4>
@@ -40,7 +47,13 @@ const WishList = () => {
                   paddingTop: "1rem",
                 }}
               >
-                <MDBCardImage src={product.image} position="top" alt="..." />
+                <MDBCardImage
+                  src={product.image}
+                  position="top"
+                  alt="..."
+                  id={product._id}
+                  onClick={handleClick}
+                />
                 <MDBCardBody>
                   <MDBCardTitle style={{ textAlign: "center" }}>
                     {product.productName}

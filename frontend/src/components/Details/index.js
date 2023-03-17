@@ -6,20 +6,26 @@ import axios from "axios";
 
 import "./style.css";
 import Category from "../Category";
- 
-  import {
-    MDBCard,
-    MDBCardBody,
-    MDBCardImage,
-    MDBCol,
-    MDBContainer,
-    MDBIcon,
-    MDBRow,
-    MDBSwitch,
-    MDBTypography,
-  } from "mdb-react-ui-kit";
+
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBCol,
+  MDBContainer,
+  MDBRow,
+  MDBSwitch,
+  MDBTypography,
+  MDBInput,
+  MDBBtn,
+  MDBCardTitle,
+  MDBCardText,
+} from "mdb-react-ui-kit";
 const Details = () => {
   const [product, setProduct] = useState();
+  const [show, setShow] = useState(false);
+  const [text, setText] = useState("Show Reviews");
+
   const [review, setReview] = useState([]);
   const { loggedUserId, setloggedUserId } = useContext(ProductContext);
   const { id } = useParams();
@@ -76,14 +82,17 @@ const Details = () => {
 
     if (userId) {
       axios
-        .post(`http://localhost:5000/users/${userId}/cart`, {
-          items: productId,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        .post(
+          `http://localhost:5000/users/${userId}/cart`,
+          {
+            items: productId,
           },
-        })
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
         .then((result) => {
           console.log(result);
         })
@@ -92,159 +101,133 @@ const Details = () => {
         });
     }
   };
+  const toogle = () => {
+    if (show) {
+      setShow(false);
+      setText("Hide Reviews");
+    } else {
+      setShow(true);
+      setText("Show Reviews");
+    }
+  };
   return (
-    <div className="wrapper">
+    <div className="wrapper2">
       <Category />
-      <div className="Details">
+     
         {product && (
-          <>
-            {" "}
-            <div className="some-detail">
-              <img src={product.image} id={product._id} />
-              <h2>{product.productName}</h2>
-              <p>
-                {product.rate}{" "}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-star-fill"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                </svg>
-              </p>
-            </div>
-            <div className="detail2">
-              <p>
+          <MDBCard className="mb-4" style={{marginRight:"2rem",justifyContent: "center",gridArea: "content"}}>
+            <MDBCardImage position="top" src={product.image} id={product._id} />
+            <MDBCardBody>
+              <MDBCardTitle>{product.productName}</MDBCardTitle>
+              <MDBCardText>{product.rate}</MDBCardText>
+              <MDBCardText>
                 <span>Price:</span> ${product.price}
-              </p>
-              <p>
-                <span>Description:</span> {product.description}
-              </p>
-            </div>
-           
-            <section style={{ backgroundColor: "#f7f6f6" ,marginLeft:"3rem",width:"800px"}}>
-      <MDBContainer className="py-3 text-dark" style={{ maxWidth: "800px" }}>
-        <MDBRow >
-          <MDBCol md="12" lg="10" xl="8">
-            <div className="d-flex justify-content-between align-items-center mb-4">
-              <MDBTypography tag="h4" className="text-dark mb-0">
-                Reviews
-              </MDBTypography>
-              <MDBCard>
-              
-              </MDBCard>
-            </div>
-            {product.review.map((review, i) => {
-                return (
-            <MDBCard className="mb-3">
-              <MDBCardBody >
-                <div className="d-flex flex-start">
-                  <MDBCardImage
-                    className="rounded-circle shadow-1-strong me-3"
-                    src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png"
-                    alt="avatar"
-                    style={{width:"40px",height:"40px"}}
-                     
-                  />
-
-                  <div className="w-100">
-                    <div className="d-flex justify-content-between align-items-center mb-3">
-
-                   
-                  <MDBTypography
-                  tag="h6"
-                  className="text-primary fw-bold mb-0" key={i}>
-                   {review.user}
-                   <span className="text-dark ms-2">{review.review}</span>
-                    
+              </MDBCardText>
+              <MDBCardText>Description:{product.description}</MDBCardText>
+              <MDBCardText>
+                <small className="text-muted">Last updated 3 mins ago</small>
+              </MDBCardText>
+            </MDBCardBody>
+          </MDBCard>
+        )}
+        <section
+          style={{
+            marginLeft: "3rem",
+            width: "800px",
+          }}
+        >
+          <MDBContainer
+            className="py-3 text-dark"
+            style={{ maxWidth: "800px" }}
+          >
+            <MDBRow>
+              <MDBCol md="12" lg="10" xl="8">
+                <div className="d-flex justify-content-between align-items-center mb-4">
+                  <MDBTypography tag="h4" className="text-dark mb-0">
+                    Reviews
                   </MDBTypography>
-                  
-              
+                  <MDBCard>
+                    <MDBCardBody className="p-2 d-flex align-items-center">
                       <MDBTypography
                         tag="h6"
-                        className="text-primary fw-bold mb-0"
+                        className="text-primary fw-bold small mb-0 me-1"
                       >
-                        lara_stewart
-                        <span className="text-dark ms-2">
-                          Hmm, This poster looks cool
-                        </span>
+                        {text}
                       </MDBTypography>
-                    </div>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <p className="small mb-0" style={{ color: "#aaa" }}>
-                        <a href="#!" className="link-grey">
-                          Remove
-                        </a>{" "}
-                        •
-                        <a href="#!" className="link-grey">
-                          Reply
-                        </a>{" "}
-                        
-                      </p>
-                      <div className="d-flex flex-row">
-                        <MDBIcon fas icon="star text-warning me-2" />
-                        <MDBIcon
-                          far
-                          icon="check-circle"
-                          style={{ color: "#aaa" }}
-                        />
-                      </div>
-                    </div>
-                  </div>
+                      <MDBSwitch
+                        defaultChecked
+                        id="flexSwitchCheckChecked"
+                        onClick={toogle}
+                      />
+                    </MDBCardBody>
+                  </MDBCard>
                 </div>
-              </MDBCardBody>
-            </MDBCard>
+                {show
+                  ? product.review.map((review, i) => {
+                      return (
+                        <MDBCard className="mb-1" style={{ height: "60px" }}>
+                          <MDBCardBody>
+                            <div className="d-flex flex-start">
+                              <MDBCardImage
+                                className="rounded-circle shadow-1-strong me-1"
+                                src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png"
+                                alt="avatar"
+                                style={{ width: "40px", height: "40px" }}
+                              />
 
-);
-})}  
-             
-
-            
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-    </section>
-
-            <div className="comment-section">
-              {product.review.map((review, i) => {
-                return (
-                  <div className="comment" key={i}>
-                    <h4>{review.user}</h4>
-                    <p>{review.review}</p>
-                  </div>
-                );
-              })}
-              <input
-                className="input-review"
-                placeholder="Add a review"
-                onChange={(e) => {
-                  setReview(e.target.value);
-                }}
-              />
-              <br></br>
-              <button className="enter" onClick={handleClick}>
-                Enter
-              </button>
-            </div>
-            <button id={product._id} className="details-btn" onClick={addToFav}>
-              Add to wishlist
-            </button>
-            <button
-              id={product._id}
-              className="details-btn"
-              onClick={addToCart}
+                              <div className="w-100">
+                                <div className="d-flex justify-content-between align-items-center mb-3">
+                                  <MDBTypography
+                                    tag="h6"
+                                    className="text-primary fw-bold mb-0"
+                                    key={i}
+                                  >
+                                    {review.user}
+                                    <span className="text-dark ms-2">
+                                      {review.review}
+                                    </span>
+                                  </MDBTypography>
+                                </div>
+                              </div>
+                            </div>
+                          </MDBCardBody>
+                        </MDBCard>
+                      );
+                    })
+                  : ""}
+              </MDBCol>
+            </MDBRow>
+            <MDBInput
+              wrapperClass="mb-2"
+              className="input-review"
+              placeholder="Add a review"
+              style={{ width: "400px", marginLeft: "3rem" }}
+              size="lg"
+              onChange={(e) => {
+                setReview(e.target.value);
+              }}
+            />
+            <MDBBtn
+              className="mb-2 px-3"
+              style={{ marginRight: "3rem" }}
+              color="dark"
+              size="M"
+              onClick={handleClick}
             >
-              Add to my cart
-            </button>
-          </>
-        )}
-      </div>
+              Enter
+            </MDBBtn>
+          </MDBContainer>
+        </section>
+   
+      
     </div>
   );
 };
 
 export default Details;
- 
+ {/*   <button id={product._id} className="details-btn" onClick={addToFav}>
+        Add to wishlist
+      </button>
+      <button id={product._id} className="details-btn" onClick={addToCart}>
+        Add to my cart
+      </button> */}

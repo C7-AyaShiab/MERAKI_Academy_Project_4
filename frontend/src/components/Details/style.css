@@ -1,4 +1,4 @@
-.Details{
+/* .Details{
   height:1000px;
   padding-bottom: 0;
 }
@@ -35,7 +35,7 @@
 }
 .bi-star-fill {
   color: orange;
-}
+}  
 .comment-section {
   margin: 2rem;
   margin-left: 1rem;
@@ -65,9 +65,20 @@
   text-align: justify;
   padding: 0 0.5rem;
   margin: 0;
-}
+}*/
+.wrapper2 {
+  width: fit-content;
+  margin-top: 1rem;
+ padding: "0px";
+ margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0px;
+  justify-content: center;
+  grid-template-areas: "sidebar content";
 
-.input-review {
+}
+/* .input-review {
   border-radius: 8px;
   position: relative;
 left: -3.1rem;
@@ -95,3 +106,4 @@ left: -3.1rem;
   margin-left: 40rem;
   margin-bottom: 2rem;
 } 
+ */

@@ -82,7 +82,7 @@ const Details = () => {
     }
   };
   return (
-    <div className="wrapper">
+    <div className="wrapper2">
       <Category />
       <div className="Details">
         {product && (

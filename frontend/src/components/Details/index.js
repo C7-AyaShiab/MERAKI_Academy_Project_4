@@ -22,6 +22,7 @@ import {
   MDBCardText,
 } from "mdb-react-ui-kit";
 const Details = () => {
+  const [inputValue, setInputValue] = useState();
   const [product, setProduct] = useState();
   const [show, setShow] = useState(false);
   const [text, setText] = useState("Show Reviews");
@@ -45,7 +46,7 @@ const Details = () => {
   }, []);
 
   const handleClick = (e) => {
-    console.log(id);
+    setInputValue("");
     axios
       .post(
         `http://localhost:5000/products/${id}/review/`,
@@ -116,14 +117,11 @@ const Details = () => {
       <Category />
 
       {product && (
-        <MDBCard
-          className="py-5 h-100 center"
-          style={{ width: "60rem", marginLeft: "-30rem" }}
-        >
+        <MDBCard className="py-5 h-100 center">
           <MDBCardImage
+            className="detail-img"
             src={product.image}
             id={product._id}
-            style={{ width: "25rem", marginLeft: "15rem" }}
           />
           <MDBCardBody style={{ textAlign: "left" }}>
             <MDBCardTitle style={{ fontSize: "25px" }}>
@@ -133,8 +131,7 @@ const Details = () => {
               <strong>{product.rate}</strong>{" "}
               <BsStarFill style={{ color: "orange" }} />
               <MDBBtn
-                className="mb-2 px-3"
-                style={{ marginLeft: "33.5rem"}}
+                className="button2 mb-2 px-3"
                 color="dark"
                 size="M"
                 id={product._id}
@@ -145,7 +142,6 @@ const Details = () => {
             </MDBCardText>
             <MDBCardText>
               <strong>Price:</strong> ${product.price}{" "}
-    
             </MDBCardText>
             <MDBCardText>
               {`${product.availability}` > 0 ? (
@@ -154,8 +150,7 @@ const Details = () => {
                 <strong style={{ color: "red" }}>Out of Stock</strong>
               )}{" "}
               <MDBBtn
-                className="mb-2 px-3"
-                style={{ marginLeft: "32rem" }}
+                className="button mb-2 px-3"
                 color="dark"
                 size="M"
                 id={product._id}
@@ -168,14 +163,10 @@ const Details = () => {
               <strong>Description:</strong> <br /> {product.description}
             </MDBCardText>
 
-            <section
-              style={{
-                width: "800px",
-              }}
-            >
+            <section className="section-detail">
               <MDBContainer
-                className="py-3 text-dark"
-                style={{ maxWidth: "800px" }}
+                className="detail py-5 h-100"
+                style={{ marginLeft: "0px", marginRight: "0px" }}
               >
                 <MDBRow>
                   <MDBCol md="12" lg="8" xl="8">
@@ -187,7 +178,7 @@ const Details = () => {
                       >
                         <strong>Reviews</strong>
                       </MDBTypography>
-                      <MDBCard>
+                      <MDBCard className="detail-card">
                         <MDBCardBody className="p-2 d-flex align-items-center">
                           <MDBTypography
                             tag="h6"
@@ -208,10 +199,10 @@ const Details = () => {
                           return (
                             <MDBCard
                               key={i}
-                              className="mb-1"
+                              className="detail mb-1"
                               style={{ height: "60px" }}
                             >
-                              <MDBCardBody>
+                              <MDBCardBody className="card-body-detail">
                                 <div className="d-flex flex-start">
                                   <MDBCardImage
                                     className="rounded-circle shadow-1-strong me-1"
@@ -224,7 +215,7 @@ const Details = () => {
                                     <div className="d-flex justify-content-between align-items-center mb-3">
                                       <MDBTypography
                                         tag="h6"
-                                        className="text-primary fw-bold mb-0"
+                                        className="detail text-primary fw-bold mb-0"
                                         key={i}
                                       >
                                         {review.user}
@@ -249,7 +240,7 @@ const Details = () => {
                       wrapperClass="mb-2"
                       className="input-review"
                       placeholder="Add a review"
-                      style={{ width: "400px", marginTop: "0px" }}
+                      value={inputValue}
                       size="lg"
                       onChange={(e) => {
                         setReview(e.target.value);
@@ -278,11 +269,3 @@ const Details = () => {
 };
 
 export default Details;
-{
-  /*   <button id={product._id} className="details-btn" onClick={addToFav}>
-        Add to wishlist
-      </button>
-      <button id={product._id} className="details-btn" onClick={addToCart}>
-        Add to my cart
-      </button> */
-}

@@ -14,3 +14,20 @@
   text-align: center;
 
 }
+
+
+@media (width: 500px) {
+  .nav-choices {
+    margin-left: 15px;
+    margin-right: 15px;
+     
+  
+  }
+  
+  .logged,
+  .notlogged {
+ 
+    text-align: center;
+  
+  }
+}

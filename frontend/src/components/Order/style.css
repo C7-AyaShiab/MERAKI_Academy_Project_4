@@ -1,0 +1,15 @@
+.row.justify-content-center.align-items-center.h-100 {
+  margin-left: 18rem;
+}
+
+@media (width: 500px) {
+  section.h-100,
+  div.card.bg-primary.text-white.rounded-2 {
+    width: 400px;
+  }
+
+  div.container.py-5.h-100{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}

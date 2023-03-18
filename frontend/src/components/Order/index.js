@@ -59,10 +59,10 @@ const Order = () => {
   console.log(cartItems);
   return (
     <section className="h-100" style={{ backgroundColor: "#eee" }}>
-      <MDBContainer className="py-5 h-100">
+      <MDBContainer className="py-5 h-100" style={{marginLeft:"0px",marginRight:"0px"}}>
         <MDBRow
           className="justify-content-center align-items-center h-100"
-          style={{ marginLeft: "18rem" }}
+
         >
           <MDBCol md="10">
             <MDBRow>

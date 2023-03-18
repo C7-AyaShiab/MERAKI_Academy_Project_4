@@ -23,3 +23,16 @@
   border: 1px solid #d96060;
   background: #ec8f8f;
 }
+@media (width: 500px) {
+  div.card-body.d-flex.flex-column,
+  div.row.g-0,
+  div.col-md-6,
+  div.card,
+  div.container.py-5,
+  div.card.rounded-2 {
+    width: 430px;
+  }
+  img.rounded-start {
+    display: none;
+  }
+}

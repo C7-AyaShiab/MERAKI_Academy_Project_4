@@ -92,7 +92,7 @@ const Login = () => {
   return (
     <MDBContainer className="py-5 h-100 center" >
       <MDBCard
-        className=" rounded-2"
+        className=" rounded-2" style={{marginLeft:"0px",marginRight:"0px"}}
       >
         <MDBRow className="g-0">
           <MDBCol md="6">
@@ -107,7 +107,7 @@ const Login = () => {
           <MDBCol md="4">
             <MDBCardBody
               className="d-flex flex-column"
-              style={{ width: "30rem" }}
+              
             >
               <div className="d-flex flex-row mt-2">
                 <span className="h1 fw-bold mb-0">

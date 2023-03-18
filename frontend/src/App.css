@@ -1,32 +1,41 @@
-body{
-    text-align: center;
-  background-color: #f1f1f1; 
-
-   
+body {
+  text-align: center;
+  background-color: #f1f1f1;
 }
 
-.App-header{
-    background-color: #212529;
-   
-} 
+.App-header {
+  background-color: #212529;
+}
 
-.search{
-    height: 2rem;
-    width:20rem;
+.search {
+  height: 2rem;
+  width: 20rem;
+  float: right;
+  border: none;
+  margin-top: 1.6rem;
+  margin-right: 16px;
+}
+
+.search-btn {
+  float: right;
+  width: 2rem;
+  height: 2rem;
+  margin-top: 1.6rem;
+  border: none;
+  background-color: white;
+}
+
+@media (width: 500px) {
+  .search {
+    float: center;
+    margin-right: 3rem;
+    margin-top: 1.8rem;
+    margin-bottom: 2rem;
+  }
+  .search-btn {
     float: right;
-    border: none;
-    margin-top: 1.6rem;
-    margin-right: 16px;
-    
-}
+    margin-top: 1.8rem;
 
-.search-btn{
-    float: right;
-    width: 2rem; 
-    height: 2rem;
-    margin-top: 1.6rem;
-    border: none;
-      background-color: "white"
+    margin-right: 0;
+  }
 }
-
- 

@@ -98,17 +98,15 @@ const Cart = () => {
 
   return (
     <section className="h-100" style={{ backgroundColor: "#eee" }}>
-      <MDBContainer className="py-5 h-100">
+      <MDBContainer className="py-5 h-100" style={{marginLeft:"0px",marginRight:"0px"}}>
         <MDBRow className="justify-content-center align-items-center h-100">
           <MDBCol md="10">
-            <div className="d-flex justify-content-between align-items-center mb-4">
-              <MDBTypography
-                tag="h3"
-                className="fw-normal mb-0 text-black"
-                style={{ color: "black", marginLeft: "10rem" }}
+            <div className="d-flex justify-content-between align-items-center mb-2" style={{width:"200px"}}>
+              <h3
+              
               >
                 Shopping Cart
-              </MDBTypography>
+              </h3>
             </div>
             {cartItems &&
               cartItems.map((cart) => {

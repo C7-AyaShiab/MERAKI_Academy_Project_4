@@ -32,7 +32,7 @@ const clearInput=()=>{
     
 }
   return (
-    <div>
+    <div className="search-container" >
       <input
         className="search"
         type="text"

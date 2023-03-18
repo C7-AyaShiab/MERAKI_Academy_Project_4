@@ -83,8 +83,8 @@ const Register = () => {
       });
   };
   return (
-    <MDBContainer className="my-5">
-      <MDBCard>
+    <MDBContainer className="py-5 h-100 center" >
+      <MDBCard className=" rounded-2" style={{marginLeft:"0px",marginRight:"0px"}}>
         <MDBRow className="g-0">
           <MDBCol md="6">
             <MDBCardImage

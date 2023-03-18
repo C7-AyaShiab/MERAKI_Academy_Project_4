@@ -18,6 +18,7 @@ import {
   MDBBtn,
 } from "mdb-react-ui-kit";
 const Home = () => {
+   
   const navigate = useNavigate();
   const { products, setProducts } = useContext(ProductContext);
   const [number, setNumber] = useState(0);
@@ -36,6 +37,7 @@ const Home = () => {
       .then((result) => {
         setProducts(result.data.product.slice(0, 8));
         setNumber(8);
+     
       })
       .catch((err) => {
         console.log(err);
@@ -176,6 +178,7 @@ const Home = () => {
               .then((result) => {
                 console.log(result.data);
                 setNumber(number + 8);
+
                 if (number === 24) {
                   setShowBtn(!showBtn);
                 }

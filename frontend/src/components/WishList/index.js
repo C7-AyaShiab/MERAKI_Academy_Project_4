@@ -7,6 +7,7 @@ import {
   MDBCardText,
   MDBCardImage,
   MDBBtn,
+  MDBContainer
 } from "mdb-react-ui-kit";
 import { CgDollar } from "react-icons/cg";
 
@@ -33,18 +34,22 @@ const WishList = () => {
     navigate(`/${id}`);
   };
   return (
-    <div>
+    
+    <MDBContainer className="py-5 h-100">
+      
       <h4 className="my-3">Wishlist</h4>
-      <div className="row g-3">
+      <div className="row" style={{ marginLeft:"25px",marginRight:"0px", marginTop:"5px"}}>
         {wishList &&
           wishList.map((product, idx) => {
             return (
-              <MDBCard
+              <MDBCard 
                 key={product._id}
                 style={{
                   maxWidth: "18rem",
                   margin: "2rem",
+                  marginRight:"2rem",
                   paddingTop: "1rem",
+
                 }}
               >
                 <MDBCardImage
@@ -70,7 +75,7 @@ const WishList = () => {
             );
           })}
       </div>
-    </div>
+    </MDBContainer>
   );
 };
 

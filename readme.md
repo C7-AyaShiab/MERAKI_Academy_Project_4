@@ -1,6 +1,6 @@
 <p align="center">
 <a href="https://www.meraki-academy.org" target="_blank" rel="noopener noreferrer">
- <img width="400px" height="200px" src="./img/logo.gif" alt="Project logo">
+ <img width="400px" height="250px" src="./img/logo.gif" alt="Project logo">
  </a>
 </p>
 
@@ -68,6 +68,8 @@ npm run start
 ```
 
 Now app ready to use
+
+The home page of the application will be
 ![alt](./img/home.png)
 ## 🎈 Usage <a name="usage"></a>
 
@@ -76,9 +78,13 @@ Now app ready to use
 - Users can register immediately with their Google account.
 - To view the home page, click on the **Home** tab provided in the navigation bar.
 - To view your wishlist, click on the **Wishlist** tab provided in the navigation bar.
+
 ![alt](./img/wish.png)
+
 - To view your shopping cart, click on the **Cart** tab provided in the navigation bar.
+
 ![alt](./img/cart.png)
+
 - To add product to your wishlist, click on the :black_heart: button.
 - To add product to your shopping cart, click on the :shopping_cart: button.
 

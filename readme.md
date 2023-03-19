@@ -74,11 +74,17 @@ The home page of the application will be
 ## 🎈 Usage <a name="usage"></a>
 
 - Visitors can search, view product details, and read customer reviews.
-- Only registered users can add products to their wishlist, add their reviews of products, add items to the cart, and check out those items using the available payment methods (cash or credit) to provide the greatest convenience for the user. 
-- Users can register immediately with their Google account.
-- To view the home page, click on the **Home** tab provided in the navigation bar.
-- To view your wishlist, click on the **Wishlist** tab provided in the navigation bar.
 
+- Only registered users can add products to their wishlist, add their reviews of products, add items to the cart, and check out those items using the available payment methods (cash or credit) to provide the greatest convenience for the user. 
+
+- Users can register/login immediately with their Google account.
+
+- Registered users are allowed to remove items from their wishlist and shopping cart. Also, they can update item quantities in the shopping cart.
+
+- To view the home page, click on the **Home** tab provided in the navigation bar.
+
+- To view your wishlist, click on the **Wishlist** tab provided in the navigation bar.
+  
 ![alt](./img/wish.png)
 
 - To view your shopping cart, click on the **Cart** tab provided in the navigation bar.

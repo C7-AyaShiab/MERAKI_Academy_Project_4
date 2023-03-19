@@ -16,7 +16,6 @@ const register = (req, res) => {
   newUser
     .save()
     .then((result) => {
-      console.log(result);
       res.status(201).json({
         success: true,
         message: `Account created successfully`,
@@ -73,7 +72,6 @@ const login = (req, res) => {
             expiresIn: "90m",
           };
           const token = jwt.sign(payload, process.env.SECRET, options);
-          console.log(result);
           res.status(200).json({
             success: true,
             message: `login successfully`,
@@ -97,13 +95,11 @@ const googleLogin = (req, res) => {
   const token = req.body.credential;
   const CLIENT_ID = req.body.clientId;
   const client = new OAuth2Client(CLIENT_ID);
-  console.log(client);
   async function verify() {
     const ticket = await client.verifyIdToken({
       idToken: token,
       audience: CLIENT_ID,
     });
-    console.log(ticket);
     const payload = ticket.getPayload();
     res.json(payload);
   }

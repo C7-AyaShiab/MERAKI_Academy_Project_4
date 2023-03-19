@@ -10,7 +10,6 @@ import {
   MDBCardImage,
   MDBRow,
   MDBCol,
-  MDBIcon,
   MDBInput,
 } from "mdb-react-ui-kit";
 const Register = () => {
@@ -61,7 +60,6 @@ const Register = () => {
         clientId,
       })
       .then((res) => {
-        console.log(res);
         const { family_name, given_name, email } = res.data;
         const fakePass = family_name + 123456;
         localStorage.setItem("fakePass", fakePass);
@@ -83,8 +81,11 @@ const Register = () => {
       });
   };
   return (
-    <MDBContainer className="py-5 h-100 center" >
-      <MDBCard className=" rounded-2" style={{marginLeft:"0px",marginRight:"0px"}}>
+    <MDBContainer className="py-5 h-100 center">
+      <MDBCard
+        className=" rounded-2"
+        style={{ marginLeft: "0px", marginRight: "0px" }}
+      >
         <MDBRow className="g-0">
           <MDBCol md="6">
             <MDBCardImage
@@ -97,7 +98,6 @@ const Register = () => {
           <MDBCol md="6">
             <MDBCardBody className="d-flex flex-column">
               <div className="d-flex flex-row mt-2">
-               
                 <span className="h1 fw-bold mb-0">
                   <img
                     src="./logoW.png"

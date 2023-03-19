@@ -19,7 +19,6 @@ const images = [
 ];
 
 const divStyle = {
- 
   display: "flex",
   alignItems: "center",
   justifyContent: "center",

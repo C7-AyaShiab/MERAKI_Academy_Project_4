@@ -47,7 +47,7 @@
     margin-left: 2rem;
     grid-template-columns: auto;
     margin-bottom: 1rem;
-  gap: 0px;
+    gap: 0px;
     padding: 1px;
   }
 }

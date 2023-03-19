@@ -15,10 +15,8 @@ import {
   MDBCardText,
   MDBRow,
   MDBCol,
-  MDBBtn,
 } from "mdb-react-ui-kit";
 const Home = () => {
-   
   const navigate = useNavigate();
   const { products, setProducts } = useContext(ProductContext);
   const [number, setNumber] = useState(0);
@@ -26,7 +24,6 @@ const Home = () => {
   const [isShown, setIsShown] = useState(false);
   const [imgId, setImgId] = useState(0);
   const [cartId, setcartId] = useState(0);
-
   const [showMessage, setShowMessage] = useState(false);
   const userId = localStorage.getItem("userId");
   const [message, setMessage] = useState("");
@@ -37,7 +34,6 @@ const Home = () => {
       .then((result) => {
         setProducts(result.data.product.slice(0, 8));
         setNumber(8);
-     
       })
       .catch((err) => {
         console.log(err);
@@ -54,14 +50,11 @@ const Home = () => {
 
   let fav = JSON.parse(localStorage.getItem("fav")) || [];
   const addToFav = (e) => {
-    console.log(e.target);
-    console.log(e.target.id);
     if (!userId) {
       navigate("/login");
     } else {
       products.forEach((product, i) => {
         if (product._id === e.target.id) {
-          console.log(product);
           const fav1 = fav.filter((product) => {
             return product._id !== e.target.id;
           });
@@ -74,9 +67,7 @@ const Home = () => {
 
   const addToCart = (e) => {
     const productId = e.target.id;
-    setcartId(e);
     setShowMessage(true);
-    console.log(e.target.id);
     axios
       .post(
         `http://localhost:5000/users/${userId}/cart`,
@@ -199,25 +190,3 @@ const Home = () => {
 };
 
 export default Home;
-
-/* 
-  // let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const addToCart = (e) => {
-    console.log(e.target);
-    products.forEach((product, i) => {
-      if (product._id === e.target.id) {
-        console.log(product);
-        setCount(count + 1);
-        cart.push(product)
-        if((localStorage.getItem("cart")).includes(product)){
-          console.log(true)
-
-        }
-        else{
-          console.log(false)
-
-        }
-        // localStorage.setItem("cart", JSON.stringify(cart));
-      }
-    });
-  }; */

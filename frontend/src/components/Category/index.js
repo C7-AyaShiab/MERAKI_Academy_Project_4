@@ -138,10 +138,16 @@ const Category = () => {
                 <BsStarHalf style={{ color: "orange" }} />{" "}
               </p>
               <p>${chosen.price}</p>
-              <button className="best-btn" id={chosen._id} onClick={(e)=>{
-                let id = e.target.id;
-                navigate(`/${id}`);
-              }}>Shop Now</button>
+              <button
+                className="best-btn"
+                id={chosen._id}
+                onClick={(e) => {
+                  let id = e.target.id;
+                  navigate(`/${id}`);
+                }}
+              >
+                Shop Now
+              </button>
             </>
           )}
         </div>

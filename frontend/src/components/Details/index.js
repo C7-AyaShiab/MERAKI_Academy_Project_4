@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { ProductContext } from "../../App";
-
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
-
 import "./style.css";
 import Category from "../Category";
 import { BsStarFill } from "react-icons/bs";
@@ -28,8 +26,7 @@ const Details = () => {
   const [text, setText] = useState("Show Reviews");
 
   const [review, setReview] = useState([]);
-  const { loggedUserId, setloggedUserId, isLoggedIn, setisLoggedIn } =
-    useContext(ProductContext);
+  const { isLoggedIn, setisLoggedIn } = useContext(ProductContext);
   const { id } = useParams();
   const userId = localStorage.getItem("userId");
 
@@ -80,8 +77,6 @@ const Details = () => {
 
   const addToCart = (e) => {
     const productId = e.target.id;
-    console.log(e.target.id);
-
     if (userId) {
       axios
         .post(

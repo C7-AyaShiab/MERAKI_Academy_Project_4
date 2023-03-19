@@ -26,8 +26,6 @@ function App() {
   const [token, setToken] = useState("");
   const [loggedUser, setloggedUser] = useState("");
   const [isLoggedIn, setisLoggedIn] = useState(false);
-  console.log(token);
-  console.log(localStorage.getItem("token"));
   const [cartItems, setCartItems] = useState([]);
   useEffect(() => {
     setToken(localStorage.getItem("token"));

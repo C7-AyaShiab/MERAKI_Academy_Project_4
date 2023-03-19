@@ -14,7 +14,6 @@ const createReview = (req, res) => {
   newReview
     .save()
     .then((result) => {
-      console.log(result);
       productModel
         .findByIdAndUpdate(
           { _id: id },
@@ -96,8 +95,6 @@ const deletereviewById = (req, res) => {
       });
     });
 };
-
-
 
 module.exports = {
   createReview,

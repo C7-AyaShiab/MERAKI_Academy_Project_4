@@ -165,7 +165,6 @@ const getProductByCategory = (req, res) => {
 const getProductByPrice = (req, res) => {
   const minPrice = req.query.minPrice;
   const maxPrice = req.query.maxPrice;
-  console.log(req.query);
   productModel
     .find({
       $and: [{ price: { $lt: maxPrice } }, { price: { $gt: minPrice } }],
@@ -188,11 +187,10 @@ const getProductByPrice = (req, res) => {
     });
 };
 
-
 const getProductByRate = (req, res) => {
   const rate = req.query.q;
   productModel
-    .find({ rate :{ $gte: rate } })
+    .find({ rate: { $gte: rate } })
     .populate("review")
     .exec()
     .then((product) => {
@@ -210,7 +208,6 @@ const getProductByRate = (req, res) => {
       res.status(500).json(err);
     });
 };
-
 
 module.exports = {
   createProduct,

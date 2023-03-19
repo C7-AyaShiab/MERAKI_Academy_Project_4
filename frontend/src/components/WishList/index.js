@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   MDBCard,
   MDBCardBody,
@@ -8,8 +8,6 @@ import {
   MDBCardImage,
   MDBBtn,
   MDBContainer,
-  MDBCol,
-  MDBRow,
 } from "mdb-react-ui-kit";
 import { CgDollar } from "react-icons/cg";
 
@@ -37,13 +35,12 @@ const WishList = () => {
   };
   return (
     <MDBContainer className="py-5 h-100">
-       <div className="d-flex justify-content-between align-items-center mb-2" style={{width:"200px", marginLeft:"3rem"}}>
-              <h3
-              
-              >
-               Wishlist
-              </h3>
-            </div>
+      <div
+        className="d-flex justify-content-between align-items-center mb-2"
+        style={{ width: "200px", marginLeft: "3rem" }}
+      >
+        <h3>Wishlist</h3>
+      </div>
       <div className="wish row">
         {wishList &&
           wishList.map((product, idx) => {
@@ -53,7 +50,7 @@ const WishList = () => {
                 style={{
                   maxWidth: "20rem",
                   marginLeft: "4rem",
-                  marginBottom:"2rem",
+                  marginBottom: "2rem",
                   marginRight: "2rem",
                   paddingTop: "1rem",
                 }}
@@ -65,7 +62,6 @@ const WishList = () => {
                   id={product._id}
                   style={{
                     maxWidth: "18rem",
-                    
                   }}
                   onClick={handleClick}
                 />

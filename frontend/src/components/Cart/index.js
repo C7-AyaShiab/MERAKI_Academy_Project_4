@@ -18,9 +18,7 @@ import { CgDollar } from "react-icons/cg";
 import { ProductContext } from "../../App";
 
 const Cart = () => {
-  const {
-    cartItems,setCartItems
-  } = useContext(ProductContext);
+  const { cartItems, setCartItems } = useContext(ProductContext);
   const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
 
@@ -36,20 +34,21 @@ const Cart = () => {
       });
   }, []);
 
-  console.log(cartItems);
-
   const updateCard = (e) => {
     const cartId = e.target.id;
     const updated = e.target.value;
     axios
-      .put(`http://localhost:5000/users/${userId}/cart/${cartId}`, {
-        amount: updated,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+      .put(
+        `http://localhost:5000/users/${userId}/cart/${cartId}`,
+        {
+          amount: updated,
         },
-      })
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
       .then((result) => {
         const updatedCart = cartItems.map((cart, i) => {
           if (cart._id === cartId) {
@@ -66,11 +65,9 @@ const Cart = () => {
   };
 
   const deleteCart = (e) => {
-    console.log(e.target.id);
     const cartId = e.target.id;
     axios
-      .delete(`http://localhost:5000/users/${userId}/cart/${cartId}`,
-      {
+      .delete(`http://localhost:5000/users/${userId}/cart/${cartId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -94,19 +91,21 @@ const Cart = () => {
     .reduce((acc, cart) => acc + cart.amount * cart.items.price, 0)
     .toFixed(2);
 
-    localStorage.setItem("subTotal",subTotal);
+  localStorage.setItem("subTotal", subTotal);
 
   return (
     <section className="h-100" style={{ backgroundColor: "#eee" }}>
-      <MDBContainer className="py-5 h-100" style={{marginLeft:"0px",marginRight:"0px"}}>
+      <MDBContainer
+        className="py-5 h-100"
+        style={{ marginLeft: "0px", marginRight: "0px" }}
+      >
         <MDBRow className="justify-content-center align-items-center h-100">
           <MDBCol md="10">
-            <div className="d-flex justify-content-between align-items-center mb-2" style={{width:"200px"}}>
-              <h3
-              
-              >
-                Shopping Cart
-              </h3>
+            <div
+              className="d-flex justify-content-between align-items-center mb-2"
+              style={{ width: "200px" }}
+            >
+              <h3>Shopping Cart</h3>
             </div>
             {cartItems &&
               cartItems.map((cart) => {
@@ -156,13 +155,17 @@ const Cart = () => {
                           </MDBTypography>
                         </MDBCol>
                         <MDBCol md="1" lg="1" xl="1" className="text-end">
-                          <button style={{"border":"none", "backgroundColor":"white"}}
-                        id={cart._id} onClick={deleteCart}>
-                          <FaTrash
+                          <button
+                            style={{ border: "none", backgroundColor: "white" }}
                             id={cart._id}
                             onClick={deleteCart}
-                            className="text-danger"
-                          /></button> 
+                          >
+                            <FaTrash
+                              id={cart._id}
+                              onClick={deleteCart}
+                              className="text-danger"
+                            />
+                          </button>
                         </MDBCol>
                       </MDBRow>
                     </MDBCardBody>
@@ -179,9 +182,7 @@ const Cart = () => {
                   Subtotal{" "}
                 </p>
                 <p className="mb-1" style={{ paddingRight: "1.8rem" }}>
-                  {cartItems &&
-                    subTotal
-                     }
+                  {cartItems && subTotal}
                 </p>
               </div>
             </MDBCard>

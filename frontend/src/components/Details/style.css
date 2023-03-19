@@ -8,26 +8,25 @@
   justify-content: center;
   grid-template-areas: "sidebar content";
 }
-.card.py-5.h-100.center{
+.card.py-5.h-100.center {
   width: 60rem;
-   margin-left: -30rem; 
+  margin-left: -30rem;
 }
 
-img.detail-img{
+img.detail-img {
   width: 25rem;
-  margin-left: 15rem; 
-  
+  margin-left: 15rem;
 }
-.section-detail{
+.section-detail {
   width: 800px;
 }
-.button.mb-2.px-3{
+.button.mb-2.px-3 {
   margin-left: 32rem;
 }
-.button2.mb-2.px-3{
- margin-left: 33.5rem;
+.button2.mb-2.px-3 {
+  margin-left: 33.5rem;
 }
-.input-review{
+.input-review {
   width: 400px;
   margin-top: 0px;
 }
@@ -37,51 +36,47 @@ img.detail-img{
     padding-top: 0.5rem;
     margin-left: 4rem;
     grid-template-columns: auto;
-   
-
   }
-  .button.mb-2.px-3{
+  .button.mb-2.px-3 {
     margin-left: 8.5rem;
   }
-  .button2.mb-2.px-3{
+  .button2.mb-2.px-3 {
     margin-left: 10rem;
-  
-
-   }
+  }
   div.row.row-cols-1.row-cols-md-4.g-4 {
     margin-top: 1rem;
   }
-  .card.py-5.h-100.center{
+  .card.py-5.h-100.center {
     width: 25rem;
-   margin-left: 5rem; 
+    margin-left: 5rem;
   }
-  img.detail-img{
+  img.detail-img {
     width: 18rem;
-  
-    margin-left: 3rem; 
-    
+
+    margin-left: 3rem;
   }
-  .section-detail, div.container.detail.py-5.h-100{
+  .section-detail,
+  div.container.detail.py-5.h-100 {
     width: 20rem;
     margin-top: 7rem;
     padding-left: 0px;
   }
-    
-  div.card-body.p-2.d-flex.align-items-center,div.card.detail-card{
-    width:100px;
+
+  div.card-body.p-2.d-flex.align-items-center,
+  div.card.detail-card {
+    width: 100px;
   }
-  p.card-text{
-    padding:0;
-    height:20px;
+  p.card-text {
+    padding: 0;
+    height: 20px;
   }
-  
-  .input-review{
+
+  .input-review {
     width: 250px;
     margin-top: 0px;
   }
-  div.card-body.card-body-detail, div.card.detail.mb-1{
-
+  div.card-body.card-body-detail,
+  div.card.detail.mb-1 {
     width: 250px;
   }
-   
 }

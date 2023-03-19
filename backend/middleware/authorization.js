@@ -1,4 +1,3 @@
- 
 const authorization = (text) => {
   return (req, res, next) => {
     if (!req.token.role.permissions.includes(text)) {
@@ -11,4 +10,4 @@ const authorization = (text) => {
   };
 };
 
-module.exports =  authorization;
+module.exports = authorization;

@@ -2,7 +2,6 @@
   padding-top: 2rem;
   padding-left: 0.5rem;
   width: 180px;
-  /* background-color: #f1f1f1;  */
   position: relative;
   height: 1000px;
   overflow: auto;
@@ -13,7 +12,6 @@ h5 {
   font-size: medium;
 
   color: rgb(6, 6, 6);
-
 }
 .Category > p {
   display: block;
@@ -32,35 +30,32 @@ h5 {
 aside {
   grid-area: sidebar;
   width: 160px;
-  
 }
 
-.other{
+.other {
   padding-top: 1rem;
 }
 
-.best{
+.best {
   border: 1px solid grey;
   height: 300px;
   margin-left: 0.1rem;
   margin-top: 2px;
   padding: 0px;
   background-color: white;
-
 }
 
-.best >p{
- 
+.best > p {
   padding: 0px;
-margin: 0px;
+  margin: 0px;
 }
 
-.Ads{
+.Ads {
   width: 130px;
-  height:150px;
+  height: 150px;
 }
 
-.best-btn{
+.best-btn {
   background: rgba(0, 0, 0, 0.7);
   color: white;
   border: none;

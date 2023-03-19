@@ -14,7 +14,7 @@ const Nav = () => {
     loggedUser,
     setloggedUser,
   } = useContext(ProductContext);
-  console.log(localStorage.getItem("loggedUser"));
+
   const logout = () => {
     localStorage.removeItem("token");
     setToken(null);
@@ -27,42 +27,41 @@ const Nav = () => {
     <div className="Nav">
       {isLoggedIn ? (
         <div className="logged">
-          <strong> 
-          <Link className="nav-choices" to="/">
-            {" "}
-            Home{" "}
-          </Link>{" "}
-          <Link className="nav-choices" to="/wishlist">
-            <BsFillSuitHeartFill /> Wishlist
-          </Link>
-          <Link className="nav-choices" to="/cart">
-            <TiShoppingCart/> Cart
-          </Link>
-          <span className="nav-choices">
-            {" "}
-            <CgProfile /> {localStorage.getItem("loggedUser")}
-          </span>
-          <Link className="nav-choices" onClick={logout} to="/">
-            Logout
-          </Link>
+          <strong>
+            <Link className="nav-choices" to="/">
+              {" "}
+              Home{" "}
+            </Link>{" "}
+            <Link className="nav-choices" to="/wishlist">
+              <BsFillSuitHeartFill /> Wishlist
+            </Link>
+            <Link className="nav-choices" to="/cart">
+              <TiShoppingCart /> Cart
+            </Link>
+            <span className="nav-choices">
+              {" "}
+              <CgProfile /> {localStorage.getItem("loggedUser")}
+            </span>
+            <Link className="nav-choices" onClick={logout} to="/">
+              Logout
+            </Link>
           </strong>
         </div>
       ) : (
-       
         <div className="notlogged">
-            <strong>
-          <Link className="nav-choices" to="/">
-            {" "}
-            Home{" "}
-          </Link>
-          <Link className="nav-choices" to="/login">
-            {" "}
-            Login{" "}
-          </Link>
-          <Link className="nav-choices" to="/register">
-            {" "}
-            Register{" "}
-          </Link>
+          <strong>
+            <Link className="nav-choices" to="/">
+              {" "}
+              Home{" "}
+            </Link>
+            <Link className="nav-choices" to="/login">
+              {" "}
+              Login{" "}
+            </Link>
+            <Link className="nav-choices" to="/register">
+              {" "}
+              Register{" "}
+            </Link>
           </strong>
         </div>
       )}

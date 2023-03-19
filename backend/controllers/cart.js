@@ -8,11 +8,14 @@ const createCart = (req, res) => {
     items,
   });
   cartModel.find({ $and: [{ userId: id }, { items: items }] }).then((cart) => {
-    if (cart.length>0) {
-      res.status(201).json({success: true,
-        message: `The product is already added to the cart`,
-        cart:cart,
-      });
+    if (cart.length > 0) {
+      res
+        .status(201)
+        .json({
+          success: true,
+          message: `The product is already added to the cart`,
+          cart: cart,
+        });
     } else {
       newCart
         .save()

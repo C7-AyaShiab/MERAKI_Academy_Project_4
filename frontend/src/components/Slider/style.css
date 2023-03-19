@@ -14,10 +14,12 @@
 }
 
 @media (width: 500px) {
- 
-  
-   div.react-slideshow-wrapper.slide,div.images-wrap,div.active,.slider,div.react-slideshow-container, div-img0{
+  div.react-slideshow-wrapper.slide,
+  div.images-wrap,
+  div.active,
+  .slider,
+  div.react-slideshow-container,
+  div-img0 {
     display: none;
-
-   }
+  }
 }

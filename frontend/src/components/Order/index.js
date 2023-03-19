@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { ProductContext } from "../../App";
 
@@ -6,10 +6,8 @@ import {
   MDBBtn,
   MDBCard,
   MDBCardBody,
-  MDBCardImage,
   MDBCol,
   MDBContainer,
-  MDBIcon,
   MDBInput,
   MDBRow,
   MDBTypography,
@@ -59,15 +57,13 @@ const Order = () => {
   console.log(cartItems);
   return (
     <section className="h-100" style={{ backgroundColor: "#eee" }}>
-      <MDBContainer className="py-5 h-100" style={{marginLeft:"0px",marginRight:"0px"}}>
-        <MDBRow
-          className="justify-content-center align-items-center h-100"
-
-        >
+      <MDBContainer
+        className="py-5 h-100"
+        style={{ marginLeft: "0px", marginRight: "0px" }}
+      >
+        <MDBRow className="justify-content-center align-items-center h-100">
           <MDBCol md="10">
             <MDBRow>
-              {/* <hr /> */}
-
               <MDBCol lg="8">
                 <MDBCard
                   className="bg-primary text-white rounded-2"

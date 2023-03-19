@@ -3,23 +3,21 @@ import { FcSearch } from "react-icons/fc";
 import { ProductContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 
-
 const Search = () => {
   const navigate = useNavigate();
-  const { products, setProducts,setSearchResult,searchResult } =
+  const { products, setProducts, setSearchResult, searchResult } =
     useContext(ProductContext);
-    const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
   const handleChange = (e) => {
     setSearchResult(true);
     const searchVal = e.target.value.toLowerCase();
-    setInputValue(searchVal)
+    setInputValue(searchVal);
     if (searchVal === "") {
       setSearchResult(false);
     }
     navigate("/categorylist/search");
     const filtered = products.filter((product) => {
       const re = new RegExp(searchVal, "g");
-      console.log(re);
       return (
         product.productName.toLowerCase().match(re) ||
         product.description.toLowerCase().match(re)
@@ -27,12 +25,11 @@ const Search = () => {
     });
     setProducts(filtered);
   };
-const clearInput=()=>{
-    setInputValue("")
-    
-}
+  const clearInput = () => {
+    setInputValue("");
+  };
   return (
-    <div className="search-container" >
+    <div className="search-container">
       <input
         className="search"
         type="text"

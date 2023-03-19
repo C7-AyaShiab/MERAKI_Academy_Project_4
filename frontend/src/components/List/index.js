@@ -34,14 +34,11 @@ const List = () => {
   };
   let fav = JSON.parse(localStorage.getItem("fav")) || [];
   const addToFav = (e) => {
-    console.log(e.target);
-    console.log(e.target.id);
     if (!userId) {
       navigate("/login");
     } else {
       products.forEach((product, i) => {
         if (product._id === e.target.id) {
-          console.log(product);
           const fav1 = fav.filter((product) => {
             return product._id !== e.target.id;
           });
@@ -53,7 +50,6 @@ const List = () => {
   };
   const addToCart = (e) => {
     const productId = e.target.id;
-    console.log(e.target.id);
     axios
       .post(
         `http://localhost:5000/users/${userId}/cart`,

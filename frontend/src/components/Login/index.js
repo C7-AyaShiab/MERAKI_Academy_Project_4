@@ -19,7 +19,6 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [userId, setuserId] = useState("");
-
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("");
@@ -58,13 +57,11 @@ const Login = () => {
         clientId,
       })
       .then((res) => {
-        console.log(res);
         localStorage.setItem("loggedUser", res.data.name);
         setloggedUser(res.data.name);
 
         const { family_name, given_name, email } = res.data;
         const fakePass = family_name + 123456;
-        console.log(email, fakePass);
 
         axios
           .post("http://localhost:5000/users/login", {
@@ -72,7 +69,6 @@ const Login = () => {
             password: fakePass,
           })
           .then((res) => {
-            console.log(res.data);
             setToken(res.data.token);
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("userId", res.data.userId);
@@ -90,9 +86,10 @@ const Login = () => {
       });
   };
   return (
-    <MDBContainer className="py-5 h-100 center" >
+    <MDBContainer className="py-5 h-100 center">
       <MDBCard
-        className=" rounded-2" style={{marginLeft:"0px",marginRight:"0px"}}
+        className=" rounded-2"
+        style={{ marginLeft: "0px", marginRight: "0px" }}
       >
         <MDBRow className="g-0">
           <MDBCol md="6">
@@ -105,10 +102,7 @@ const Login = () => {
           </MDBCol>
 
           <MDBCol md="4">
-            <MDBCardBody
-              className="d-flex flex-column"
-              
-            >
+            <MDBCardBody className="d-flex flex-column">
               <div className="d-flex flex-row mt-2">
                 <span className="h1 fw-bold mb-0">
                   <img
@@ -123,7 +117,7 @@ const Login = () => {
 
               <h5
                 className=" my-3 pb-2"
-                style={{ letterSpacing: "1px" , fontWeight: "700"}}
+                style={{ letterSpacing: "1px", fontWeight: "700" }}
               >
                 Sign into your account
               </h5>
@@ -186,7 +180,6 @@ const Login = () => {
 
               {showMessage ? <p className={messageType}>{message}</p> : ""}
             </MDBCardBody>
-            
           </MDBCol>
         </MDBRow>
       </MDBCard>

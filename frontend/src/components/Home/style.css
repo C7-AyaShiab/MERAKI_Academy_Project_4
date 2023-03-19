@@ -33,9 +33,9 @@ img {
   div.row.row-cols-1.row-cols-md-4.g-4 {
     margin-top: 1rem;
   }
-h5.card-title{
-  font-size: 15px;
-}
+  h5.card-title {
+    font-size: 15px;
+  }
   img {
     width: 150px;
     height: 150px;
